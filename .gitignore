@@ -1,0 +1,13 @@
+# Created by: Brennan Meyer with use of Claude Code 10/25/2026 Santa Clarita, CA
+# brennanmmeyer@gmail.com
+
+# Screenshot candidates — only the picked, optimized shots in img/ get published
+_screenshots/
+
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# Local Claude Code settings
+.claude/

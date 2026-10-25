@@ -1,0 +1,7 @@
+{
+  "groups": [
+    { "name": "Languages", "items": ["Python", "JavaScript", "TypeScript", "Rust", "Kotlin", "GDScript", "C++", "HTML/CSS"] },
+    { "name": "Engines & frameworks", "items": ["Godot 4", "Electron", "Tauri v2", "React"] },
+    { "name": "Source control", "items": ["Git", "GitHub"] }
+  ]
+}

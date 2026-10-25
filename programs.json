@@ -1,0 +1,54 @@
+{
+  "categories": [
+    { "id": "machining", "name": "Machining & CNC" },
+    { "id": "learning", "name": "Learning" },
+    { "id": "games", "name": "Games" },
+    { "id": "audio", "name": "Music & Audio" },
+    { "id": "art", "name": "Art & Visual" },
+    { "id": "tools", "name": "Tools" }
+  ],
+  "programs": [
+    {
+      "id": "musickid",
+      "name": "Music KID",
+      "category": "audio",
+      "status": "ready",
+      "version": "1.1.3",
+      "description": "Scans a song and tells you its key, tempo and chords. Includes a play-along chord chart with guitar and piano shapes.",
+      "images": [],
+      "downloads": [
+        { "label": "Download", "platform": "Windows", "url": "https://github.com/13-1V1/BEZ-Works/releases/download/musickid-v1.1.3/MusicKID-Setup-1.1.3.exe", "sizeBytes": null }
+      ]
+    },
+    {
+      "id": "bez-gpad",
+      "name": "BEZ GPAD",
+      "category": "machining",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "G-code notepad with a “spell checker” for Fanuc mill and lathe code. Insert a safe start block with one click.",
+      "images": [],
+      "browser": "play/bez-gpad/"
+    },
+    {
+      "id": "nobull-desktop",
+      "name": "NoBull Music Player (Desktop)",
+      "category": "audio",
+      "status": "ready",
+      "version": "1.0.1",
+      "description": "A no-nonsense local music player for Windows.",
+      "images": [],
+      "downloads": [
+        { "label": "Download", "platform": "Windows", "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-desktop-v1.0.1/NoBull-1.0.1.msi", "sizeBytes": null }
+      ],
+      "source": "https://github.com/13-1V1/BEZ-Works/releases/tag/nobull-desktop-v1.0.1"
+    },
+    {
+      "id": "bez-cam",
+      "name": "BEZ CAM",
+      "category": "machining",
+      "status": "coming-soon",
+      "description": "Beginner-friendly CAM: a SolidWorks-style FreeCAD setup that turns a part into Fanuc G-code. Mill only for now."
+    }
+  ]
+}
