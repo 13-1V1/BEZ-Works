@@ -23,6 +23,7 @@ def main():
     for p in data["programs"]:
         folder = SHOTS / p["id"]
         files = sorted(f for f in folder.iterdir() if f.suffix.lower() in EXTS) if folder.exists() else []
+        clips = sorted(folder.glob("*.mp4")) if folder.exists() else []
         if not files:
             missing.append(p["name"])
             continue
@@ -35,6 +36,11 @@ def main():
     <span class="name">{html.escape(f.name)}</span>
   </figcaption>
 </figure>''' for f in files)
+        clip_html = "".join(
+            f'''<figure class="tile clip"><video src="{html.escape(p['id'])}/{html.escape(c.name)}" autoplay muted loop playsinline></video>
+  <figcaption><span class="name">Card video (plays automatically on the card): {html.escape(c.name)}</span></figcaption></figure>'''
+            for c in clips)
+        tiles = clip_html + tiles
         sections.append(f'''<section class="prog" data-id="{html.escape(p['id'])}">
   <h2>{html.escape(p['name'])} <small>{len(files)} shot(s)</small></h2>
   <div class="grid">{tiles}</div>
@@ -74,7 +80,8 @@ TEMPLATE = """<!DOCTYPE html>
   .prog h2 small { color:#888; font-weight:400; font-size:12px; }
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px; }
   .tile { margin:0; border:2px solid transparent; border-radius:12px; overflow:hidden; background:#151515; }
-  .tile img { width:100%; aspect-ratio:16/10; object-fit:contain; background:#0b0b0b; display:block; cursor:zoom-in; }
+  .tile img, .tile video { width:100%; aspect-ratio:16/10; object-fit:contain; background:#0b0b0b; display:block; cursor:zoom-in; }
+  .tile.clip { border-color:#3a3a3a; }
   .tile figcaption { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:8px 10px; }
   .tile .name { flex-basis:100%; color:#777; font-size:11px; word-break:break-all; }
   .tile.picked { border-color:#6a6a6a; }

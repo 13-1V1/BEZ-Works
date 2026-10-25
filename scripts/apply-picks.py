@@ -10,6 +10,7 @@
 #         (default: ~/Downloads/picks.json)
 
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -19,10 +20,20 @@ ROOT = Path(__file__).resolve().parent.parent
 FULL_W, THUMB_W = 1600, 800
 
 
-def to_webp(src, dst, width, quality):
+CARD_RATIO = 16 / 10   # card frame; tall (phone) shots get centered on a dark 16:10 backdrop for the thumb
+BACKDROP = (18, 18, 18)
+
+
+def to_webp(src, dst, width, quality, fit_card=False):
     with Image.open(src) as im:
-        im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
-        if im.width > width:
+        im = im.convert("RGB")
+        if fit_card and im.width / im.height < CARD_RATIO * 0.8:
+            h = round(width / CARD_RATIO)
+            im.thumbnail((width, h - 24), Image.LANCZOS)
+            canvas = Image.new("RGB", (width, h), BACKDROP)
+            canvas.paste(im, ((width - im.width) // 2, (h - im.height) // 2))
+            im = canvas
+        elif im.width > width:
             im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
         im.save(dst, "WEBP", quality=quality, method=6)
 
@@ -40,13 +51,19 @@ def main():
             continue
         out = ROOT / "img" / pid
         out.mkdir(parents=True, exist_ok=True)
-        for old in out.glob("*.webp"):
+        for old in list(out.glob("*.webp")) + list(out.glob("*.mp4")):
             old.unlink()
         images = []
+        # A looping clip saved next to the shots (e.g. zoomdraw-zoom.mp4) plays on the card
+        clips = sorted((ROOT / "_screenshots" / pid).glob("*.mp4"))
+        if clips:
+            shutil.copy2(clips[0], out / "preview.mp4")
+            by_id[pid]["video"] = f"img/{pid}/preview.mp4"
+        files = [f for f in files if not f.lower().endswith((".gif", ".mp4"))]
         for i, name in enumerate(files, 1):
             src = ROOT / "_screenshots" / pid / name
             to_webp(src, out / f"{i}.webp", FULL_W, 82)
-            to_webp(src, out / f"{i}-thumb.webp", THUMB_W, 76)
+            to_webp(src, out / f"{i}-thumb.webp", THUMB_W, 76, fit_card=True)
             images.append({"full": f"img/{pid}/{i}.webp", "thumb": f"img/{pid}/{i}-thumb.webp",
                            "alt": f"{by_id[pid]['name']} screenshot {i}"})
         by_id[pid]["images"] = images

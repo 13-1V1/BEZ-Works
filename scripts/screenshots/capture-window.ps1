@@ -22,19 +22,29 @@
      type:hello world          literal text (special SendKeys chars are escaped)
      paste:C:\path\file.txt    put file text on the clipboard, send Ctrl+V
      click:x,y                 left click
+     sclick:x,y                left click at absolute screen pixels (dialogs)
      rclick:x,y                right click
      dclick:x,y                double click
      drag:x1,y1;x2,y2;...      press at first point, move through the rest, release
+     sdrag:x1,y1;x2,y2;...     same, in absolute screen pixels
      wheel:x,y,n               mouse wheel n notches (negative = down/out)
+     cwheel:x,y,n              Ctrl + wheel at absolute screen pixels (zoom)
      move:x,y                  move mouse
+     look:dx,dy                relative mouse motion (first-person look)
+     mdown / mup               hold / release the left mouse button
+     kdown:W / kup:W           hold / release a key
+     spos:x,y                  put the cursor at screen pixels (no click)
      front                     bring window to front
      shot:C:\path\out.png      capture now (several shots per run are fine)
+     sshot:C:\path\out.png     screen-copy the window area (includes its dialogs)
   If no shot: step is given, one capture is saved to -Out at the end.
 
   -Attach     drive an already-running copy instead of launching (matched by -Exe path,
               or by -TitleMatch, which also finds console windows and owned dialogs).
   -NoClose    leave the program running afterwards (pair with -Attach for multi-step work).
   -ForceScreen  skip PrintWindow and always screen-copy the window.
+  -Maximize   maximize the window before running steps (full-screen shots).
+  -Pos x,y    with -Size, put the window's top-left at these screen pixels.
   Console apps: launch C:\Windows\System32\conhost.exe with the app as -ArgList to get a
   classic console window of their own.
 
@@ -53,7 +63,9 @@ param(
   [string[]]$Steps = @(),
   [switch]$NoClose,
   [switch]$Attach,
-  [switch]$ForceScreen
+  [switch]$ForceScreen,
+  [switch]$Maximize,
+  [string]$Pos = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -274,9 +286,14 @@ $tookShot = $false
 try {
   $h = Find-Window $proc
   Write-Host ("window 0x{0:X} '{1}'" -f [int64]$h, [CapWin.Native]::Title($h))
+  if ($Maximize) { [void][CapWin.Native]::ShowWindow($h, 3); Start-Sleep -Milliseconds 1500 }   # SW_MAXIMIZE
   if ($Size -match '^(\d+)x(\d+)$') {
+    [void][CapWin.Native]::ShowWindow($h, 9); Start-Sleep -Milliseconds 500   # restore first if maximized
     $fr = [CapWin.Native]::Frame($h)
-    [void][CapWin.Native]::MoveWindow($h, [Math]::Max(0, $fr.L), [Math]::Max(0, $fr.T), [int]$matches[1], [int]$matches[2], $true)
+    $w = [int]$matches[1]; $hh = [int]$matches[2]
+    $px = [Math]::Max(0, $fr.L); $py = [Math]::Max(0, $fr.T)
+    if ($Pos -match '^(\d+),(\d+)$') { $px = [int]$matches[1]; $py = [int]$matches[2] }
+    [void][CapWin.Native]::MoveWindow($h, $px, $py, $w, $hh, $true)
     Start-Sleep -Milliseconds 800
   }
   foreach ($s in $Steps) {
@@ -290,6 +307,10 @@ try {
         $old = try { Get-Clipboard -Raw } catch { $null }
         Set-Clipboard -Value (Get-Content -Raw $arg); (Set-Front $h); Start-Sleep -Milliseconds 200; $shell.SendKeys('^v'); Start-Sleep -Milliseconds 700
         if ($old) { Set-Clipboard -Value $old }   # put the user's clipboard back
+      }
+      'sclick' {   # click at absolute screen pixels (for dialogs owned by the app)
+        $x, $y = $arg -split ','; [void][CapWin.Native]::SetCursorPos([int]$x, [int]$y); Start-Sleep -Milliseconds 80
+        Mouse 0x02; Start-Sleep -Milliseconds 40; Mouse 0x04; Start-Sleep -Milliseconds 400
       }
       'move'   { $x, $y = $arg -split ','; $p = To-Screen $h $x $y; [void][CapWin.Native]::SetCursorPos($p.X, $p.Y) }
       { $_ -in 'click', 'rclick', 'dclick' } {
@@ -316,6 +337,16 @@ try {
         }
         Mouse 0x04; Start-Sleep -Milliseconds 200
       }
+      'sdrag' {   # drag through absolute screen points: x1,y1;x2,y2;...
+        $pts = $arg -split ';' | ForEach-Object { $x, $y = $_ -split ','; [pscustomobject]@{ X = [int]$x; Y = [int]$y } }
+        [void][CapWin.Native]::SetCursorPos($pts[0].X, $pts[0].Y); Start-Sleep -Milliseconds 40
+        Mouse 0x02
+        for ($i = 1; $i -lt $pts.Count; $i++) {
+          $a = $pts[$i - 1]; $b = $pts[$i]
+          for ($k = 1; $k -le 4; $k++) { [void][CapWin.Native]::SetCursorPos([int]($a.X + ($b.X - $a.X) * $k / 4), [int]($a.Y + ($b.Y - $a.Y) * $k / 4)); Start-Sleep -Milliseconds 8 }
+        }
+        Start-Sleep -Milliseconds 60; Mouse 0x04; Start-Sleep -Milliseconds 150
+      }
       'wheel' {
         (Set-Front $h)
         $x, $y, $n = $arg -split ','; $p = To-Screen $h $x $y; [void][CapWin.Native]::SetCursorPos($p.X, $p.Y)
@@ -323,9 +354,31 @@ try {
         for ($i = 0; $i -lt [Math]::Abs($n); $i++) { Mouse 0x0800 $one; Start-Sleep -Milliseconds 60 }
         Start-Sleep -Milliseconds 300
       }
+      'cwheel' {   # Ctrl + mouse wheel (zooms consoles, browsers, many editors)
+        (Set-Front $h)
+        $x, $y, $n = $arg -split ','; [void][CapWin.Native]::SetCursorPos([int]$x, [int]$y)
+        $n = [int]$n; $one = if ($n -lt 0) { -120 } else { 120 }
+        [CapWin.Native]::Key(0x11, $false)
+        for ($i = 0; $i -lt [Math]::Abs($n); $i++) { Mouse 0x0800 $one; Start-Sleep -Milliseconds 120 }
+        [CapWin.Native]::Key(0x11, $true); Start-Sleep -Milliseconds 400
+      }
+      'look'   {   # relative mouse motion in small steps (first-person camera look)
+        (Set-Front $h); $dx, $dy = $arg -split ','; $n = 20
+        for ($i = 0; $i -lt $n; $i++) { [CapWin.Native]::mouse_event(0x0001, [int]([int]$dx / $n), [int]([int]$dy / $n), 0, [UIntPtr]::Zero); Start-Sleep -Milliseconds 15 }
+        Start-Sleep -Milliseconds 200
+      }
+      'mdown'  { (Set-Front $h); Mouse 0x02; Start-Sleep -Milliseconds 50 }   # hold left button (e.g. keep firing)
+      'mup'    { Mouse 0x04; Start-Sleep -Milliseconds 50 }
+      'kdown'  { (Set-Front $h); [CapWin.Native]::Key((Get-VK $arg), $false) }   # hold a key until kup
+      'kup'    { [CapWin.Native]::Key((Get-VK $arg), $true) }
+      'spos'   { $x, $y = $arg -split ','; [void][CapWin.Native]::SetCursorPos([int]$x, [int]$y); Start-Sleep -Milliseconds 40 }   # cursor to screen pixels
       'tap'    { (Set-Front $h); foreach ($k in ($arg -split '\+')) { [CapWin.Native]::Key((Get-VK $k), $false) }; Start-Sleep -Milliseconds 60; foreach ($k in ($arg -split '\+')) { [CapWin.Native]::Key((Get-VK $k), $true) }; Start-Sleep -Milliseconds 250 }
       'hold'   { (Set-Front $h); $k, $ms = $arg -split ','; [CapWin.Native]::Key((Get-VK $k), $false); Start-Sleep -Milliseconds ([int]$ms); [CapWin.Native]::Key((Get-VK $k), $true); Start-Sleep -Milliseconds 150 }
       'shot'   { Save-Shot $h $arg; $tookShot = $true }
+      'sshot'  {   # screen copy of the window's area, so its open dialogs show too
+        $b = Get-ScreenGrab $h; $b.Save($arg, [System.Drawing.Imaging.ImageFormat]::Png)
+        Write-Host ("saved {0} ({1}x{2}, screen)" -f $arg, $b.Width, $b.Height); $b.Dispose(); $tookShot = $true
+      }
       default  { Write-Warning "unknown step '$s'" }
     }
   }

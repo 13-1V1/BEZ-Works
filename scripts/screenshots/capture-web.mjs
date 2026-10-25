@@ -11,6 +11,7 @@
 //   "port": 8177,
 //   "path": "index.html",              // page under the server root (or "url": "http://..." instead)
 //   "viewport": [1600, 1000],
+//   "scale": 1.5,                      // device pixel ratio (1707x1019 at 1.5 = a 2560x1528 shot)
 //   "steps": [
 //     { "wait": 1500 },                       // ms
 //     { "waitFor": "canvas" },                // CSS selector to appear
@@ -23,6 +24,7 @@
 //     { "drag": [[100,100],[300,200],[500,120]] },   // mouse down, move through points, up
 //     { "wheel": [800, 500, -400] },          // x, y, deltaY (negative = zoom in for most apps)
 //     { "eval": "window.foo && foo()" },      // run JS in the page, result is printed
+//     { "download": "#exportBtn", "saveAs": "C:\out\file.gif", "timeout": 600000 },  // save a download
 //     { "dump": true },                       // print visible buttons/links (for exploring)
 //     { "shot": "C:\\out\\auto-01-x.png" },   // viewport screenshot
 //     { "shot": "C:\\out\\x.png", "fullPage": true },
@@ -77,7 +79,7 @@ try {
     headless: plan.headless !== false,
     args: ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'],
   });
-  const page = await browser.newPage({ viewport: { width: vw, height: vh } });
+  const page = await browser.newPage({ viewport: { width: vw, height: vh }, deviceScaleFactor: plan.scale || 1 });
   page.on('pageerror', (e) => console.log('[pageerror]', e.message));
   page.on('console', (m) => { if (m.type() === 'error') console.log('[console.error]', m.text()); });
 
@@ -92,6 +94,16 @@ try {
     else if (s.press) await page.keyboard.press(s.press);
     else if (s.hold) { await page.keyboard.down(s.hold); await sleep(s.ms || 500); await page.keyboard.up(s.hold); }
     else if (s.type) await page.keyboard.type(s.type, { delay: 30 });
+    else if (s.download) {
+      // click something that triggers a file download and save it
+      const [dl] = await Promise.all([
+        page.waitForEvent('download', { timeout: s.timeout || 600000 }),
+        page.click(s.download),
+      ]);
+      mkdirSync(dirname(s.saveAs), { recursive: true });
+      await dl.saveAs(s.saveAs);
+      console.log('downloaded', s.saveAs);
+    }
     else if (s.drag) {
       const pts = s.drag;
       await page.mouse.move(pts[0][0], pts[0][1]);

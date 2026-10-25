@@ -36,6 +36,16 @@ async function loadJSON(path, inlineId) {
 
 function shotHTML(p) {
   const shots = p.images || [];
+  // A looping clip (e.g. ZoomDraw's zoom) plays on the card; the screenshots still open in the lightbox
+  if (p.video) {
+    const open = shots.length ? `data-open-shots="${esc(p.id)}"` : '';
+    const tag = shots.length ? 'button' : 'div';
+    return `
+    <${tag} class="card-shot" ${open} aria-label="${esc(p.name)} preview">
+      <video src="${esc(p.video)}" ${shots[0] ? `poster="${esc(shots[0].thumb || shots[0].full)}"` : ''} autoplay muted loop playsinline preload="metadata"></video>
+      ${shots.length ? `<span class="shot-count">${shots.length} shots</span>` : ''}
+    </${tag}>`;
+  }
   if (!shots.length) {
     return `<div class="card-shot"><div class="shot-placeholder">${esc(p.name)}</div></div>`;
   }
