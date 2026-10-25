@@ -1,0 +1,12 @@
+{
+  "name": "bez-works",
+  "private": true,
+  "description": "BEZ Works download site",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "serve": "python -m http.server 8787"
+  },
+  "devDependencies": {
+    "staticrypt": "3.5.4"
+  }
+}

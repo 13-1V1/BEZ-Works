@@ -22,7 +22,11 @@ function formatSize(bytes) {
   return Math.max(1, Math.round(bytes / 1024)) + ' KB';
 }
 
-async function loadJSON(path) {
+// The published build tucks the JSON inside the page (so the password lock covers it).
+// Local preview falls back to fetching the files.
+async function loadJSON(path, inlineId) {
+  const inline = document.getElementById(inlineId);
+  if (inline) return JSON.parse(inline.textContent);
   const res = await fetch(path, { cache: 'no-cache' });
   if (!res.ok) throw new Error(path + ' → ' + res.status);
   return res.json();
@@ -216,7 +220,7 @@ async function init() {
   wireLightbox();
 
   try {
-    const data = await loadJSON('programs.json');
+    const data = await loadJSON('programs.json', 'data-programs');
     const catNames = Object.fromEntries(data.categories.map((c) => [c.id, c.name]));
     const byId = Object.fromEntries(data.programs.map((p) => [p.id, p]));
 
@@ -245,7 +249,7 @@ async function init() {
   }
 
   try {
-    renderTools(await loadJSON('tools.json'));
+    renderTools(await loadJSON('tools.json', 'data-tools'));
   } catch (err) {
     console.error(err);
   }

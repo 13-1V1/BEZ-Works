@@ -11,3 +11,6 @@ Thumbs.db
 
 # Local Claude Code settings
 .claude/
+
+# Build output (made by scripts/build-site.mjs)
+_site/
