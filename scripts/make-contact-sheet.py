@@ -122,7 +122,7 @@ function render() {
   let n = 0;
   document.querySelectorAll('.prog[data-id]').forEach(sec => {
     const p = picks[sec.dataset.id] || { files: [], main: null };
-    sec.querySelectorAll('.tile').forEach(t => {
+    sec.querySelectorAll('.tile:not(.clip)').forEach(t => {
       const on = p.files.includes(t.dataset.file);
       t.querySelector('.pick').checked = on;
       t.classList.toggle('picked', on);

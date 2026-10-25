@@ -65,13 +65,13 @@ function actionsHTML(p) {
   for (const d of p.downloads || []) {
     const meta = [d.platform, formatSize(d.sizeBytes)].filter(Boolean).join(' · ');
     parts.push(`
-      <a class="btn btn-primary" href="${esc(d.url)}" rel="noopener">
+      <a class="btn btn-heat" href="${esc(d.url)}" rel="noopener">
         ${esc(d.label || 'Download')}
         ${meta ? `<small>${esc(meta)}</small>` : ''}
       </a>`);
   }
   if (p.browser) {
-    parts.push(`<a class="btn btn-primary" href="${esc(p.browser)}" target="_blank" rel="noopener">Open in browser</a>`);
+    parts.push(`<a class="btn btn-coolant" href="${esc(p.browser)}" target="_blank" rel="noopener">Open in browser</a>`);
   }
   if (p.source) {
     parts.push(`<a class="btn btn-quiet" href="${esc(p.source)}" target="_blank" rel="noopener">Source</a>`);
@@ -82,7 +82,7 @@ function actionsHTML(p) {
 function cardHTML(p, catNames) {
   const soon = p.status === 'coming-soon';
   return `
-    <li class="program-card${soon ? ' soon' : ''}" id="${esc(p.id)}" data-category="${esc(p.category)}">
+    <li class="program-card${soon ? ' soon' : ''}${p.featured ? ' featured' : ''}" id="${esc(p.id)}" data-category="${esc(p.category)}">
       ${shotHTML(p)}
       <div class="card-body">
         <div class="card-head">
@@ -214,6 +214,37 @@ async function copyLink(id, btn) {
   setTimeout(() => { btn.textContent = 'Copy link'; }, 1800);
 }
 
+/* ---------- Card tilt + glint (mouse only, follows the pointer) ---------- */
+
+function wireTilt(list) {
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!fine || still) return;
+  let active = null;
+  list.addEventListener('pointermove', (e) => {
+    const card = e.target.closest('.program-card');
+    if (active && active !== card) untilt(active);
+    if (!card || card.classList.contains('soon')) { active = null; return; }
+    active = card;
+    const r = card.getBoundingClientRect();
+    const u = (e.clientX - r.left) / r.width, v = (e.clientY - r.top) / r.height;
+    const max = card.classList.contains('featured') ? 3 : 5;
+    card.classList.add('tilting');
+    card.style.setProperty('--ry', `${(u - 0.5) * max * 2}deg`);
+    card.style.setProperty('--rx', `${(0.5 - v) * max * 2}deg`);
+    card.style.setProperty('--gx', `${u * 100}%`);
+    card.style.setProperty('--gy', `${v * 100}%`);
+    card.style.setProperty('--glint', '1');
+  });
+  list.addEventListener('pointerleave', () => { if (active) untilt(active); active = null; });
+  function untilt(card) {
+    card.classList.remove('tilting');
+    card.style.setProperty('--rx', '0deg');
+    card.style.setProperty('--ry', '0deg');
+    card.style.setProperty('--glint', '0');
+  }
+}
+
 /* ---------- Tools I've Used ---------- */
 
 function renderTools(data) {
@@ -243,6 +274,7 @@ async function init() {
       || '<li class="empty">No programs yet.</li>';
 
     renderFilters(data.categories);
+    wireTilt(list);
 
     list.addEventListener('click', (e) => {
       const shot = e.target.closest('[data-open-shots]');

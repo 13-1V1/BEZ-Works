@@ -27,6 +27,50 @@
   ],
   "programs": [
     {
+      "id": "gcode-trainer",
+      "name": "G-Code Trainer",
+      "category": "machining",
+      "status": "ready",
+      "version": "1.0.3",
+      "description": "Learn G-code from zero for Fanuc mills and lathes: 33 mill and 26 lathe lessons with quizzes and coding challenges, part-print challenges, 2D/3D simulators and control-panel simulators.",
+      "images": [
+        {
+          "full": "img/gcode-trainer/1.webp",
+          "thumb": "img/gcode-trainer/1-thumb.webp",
+          "alt": "G-Code Trainer screenshot 1"
+        },
+        {
+          "full": "img/gcode-trainer/2.webp",
+          "thumb": "img/gcode-trainer/2-thumb.webp",
+          "alt": "G-Code Trainer screenshot 2"
+        },
+        {
+          "full": "img/gcode-trainer/3.webp",
+          "thumb": "img/gcode-trainer/3-thumb.webp",
+          "alt": "G-Code Trainer screenshot 3"
+        },
+        {
+          "full": "img/gcode-trainer/4.webp",
+          "thumb": "img/gcode-trainer/4-thumb.webp",
+          "alt": "G-Code Trainer screenshot 4"
+        },
+        {
+          "full": "img/gcode-trainer/5.webp",
+          "thumb": "img/gcode-trainer/5-thumb.webp",
+          "alt": "G-Code Trainer screenshot 5"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/G-Code-Trainer-Setup-1.0.3.exe",
+          "sizeBytes": 112859855
+        }
+      ],
+      "featured": true
+    },
+    {
       "id": "bez-gpad",
       "name": "BEZ GPAD",
       "category": "machining",
@@ -63,7 +107,8 @@
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-gpad-v1.1/BEZ-GPAD-Portable-1.1.exe",
           "sizeBytes": 37003604
         }
-      ]
+      ],
+      "featured": true
     },
     {
       "id": "chipload",
@@ -138,49 +183,6 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-mapper-v0.1.0/BEZ-MaPPer-Setup-0.1.0.exe",
           "sizeBytes": 4488980
-        }
-      ]
-    },
-    {
-      "id": "gcode-trainer",
-      "name": "G-Code Trainer",
-      "category": "machining",
-      "status": "ready",
-      "version": "1.0.3",
-      "description": "Learn G-code from zero for Fanuc mills and lathes: 33 mill and 26 lathe lessons with quizzes and coding challenges, part-print challenges, 2D/3D simulators and control-panel simulators.",
-      "images": [
-        {
-          "full": "img/gcode-trainer/1.webp",
-          "thumb": "img/gcode-trainer/1-thumb.webp",
-          "alt": "G-Code Trainer screenshot 1"
-        },
-        {
-          "full": "img/gcode-trainer/2.webp",
-          "thumb": "img/gcode-trainer/2-thumb.webp",
-          "alt": "G-Code Trainer screenshot 2"
-        },
-        {
-          "full": "img/gcode-trainer/3.webp",
-          "thumb": "img/gcode-trainer/3-thumb.webp",
-          "alt": "G-Code Trainer screenshot 3"
-        },
-        {
-          "full": "img/gcode-trainer/4.webp",
-          "thumb": "img/gcode-trainer/4-thumb.webp",
-          "alt": "G-Code Trainer screenshot 4"
-        },
-        {
-          "full": "img/gcode-trainer/5.webp",
-          "thumb": "img/gcode-trainer/5-thumb.webp",
-          "alt": "G-Code Trainer screenshot 5"
-        }
-      ],
-      "downloads": [
-        {
-          "label": "Download",
-          "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/G-Code-Trainer-Setup-1.0.3.exe",
-          "sizeBytes": 112859855
         }
       ]
     },

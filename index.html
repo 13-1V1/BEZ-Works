@@ -3,8 +3,9 @@
   Created by: Brennan Meyer with use of Claude Code 10/25/2026 Santa Clarita, CA
   brennanmmeyer@gmail.com
 
-  Look and feel adapted from vCard by codewithsadee (MIT) — see TEMPLATE-LICENSE.txt.
+  Card grid, filter and lightbox originally adapted from vCard by codewithsadee (MIT) — see TEMPLATE-LICENSE.txt.
   Page content is built from programs.json and tools.json by js/app.js.
+  The hero (js/hero/) engraves "BEZ WORKS" from a real G-code program.
 -->
 <html lang="en">
 <head>
@@ -12,38 +13,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BEZ Works</title>
   <meta name="description" content="Programs built by Brennan Meyer. Free to download and use.">
-  <meta name="theme-color" content="#121212">
+  <meta name="theme-color" content="#0b151e">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <header class="hero" data-hero>
+    <canvas class="hero-surface" data-surface aria-hidden="true"></canvas>
+    <canvas class="hero-cut" data-cut aria-hidden="true"></canvas>
+
+    <div class="control" aria-hidden="true">
+      <ol class="gcode" data-gcode></ol>
+      <dl class="dro">
+        <div><dt>X</dt><dd data-x> 0.0000</dd></div>
+        <div><dt>Y</dt><dd data-y> 0.0000</dd></div>
+        <div><dt>Z</dt><dd data-z> 1.0000</dd></div>
+        <div><dt>F</dt><dd data-f>0.</dd></div>
+      </dl>
+    </div>
+
+    <div class="hero-copy">
+      <h1 class="sr-only">BEZ Works</h1>
+      <p class="hero-tagline">Programs I've built. Free to download and use.</p>
+      <div class="hero-actions">
+        <a class="btn btn-heat" href="#programs">See the programs</a>
+        <button class="btn btn-ghost" type="button" data-cycle>Cycle start</button>
+      </div>
+    </div>
+  </header>
+
   <main class="page">
 
-    <header class="site-header">
-      <h1 class="site-title">BEZ Works</h1>
-      <p class="site-tagline">Programs I've built. Free to download and use.</p>
-    </header>
-
-    <section class="panel" aria-labelledby="programs-title">
-      <h2 class="h2 section-title" id="programs-title">Programs</h2>
-
-      <nav class="filter-list" aria-label="Filter by category" data-filters></nav>
+    <section class="programs" id="programs" aria-labelledby="programs-title">
+      <div class="section-head">
+        <h2 class="section-title" id="programs-title">Programs</h2>
+        <nav class="filter-list" aria-label="Filter by category" data-filters></nav>
+      </div>
 
       <ul class="program-list" data-programs>
         <li class="loading">Loading programs…</li>
       </ul>
     </section>
 
-    <section class="panel" aria-labelledby="install-title">
+    <section class="install" aria-labelledby="install-title">
       <details class="install-help">
         <summary>
-          <h2 class="h3" id="install-title">Install help</h2>
+          <h2 class="install-title" id="install-title">Install help</h2>
         </summary>
         <ul class="install-list">
           <li>
@@ -67,8 +88,8 @@
       </details>
     </section>
 
-    <section class="panel" aria-labelledby="tools-title">
-      <h2 class="h2 section-title" id="tools-title">Tools I've Used</h2>
+    <section class="tools" aria-labelledby="tools-title">
+      <h2 class="section-title" id="tools-title">Tools I've used</h2>
       <div class="tool-groups" data-tools></div>
     </section>
 
@@ -89,6 +110,9 @@
     <button class="lightbox-nav next" data-lb-next aria-label="Next screenshot">›</button>
   </div>
 
+  <script src="js/hero/letters.js"></script>
+  <script src="js/hero/surface.js"></script>
+  <script src="js/hero/hero.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

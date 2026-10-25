@@ -49,8 +49,8 @@ if (process.env.STATICRYPT_PASSWORD) {
     '--template-placeholder', 'Password',
     '--template-remember', 'Remember me on this device',
     '--template-error', 'Wrong password. Try again.',
-    '--template-color-primary', '#ffdb70',
-    '--template-color-secondary', '#121212',
+    '--template-color-primary', '#ff7a2f',
+    '--template-color-secondary', '#0b151e',
   ], { stdio: 'inherit' });
   console.log('Built _site/ (password-locked)');
 } else {
