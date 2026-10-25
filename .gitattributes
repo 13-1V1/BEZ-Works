@@ -1,0 +1,9 @@
+# Created by: Brennan Meyer with use of Claude Code 10/25/2026 Santa Clarita, CA
+# brennanmmeyer@gmail.com
+
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.webp binary
+*.gif binary
+*.ico binary
