@@ -1,34 +1,251 @@
 {
   "categories": [
-    { "id": "machining", "name": "Machining & CNC" },
-    { "id": "learning", "name": "Learning" },
-    { "id": "games", "name": "Games" },
-    { "id": "audio", "name": "Music & Audio" },
-    { "id": "art", "name": "Art & Visual" },
-    { "id": "tools", "name": "Tools" }
+    {
+      "id": "machining",
+      "name": "Machining & CNC"
+    },
+    {
+      "id": "learning",
+      "name": "Learning"
+    },
+    {
+      "id": "games",
+      "name": "Games"
+    },
+    {
+      "id": "audio",
+      "name": "Music & Audio"
+    },
+    {
+      "id": "art",
+      "name": "Art & Visual"
+    },
+    {
+      "id": "tools",
+      "name": "Tools"
+    }
   ],
   "programs": [
+    {
+      "id": "bez-gpad",
+      "name": "BEZ GPAD",
+      "category": "machining",
+      "status": "ready",
+      "version": "1.1",
+      "description": "G-code notepad with a “spell checker” for Fanuc mill and lathe code: errors underline red, warnings yellow, with one-click fixes. Insert a safe start block with one click.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Installer",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-gpad-v1.1/BEZ-GPAD-Setup-1.1.exe",
+          "sizeBytes": 26983759
+        },
+        {
+          "label": "Portable",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-gpad-v1.1/BEZ-GPAD-Portable-1.1.exe",
+          "sizeBytes": 37003604
+        }
+      ]
+    },
+    {
+      "id": "chipload",
+      "name": "CHIPLOAD",
+      "category": "machining",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Machinist calculator: speeds and feeds, tap drills, threads, bolt circles and more, with a “How was this figured?” breakdown on every result. Works offline.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Android",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/chipload-v1.0.0/CHIPLOAD-1.0.0.apk",
+          "sizeBytes": 8051548
+        }
+      ],
+      "browser": "https://13-1v1.github.io/chipload/"
+    },
+    {
+      "id": "bez-cam",
+      "name": "BEZ CAM",
+      "category": "machining",
+      "status": "coming-soon",
+      "description": "Beginner-friendly CAM: a SolidWorks-style FreeCAD setup that turns a part into Fanuc G-code. Mill only for now.",
+      "images": []
+    },
+    {
+      "id": "bez-mapper",
+      "name": "BEZ MaPPer",
+      "category": "machining",
+      "status": "ready",
+      "version": "0.1.0",
+      "description": "Manufacturing process planner for machined parts. A step-by-step wizard asks about the part (shape, size, material, features, machines) and builds the process plan, with setup sheets and inspection plans you can print.",
+      "note": "Reading drawings is optional and uses your own Anthropic API key.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-mapper-v0.1.0/BEZ-MaPPer-Setup-0.1.0.exe",
+          "sizeBytes": 4488980
+        }
+      ]
+    },
+    {
+      "id": "gcode-trainer",
+      "name": "G-Code Trainer",
+      "category": "machining",
+      "status": "ready",
+      "version": "1.0.3",
+      "description": "Learn G-code from zero for Fanuc mills and lathes: 33 mill and 26 lathe lessons with quizzes and coding challenges, part-print challenges, 2D/3D simulators and control-panel simulators.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/G-Code-Trainer-Setup-1.0.3.exe",
+          "sizeBytes": 112859855
+        }
+      ]
+    },
+    {
+      "id": "learnlinux",
+      "name": "LearnLinux+",
+      "category": "learning",
+      "status": "ready",
+      "version": "1.0.1",
+      "description": "Learn Linux from zero in a simulated shell that never touches your real PC: 62 lessons, 185 quiz questions and a scored practice exam, built around the CompTIA Linux+ XK0-005 objectives.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Installer",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/learnlinux-v1.0.1/LearnLinux-Setup-1.0.1.exe",
+          "sizeBytes": 10873873
+        },
+        {
+          "label": "Portable",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/learnlinux-v1.0.1/LearnLinux-Portable-1.0.1.zip",
+          "sizeBytes": 8751780
+        }
+      ]
+    },
+    {
+      "id": "hackpath",
+      "name": "HackPath",
+      "category": "learning",
+      "status": "ready",
+      "version": "0.1.0",
+      "description": "Learn ethical hacking from zero: 29 lessons over 7 tracks, aligned to CompTIA PenTest+. Practice targets run in sealed local Docker containers with no internet access.",
+      "note": "Needs Docker Desktop. The first run needs internet to download the practice containers.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/hackpath-v0.1.0/HackPath-Setup-0.1.0.exe",
+          "sizeBytes": 11600080
+        }
+      ]
+    },
+    {
+      "id": "ibtw",
+      "name": "I Blame The Wind",
+      "category": "games",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Turn-based, Worms-style artillery game: destructible terrain, wind that bends every shot, 11 weapons and pixel-art scenery. Two players on one screen, gamepad supported.",
+      "images": [],
+      "browser": "play/ibtw/"
+    },
+    {
+      "id": "nowhere-to-hide",
+      "name": "Nowhere to Hide",
+      "category": "games",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Single-player extraction FPS on a tiny spherical planet, where the curve of the horizon tells you how far away an enemy is. Grab loot and reach the beacon before the hunters close in. Gamepad supported.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nowhere-to-hide-v1.0.0/NowhereToHide-1.0.0-win64.zip",
+          "sizeBytes": 274437992
+        }
+      ]
+    },
+    {
+      "id": "till-the-moon-bleeds",
+      "name": "Till the Moon Bleeds",
+      "category": "games",
+      "status": "ready",
+      "version": "0.13.0",
+      "description": "Open-world voxel survival: mine and build on fully destructible terrain, craft, fight off zombies, and survive a blood-moon horde every 7th night. Gamepad supported.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/till-the-moon-bleeds-v0.13.0/TillTheMoonBleeds-0.13.0-win64.zip",
+          "sizeBytes": 2125695666
+        }
+      ]
+    },
+    {
+      "id": "deadzone-arcade",
+      "name": "Deadzone Arcade",
+      "category": "games",
+      "status": "ready",
+      "version": "0.1.0-alpha",
+      "description": "Top-down, wave-based zombie horde shooter: five round types, a points shop and stacking perks. Gamepad supported.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/deadzone-arcade-v0.1.0-alpha/DeadzoneArcade-0.1.0-alpha-win64.zip",
+          "sizeBytes": 367906692
+        }
+      ]
+    },
     {
       "id": "musickid",
       "name": "Music KID",
       "category": "audio",
       "status": "ready",
       "version": "1.1.3",
-      "description": "Scans a song and tells you its key, tempo and chords. Includes a play-along chord chart with guitar and piano shapes.",
+      "description": "Scans a song and tells you its key, tempo and chords. Includes a play-along chord chart with guitar and piano shapes, batch scanning of folders, and fully offline operation.",
       "images": [],
       "downloads": [
-        { "label": "Download", "platform": "Windows", "url": "https://github.com/13-1V1/BEZ-Works/releases/download/musickid-v1.1.3/MusicKID-Setup-1.1.3.exe", "sizeBytes": null }
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/musickid-v1.1.3/MusicKID-Setup-1.1.3.exe",
+          "sizeBytes": 354562850
+        }
       ]
     },
     {
-      "id": "bez-gpad",
-      "name": "BEZ GPAD",
-      "category": "machining",
+      "id": "nobull-android",
+      "name": "NoBull Music Player (Android)",
+      "category": "audio",
       "status": "ready",
-      "version": "1.0.0",
-      "description": "G-code notepad with a “spell checker” for Fanuc mill and lathe code. Insert a safe start block with one click.",
+      "version": "2.1.0.0",
+      "description": "A no-nonsense local music player for Android, built to handle a tagged music library and your own untagged bounces side by side.",
       "images": [],
-      "browser": "play/bez-gpad/"
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Android",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-android-v2.1.0.0/NoBull-2.1.0.0.apk",
+          "sizeBytes": 28784630
+        }
+      ],
+      "source": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-android-v2.1.0.0/NoBull-Android-2.1.0.0-source.zip"
     },
     {
       "id": "nobull-desktop",
@@ -36,19 +253,262 @@
       "category": "audio",
       "status": "ready",
       "version": "1.0.1",
-      "description": "A no-nonsense local music player for Windows.",
+      "description": "The same no-nonsense player for Windows. Plays MP3, FLAC, M4A, WMA, OGG, WAV and AIFF from your own folders, with playlists and media keys.",
       "images": [],
       "downloads": [
-        { "label": "Download", "platform": "Windows", "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-desktop-v1.0.1/NoBull-1.0.1.msi", "sizeBytes": null }
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-desktop-v1.0.1/NoBull-Music-Player-1.0.1.msi",
+          "sizeBytes": 64602845
+        }
       ],
-      "source": "https://github.com/13-1V1/BEZ-Works/releases/tag/nobull-desktop-v1.0.1"
+      "source": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-desktop-v1.0.1/NoBull-Desktop-1.0.1-source.zip"
     },
     {
-      "id": "bez-cam",
-      "name": "BEZ CAM",
-      "category": "machining",
+      "id": "ansa",
+      "name": "ANSA",
+      "category": "audio",
+      "status": "ready",
+      "version": "1.0.6",
+      "description": "Serum-style wavetable synth built on Vital: arpeggiator, granular and multisample oscillators, two effect buses, 8 macros and 10 LFOs. VST3 plugin or standalone.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "VST3 plugin",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/ansa-v1.0.6/ANSA-1.0.6-VST3.zip",
+          "sizeBytes": 8974087
+        },
+        {
+          "label": "Standalone",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/ansa-v1.0.6/ANSA-1.0.6-Standalone.zip",
+          "sizeBytes": 8913307
+        }
+      ],
+      "source": "https://github.com/13-1V1/BEZ-Works/releases/download/ansa-v1.0.6/ANSA-1.0.6-source.zip"
+    },
+    {
+      "id": "hone",
+      "name": "HONE",
+      "category": "audio",
+      "status": "ready",
+      "version": "0.3.7",
+      "description": "Audio mastering app inspired by iZotope: Assist to a target loudness, Match EQ against reference tracks, album mode, clipper, EQ and limiter, with MP3 export.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/hone-v0.3.7/HONE-Setup-0.3.7.exe",
+          "sizeBytes": 7773226
+        }
+      ]
+    },
+    {
+      "id": "jig",
+      "name": "JIG",
+      "category": "audio",
+      "status": "ready",
+      "version": "1.2.0",
+      "description": "Tightens up a song's beat timing: finds the beats and stretches the mix (or its stems) onto a steady grid, with a before/after tightness score and WAV export.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/jig-v1.2.0/JIG-Setup-1.2.0.exe",
+          "sizeBytes": 82719364
+        }
+      ]
+    },
+    {
+      "id": "dig",
+      "name": "DIG",
+      "category": "audio",
+      "status": "ready",
+      "version": "0.1.0",
+      "description": "Sample librarian for music producers: scans your sample folders for type, BPM and key, auditions instantly, and drags straight into your DAW. Duplicates go to a quarantine folder, never deleted.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/dig-v0.1.0/DIG-Setup-0.1.0.exe",
+          "sizeBytes": 4553048
+        }
+      ]
+    },
+    {
+      "id": "lightbox",
+      "name": "LIGHTBOX",
+      "category": "art",
+      "status": "ready",
+      "version": "0.1.0",
+      "description": "Simple drawing app for frame-by-frame cartoons, with onion skin, layers, a timeline, an audio track and lip-sync.",
+      "note": "Video export needs ffmpeg installed.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Installer",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/lightbox-v0.1.0/LIGHTBOX-Setup-0.1.0.exe",
+          "sizeBytes": 1531578
+        },
+        {
+          "label": "Portable",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/lightbox-v0.1.0/LIGHTBOX-Portable-0.1.0.exe",
+          "sizeBytes": 4778496
+        }
+      ]
+    },
+    {
+      "id": "zoomdraw",
+      "name": "ZoomDraw",
+      "category": "art",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Infinite-zoom drawing: strokes stay sharp at any depth. Loop mode turns your drawing into an endless tunnel you can export as a GIF.",
+      "images": [],
+      "browser": "play/zoomdraw/"
+    },
+    {
+      "id": "fractal-gen",
+      "name": "Fractal Gen",
+      "category": "art",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Living recursive kaleidoscope. Scroll to travel through it, and save what you like. Fully offline, with a flash limiter on by default.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Installer",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/fractal-gen-v1.0.0/Fractal-Gen-Setup-1.0.0.exe",
+          "sizeBytes": 82306529
+        },
+        {
+          "label": "Portable",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/fractal-gen-v1.0.0/Fractal-Gen-Portable-1.0.0.exe",
+          "sizeBytes": 81957172
+        }
+      ]
+    },
+    {
+      "id": "planet-gen",
+      "name": "BEZ Planet Gen",
+      "category": "art",
+      "status": "ready",
+      "version": "0.9.0",
+      "description": "Generate a planet, walk around on it, and export it as a game asset: meshes, a Godot scene and a heightmap.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/planet-gen-v0.9.0/BEZPlanetGen-0.9.0-win64.zip",
+          "sizeBytes": 35572291
+        }
+      ]
+    },
+    {
+      "id": "planet-maze",
+      "name": "BEZ Planet Maze",
+      "category": "art",
+      "status": "ready",
+      "version": "1.3.0",
+      "description": "A maze wrapped around a planet. Walk it in first person or export it as a game asset.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/planet-maze-v1.3.0/BEZPlanetMaze-1.3.0-win64.zip",
+          "sizeBytes": 34601064
+        }
+      ]
+    },
+    {
+      "id": "the-judge",
+      "name": "The Judge",
+      "category": "tools",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Fly through your 3D game assets, fully rendered, and sort each one by art style (Realistic, Low-poly, Voxel, Retro/PS1 and more). Verdicts save to CSV and JSON as you go.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/the-judge-v1.0.0/The-Judge-Setup-1.0.0.exe",
+          "sizeBytes": 86965087
+        }
+      ]
+    },
+    {
+      "id": "bez-launch",
+      "name": "BEZ Launch",
+      "category": "tools",
       "status": "coming-soon",
-      "description": "Beginner-friendly CAM: a SolidWorks-style FreeCAD setup that turns a part into Fanuc G-code. Mill only for now."
+      "description": "Windows 11-style dark launcher for Android, built for the Galaxy Note 8 and S Pen.",
+      "images": []
+    },
+    {
+      "id": "ai-workbench",
+      "name": "AI Workbench",
+      "category": "tools",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Scripts and docs for a fully local AI tool suite (coding, images, 3D, music, speech), with a Quick Launch app that runs one GPU tool at a time.",
+      "note": "Scripts and docs only. Install the AI apps and models yourself.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/ai-workbench-v1.0.0/AI-Workbench-1.0.0-scripts.zip",
+          "sizeBytes": 73985
+        }
+      ]
+    },
+    {
+      "id": "revu",
+      "name": "revu",
+      "category": "tools",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Claude Code skill: reviews the document you just wrote and fixes its defects.",
+      "note": "Unzip into your Claude Code skills folder.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Claude Code skill",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/revu-v1.0.0/revu-1.0.0-skill.zip",
+          "sizeBytes": 4934
+        }
+      ]
+    },
+    {
+      "id": "game-studio",
+      "name": "game-studio",
+      "category": "tools",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Claude Code skill: a full studio simulation that takes a one-line idea to a shippable game.",
+      "note": "Unzip into your Claude Code skills folder.",
+      "images": [],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Claude Code skill",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/game-studio-v1.0.0/game-studio-1.0.0-skill.zip",
+          "sizeBytes": 36582
+        }
+      ]
     }
   ]
 }

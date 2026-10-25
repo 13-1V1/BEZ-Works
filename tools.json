@@ -1,7 +1,14 @@
 {
   "groups": [
-    { "name": "Languages", "items": ["Python", "JavaScript", "TypeScript", "Rust", "Kotlin", "GDScript", "C++", "HTML/CSS"] },
-    { "name": "Engines & frameworks", "items": ["Godot 4", "Electron", "Tauri v2", "React"] },
+    { "name": "Languages", "items": ["Python", "JavaScript", "TypeScript", "Rust", "Kotlin", "GDScript", "C#", "C++", "HTML/CSS", "PowerShell"] },
+    { "name": "Engines & frameworks", "items": ["Godot 4", "Godot .NET", "Electron", "Tauri v2", "React", "Compose Multiplatform", "Jetpack Compose", "PySide6", "PyQt5", "three.js", "WebGL2", "HTML5 Canvas", "Capacitor", "PWA"] },
+    { "name": "UI & web", "items": ["Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Zustand", "TanStack Query", "CodeMirror 6", "i18next", "lucide"] },
+    { "name": "Audio", "items": ["VST3", "JUCE", "Vital engine", "oXygen", "librosa", "PyTorch", "Beat This!", "ONNX Runtime", "Signalsmith Stretch", "libebur128", "LAME", "TagLib", "FFmpeg", "Media3", "symphonia", "rodio", "jaudiotagger", "FFSampledSP", "Rhubarb Lip Sync"] },
+    { "name": "Data & testing", "items": ["SQLite / rusqlite", "Room", "zod", "Vitest", "pytest", "Playwright", "xUnit"] },
+    { "name": "Build & packaging", "items": ["PyInstaller", "Inno Setup", "NSIS", "electron-builder", "WiX", "CMake", "Visual Studio 2022", "Gradle", "npm", "Cargo", "GitHub Actions"] },
+    { "name": "Containers & systems", "items": ["Docker", "Linux", "Android SDK"] },
+    { "name": "CAD / CAM / 3D", "items": ["SolidWorks", "FreeCAD", "Blender", "OpenCASCADE"] },
+    { "name": "AI", "items": ["Claude Code", "Claude API", "Codex", "Ollama", "ComfyUI", "FLUX", "Hunyuan3D", "HY-World", "ACE-Step", "Stable Audio", "Whisper", "Kokoro", "Ovis"] },
     { "name": "Source control", "items": ["Git", "GitHub"] }
   ]
 }

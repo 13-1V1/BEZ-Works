@@ -14,3 +14,6 @@ Thumbs.db
 
 # Build output (made by scripts/build-site.mjs)
 _site/
+
+# Staged release files (uploaded to GitHub Releases, never committed)
+_releases/

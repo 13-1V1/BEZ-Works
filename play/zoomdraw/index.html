@@ -1,0 +1,622 @@
+<!--
+  Created by: Brennan Meyer with use of Claude Code [2026-07-24] Santa Clarita, CA
+  brennanmmeyer@gmail.com
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>ZoomDraw</title>
+<style>
+  :root {
+    --bg: #0e0f13;
+    --panel: rgba(22, 24, 30, 0.82);
+    --panel-solid: #16181e;
+    --chip: #23262f;
+    --chip-hi: #2b2f3a;
+    --line: #2e313c;
+    --text: #e7e8ee;
+    --muted: #9aa0ae;
+    --accent: #6c5ce7;
+    --accent-hi: #8b7bff;
+    --danger: #e07a6b;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%; overflow: hidden;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--text); background: var(--bg);
+    -webkit-user-select: none; user-select: none;
+  }
+  .hidden { display: none !important; }
+
+  /* ---------- Mode select ---------- */
+  #modeSelect {
+    position: fixed; inset: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      radial-gradient(1100px 600px at 50% -10%, rgba(108,92,231,0.20), transparent 60%),
+      radial-gradient(900px 500px at 90% 110%, rgba(139,123,255,0.12), transparent 55%),
+      var(--bg);
+    padding: 24px;
+  }
+  .ms-inner { width: 100%; max-width: 720px; text-align: center; }
+  .ms-title {
+    font-size: clamp(44px, 8vw, 76px); font-weight: 800; letter-spacing: -0.03em;
+    margin: 0 0 8px;
+    background: linear-gradient(180deg, #fff, #b9b6d6);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .ms-sub { color: var(--muted); font-size: 16px; margin: 0 0 36px; letter-spacing: 0.01em; }
+  .cards { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+  .card {
+    flex: 1 1 260px; max-width: 320px; text-align: left; cursor: pointer;
+    background: linear-gradient(180deg, #191b22, #141519);
+    border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px 20px;
+    transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: #43465a; }
+  .card.selected {
+    border-color: var(--accent-hi);
+    box-shadow: 0 0 0 1px var(--accent-hi), 0 18px 50px -20px rgba(108,92,231,0.8);
+  }
+  .card-icon { font-size: 30px; margin-bottom: 12px; }
+  .card-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .card-extra { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  .card-extra label { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .card-extra select {
+    background: var(--chip); color: var(--text); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer;
+  }
+  .start-btn {
+    margin-top: 34px; padding: 13px 30px; font-size: 15px; font-weight: 650;
+    color: #fff; border: none; border-radius: 11px; cursor: pointer;
+    background: linear-gradient(180deg, var(--accent-hi), var(--accent));
+    opacity: .35; pointer-events: none; transition: opacity .2s ease, transform .12s ease;
+    box-shadow: 0 12px 30px -12px rgba(108,92,231,0.9);
+  }
+  .start-btn.ready { opacity: 1; pointer-events: auto; }
+  .start-btn.ready:hover { transform: translateY(-2px); }
+  .start-btn.ready:active { transform: translateY(0); }
+
+  /* ---------- App ---------- */
+  #app { position: fixed; inset: 0; z-index: 1; }
+  #canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    background: #ffffff; touch-action: none; cursor: crosshair; }
+
+  #eraserCursor {
+    position: absolute; z-index: 6; display: none; pointer-events: none;
+    border: 1.5px solid rgba(20,20,25,0.55); border-radius: 50%;
+    transform: translate(-50%, -50%); background: rgba(120,120,130,0.08);
+  }
+
+  .zoom-badge {
+    position: absolute; left: 16px; bottom: 16px; z-index: 6;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 8px 13px; font-size: 14px; font-variant-numeric: tabular-nums;
+    color: var(--text); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* ---------- Panels (rail / options / actions / loop) ---------- */
+  .panel-surface {
+    border: 1px solid var(--line); background: var(--panel);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 16px 40px -24px rgba(0,0,0,0.9);
+  }
+  #rail {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%); z-index: 8;
+    display: flex; flex-direction: column; gap: 6px; padding: 7px; border-radius: 16px;
+    border: 1px solid var(--line); background: var(--panel);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 20px 50px -24px rgba(0,0,0,0.9);
+  }
+  .rbtn {
+    appearance: none; width: 42px; height: 42px; display: grid; place-items: center;
+    border: 1px solid transparent; background: transparent; color: var(--muted);
+    border-radius: 11px; cursor: pointer;
+    transition: background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .rbtn:hover { background: var(--chip-hi); color: var(--text); }
+  .rbtn.active { background: rgba(108,92,231,0.22); border-color: var(--accent-hi); color: #fff; }
+  .rbtn svg { width: 23px; height: 23px; fill: none; stroke: currentColor;
+    stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+  #topbar {
+    position: absolute; top: 14px; left: 74px; z-index: 8;
+    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    max-width: calc(100vw - 74px - 340px);
+    padding: 7px 9px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 16px 40px -24px rgba(0,0,0,0.9);
+  }
+  .optg { display: flex; align-items: center; gap: 7px; padding: 0 3px; }
+
+  #actions {
+    position: absolute; top: 14px; right: 14px; z-index: 8;
+    display: flex; align-items: center; gap: 4px;
+    padding: 7px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 16px 40px -24px rgba(0,0,0,0.9);
+  }
+
+  .loopbar {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 8;
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center;
+    max-width: calc(100vw - 32px);
+    padding: 8px 10px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 16px 40px -24px rgba(0,0,0,0.9);
+  }
+  .tsep { width: 1px; align-self: stretch; min-height: 22px; background: var(--line); margin: 2px 4px; }
+  .tbtn {
+    appearance: none; border: 1px solid transparent; background: var(--chip);
+    color: var(--text); font-size: 13px; font-weight: 550; padding: 8px 12px;
+    border-radius: 9px; cursor: pointer; white-space: nowrap;
+    transition: background .12s ease, border-color .12s ease, color .12s ease;
+  }
+  .tbtn:hover { background: var(--chip-hi); }
+  .tbtn:active { transform: translateY(1px); }
+  .tbtn.active { background: rgba(108,92,231,0.22); border-color: var(--accent-hi); color: #fff; }
+  .tbtn:disabled { opacity: .4; cursor: default; }
+  .tbtn.accent { background: linear-gradient(180deg, var(--accent-hi), var(--accent)); color: #fff; }
+  .tbtn.accent:hover { filter: brightness(1.08); }
+  .ticon { width: 30px; padding-left: 0; padding-right: 0; text-align: center; font-size: 15px; }
+
+  .swatch { position: relative; width: 34px; height: 34px; border-radius: 9px; overflow: hidden;
+    border: 1px solid var(--line); cursor: pointer; }
+  .swatch input { position: absolute; inset: -6px; width: 150%; height: 150%; border: none; padding: 0; cursor: pointer; background: none; }
+
+  .size-wrap { display: flex; align-items: center; gap: 8px; padding: 0 6px; }
+  .size-wrap input[type=range] { width: 96px; accent-color: var(--accent-hi); cursor: pointer; }
+  #sizeVal { font-size: 12px; color: var(--muted); width: 18px; text-align: right; font-variant-numeric: tabular-nums; }
+  .mini-label { font-size: 11px; color: var(--muted); }
+  .tsel { background: var(--chip); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
+    padding: 7px 9px; font-size: 12.5px; cursor: pointer; }
+  .tsel:hover { background: var(--chip-hi); }
+  #opacitySlider { width: 72px; }
+  #hardnessSlider { width: 64px; }
+  #nibSlider { width: 60px; }
+  #opacityVal { font-size: 12px; color: var(--muted); width: 24px; text-align: right; font-variant-numeric: tabular-nums; }
+  #stampSize { width: 82px; }
+  #stampDepthVal { font-size: 12px; color: var(--muted); min-width: 30px; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ---------- GIF progress ---------- */
+  #gifProgress { position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center;
+    background: rgba(8,9,12,0.6); backdrop-filter: blur(3px); }
+  .gp-inner { width: min(420px, 82vw); background: var(--panel-solid); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; text-align: center; box-shadow: 0 30px 80px -30px #000; }
+  #gifText { font-size: 14px; margin-bottom: 14px; color: var(--text); font-variant-numeric: tabular-nums; }
+  .gp-track { height: 10px; border-radius: 6px; background: #2a2d38; overflow: hidden; }
+  #gifBar { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-hi)); transition: width .1s linear; }
+
+  /* ---------- Toast ---------- */
+  #toast {
+    position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(12px); z-index: 22;
+    background: var(--panel-solid); border: 1px solid var(--line); color: var(--text);
+    padding: 10px 16px; border-radius: 10px; font-size: 13px; opacity: 0; pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease; box-shadow: 0 18px 40px -20px #000;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ---------- Help ---------- */
+  #help { position: absolute; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center;
+    background: rgba(8,9,12,0.66); backdrop-filter: blur(4px); padding: 20px; }
+  .help-panel { width: min(640px, 92vw); max-height: 86vh; overflow: auto;
+    background: var(--panel-solid); border: 1px solid var(--line); border-radius: 16px; padding: 26px 28px; }
+  .help-panel h2 { margin: 0 0 4px; font-size: 22px; letter-spacing: -0.01em; }
+  .help-panel .help-hint { color: var(--muted); font-size: 13px; margin: 0 0 20px; }
+  .help-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  @media (max-width: 560px) { .help-cols { grid-template-columns: 1fr; } }
+  .help-cols h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-hi); margin: 0 0 10px; }
+  .krow { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 13.5px; border-bottom: 1px dashed rgba(255,255,255,0.05); }
+  .krow span:last-child { color: var(--muted); text-align: right; }
+  kbd { background: var(--chip); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px;
+    padding: 1px 7px; font-size: 12px; font-family: inherit; }
+  .help-close { margin-top: 22px; text-align: center; color: var(--muted); font-size: 12px; }
+  .help-about { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .help-about h3 { color: var(--accent-hi); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 8px; }
+  .help-about p { margin: 0 0 8px; font-size: 13.5px; color: var(--text); line-height: 1.55; }
+  .help-about a { color: var(--accent-hi); text-decoration: none; }
+  .help-about a:hover { text-decoration: underline; }
+  .help-fine { color: var(--muted) !important; font-size: 12px !important; }
+  .restore-btn {
+    display: block; margin: 14px auto 0; padding: 8px 16px; font-family: inherit; font-size: 13px;
+    background: transparent; border: 1px solid var(--line); color: var(--muted);
+    border-radius: 9px; cursor: pointer; transition: color .12s ease, border-color .12s ease;
+  }
+  .restore-btn:hover { color: var(--text); border-color: var(--accent-hi); }
+
+  /* Keyboard focus: a clear ring for Tab users, suppressed for mouse/touch. */
+  .rbtn:focus-visible, .tbtn:focus-visible, .card:focus-visible, .start-btn:focus-visible,
+  input:focus-visible, select:focus-visible, .swatch:focus-within, .help-panel:focus-visible {
+    outline: 2px solid var(--accent-hi);
+    outline-offset: 2px;
+  }
+  /* Honor a reduced-motion preference: strip incidental transitions/animations. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ MODE SELECT ============ -->
+  <div id="modeSelect">
+    <div class="ms-inner">
+      <h1 class="ms-title">ZoomDraw</h1>
+      <p class="ms-sub">An infinite canvas. Zoom forever, or loop endlessly.</p>
+      <div class="cards">
+        <div class="card" id="cardZoom" data-mode="zoom" role="button" tabindex="0">
+          <div class="card-icon">🔍</div>
+          <div class="card-name">Infinite Zoom</div>
+          <div class="card-desc">Draw and explore at any zoom depth. Strokes stay sharp forever.</div>
+        </div>
+        <div class="card" id="cardLoop" data-mode="loop" role="button" tabindex="0">
+          <div class="card-icon">♾️</div>
+          <div class="card-name">Zoom Loop</div>
+          <div class="card-desc">Draw, place a loop point, and export a seamless infinite-zoom GIF.</div>
+          <div class="card-extra">
+            <label>Loop Depth
+              <select id="loopDepth">
+                <option value="4">4×</option>
+                <option value="8" selected>8×</option>
+                <option value="16">16×</option>
+                <option value="32">32×</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+      <button id="startBtn" class="start-btn">Start Drawing</button>
+      <button id="restoreBtn" class="restore-btn hidden">↻ Restore last drawing</button>
+    </div>
+  </div>
+
+  <!-- ============ APP ============ -->
+  <div id="app" class="hidden">
+    <canvas id="canvas" role="img" aria-label="Drawing canvas. Draw with mouse, pen, or touch; scroll to zoom."></canvas>
+    <div id="eraserCursor"></div>
+    <div id="zoomVal" class="zoom-badge">🔍 1×</div>
+
+    <!-- Left tool rail -->
+    <div id="rail">
+      <button class="rbtn active" id="penBtn" data-tool="pen" title="Pen (P)" aria-label="Pen tool" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.2-4.2L16 5a1.6 1.6 0 012.3 0l.7.7a1.6 1.6 0 010 2.3L8.2 18.8 4 20z"/><path d="M14.5 6.5l3 3"/></svg></button>
+      <button class="rbtn" id="eraserBtn" data-tool="eraser" title="Eraser (E)" aria-label="Eraser tool" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 20H20"/><path d="M4.7 15.3l6.4-6.4 4.6 4.6-6.4 6.4H8L4.7 17.6a1.6 1.6 0 010-2.3z"/></svg></button>
+      <button class="rbtn" id="lineBtn" data-tool="line" title="Line" aria-label="Line tool" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19L19 5"/></svg></button>
+      <button class="rbtn" id="rectBtn" data-tool="rect" title="Rectangle" aria-label="Rectangle tool" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="6.5" width="15" height="11" rx="1.5"/></svg></button>
+      <button class="rbtn" id="ellipseBtn" data-tool="ellipse" title="Ellipse" aria-label="Ellipse tool" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="8" ry="5.6"/></svg></button>
+      <button class="rbtn" id="bucketBtn" data-tool="bucket" title="Flood fill (raster)" aria-label="Flood fill bucket tool" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6c3.2 4.2 5 6.8 5 9.1a5 5 0 01-10 0c0-2.3 1.8-4.9 5-9.1z"/></svg></button>
+    </div>
+
+    <!-- Top options bar (shows only what the active tool needs) -->
+    <div id="topbar">
+      <label class="swatch" title="Color"><input type="color" id="colorPicker" value="#111111" aria-label="Brush color"></label>
+      <div class="optg" data-ctx="size" title="Brush size ( [ / ] )">
+        <span class="mini-label">Size</span>
+        <input type="range" id="sizeSlider" min="1" max="80" value="4" aria-label="Brush size"><span id="sizeVal">4</span>
+      </div>
+      <div class="optg" data-ctx="opacity" title="Opacity">
+        <span class="mini-label">Opacity</span>
+        <input type="range" id="opacitySlider" min="2" max="100" value="100" aria-label="Opacity percent"><span id="opacityVal">100</span>
+      </div>
+      <div class="optg" data-ctx="brush" title="Edge softness (hard → soft)">
+        <span class="mini-label">Edge</span>
+        <input type="range" id="hardnessSlider" min="2" max="100" value="100" aria-label="Edge softness, hard to soft">
+      </div>
+      <select class="tsel optg" data-ctx="brush" id="tipSel" title="Brush tip" aria-label="Brush tip">
+        <option value="round">Round</option>
+        <option value="flat">Flat nib</option>
+        <option value="square">Square</option>
+        <option value="star">Star</option>
+        <option value="spray">Spray</option>
+      </select>
+      <div class="optg" data-ctx="angle" title="Calligraphy nib angle (Flat tip)">
+        <span class="mini-label">Angle</span>
+        <input type="range" id="nibSlider" min="-90" max="90" value="-40" aria-label="Calligraphy nib angle">
+      </div>
+      <button class="tbtn optg" data-ctx="shape" id="fillBtn" title="Fill shapes (outline vs filled)" aria-pressed="false">Fill</button>
+      <select class="tsel optg" data-ctx="dash" id="dashSel" title="Line style" aria-label="Line style">
+        <option value="solid">Solid</option>
+        <option value="dashed">Dashed</option>
+        <option value="dotted">Dotted</option>
+      </select>
+      <select class="tsel optg" data-ctx="brush" id="presetSel" title="Brush preset" aria-label="Brush preset">
+        <option value="">Preset…</option>
+        <option value="pencil">Pencil</option>
+        <option value="pen">Pen</option>
+        <option value="marker">Marker</option>
+        <option value="highlighter">Highlighter</option>
+      </select>
+      <div class="tsep"></div>
+      <label class="swatch" title="Background color"><input type="color" id="bgPicker" value="#ffffff" aria-label="Background (paper) color"></label>
+    </div>
+
+    <!-- Top-right actions -->
+    <div id="actions">
+      <button class="tbtn ticon" id="undoBtn" title="Undo (Ctrl+Z)" aria-label="Undo">↶</button>
+      <button class="tbtn ticon" id="redoBtn" title="Redo (Ctrl+Y)" aria-label="Redo">↷</button>
+      <button class="tbtn ticon" id="resetBtn" title="Reset zoom (R)" aria-label="Reset zoom">⌂</button>
+      <button class="tbtn ticon" id="clearBtn" title="Clear the canvas" aria-label="Clear canvas">🗑</button>
+      <div class="tsep"></div>
+      <button class="tbtn" id="saveBtn" title="Save (Ctrl+S)">Save</button>
+      <button class="tbtn" id="loadBtn" title="Load a .json save">Load</button>
+      <button class="tbtn" id="pngBtn" title="Export PNG (Ctrl+Shift+S)">PNG</button>
+      <button class="tbtn ticon" id="helpBtn" title="Shortcuts (?)" aria-label="Keyboard shortcuts and help">?</button>
+    </div>
+
+    <!-- Loop bar (loop mode only) -->
+    <div id="loopGroup" class="loopbar hidden">
+      <button class="tbtn" id="stampBtn" title="Place / clear the loop stamp">Stamp Loop</button>
+      <div class="size-wrap" title="Stamp size — a bigger stamp makes a shallower loop">
+        <span class="mini-label">Stamp</span>
+        <input type="range" id="stampSize" min="3" max="50" value="12" aria-label="Stamp size and loop depth"><span id="stampDepthVal">8×</span>
+      </div>
+      <button class="tbtn active" id="borderBtn" aria-pressed="true" title="Show / hide the stamp outline">Border</button>
+      <button class="tbtn active" id="liveBtn" aria-pressed="true" title="Update the stamp live as you draw">Live</button>
+      <button class="tbtn" id="ghostBtn" aria-pressed="false" title="Draw in Stamp — paint inside the stamp box and it fills the whole canvas (mirrored live). The box dims and brightens so you can see where to draw.">✎ Draw in Stamp</button>
+      <button class="tbtn" id="previewBtn" aria-pressed="false" title="Preview the loop (plays until you stop it)" disabled>Preview</button>
+      <button class="tbtn accent" id="gifBtn" title="Export looping GIF" disabled>Export GIF</button>
+    </div>
+
+    <!-- Zoom-GIF bar (infinite-zoom mode only) -->
+    <div id="zoomGroup" class="loopbar hidden">
+      <span class="mini-label">Zoom&nbsp;GIF</span>
+      <button class="tbtn active" id="zgCenterBtn" aria-pressed="true" title="Dolly from 1× into the centre of your current view, up to your current zoom">Center</button>
+      <button class="tbtn" id="zgPathBtn" aria-pressed="false" title="Fly the camera through nodes you place (node 1 = centre at 1×)">Path</button>
+      <div class="tsep optg-path hidden"></div>
+      <button class="tbtn optg-path hidden" id="zgAddBtn" title="Add a camera node at the current view + zoom">+ Node</button>
+      <span class="mini-label optg-path hidden" id="zgCount">1 node</span>
+      <button class="tbtn optg-path hidden" id="zgClearBtn" title="Remove all nodes">Clear</button>
+      <div class="tsep"></div>
+      <button class="tbtn active" id="zgLoopBtn" aria-pressed="true" title="Playback: loop forward">Loop</button>
+      <button class="tbtn" id="zgPongBtn" aria-pressed="false" title="Playback: forward then reverse (seamless)">Ping-pong</button>
+      <button class="tbtn" id="zgSpeedBtn" title="Zoom speed — click to cycle Slow / Normal / Fast">Speed: Normal</button>
+      <button class="tbtn" id="zgPreviewBtn" aria-pressed="false" title="Preview the zoom (plays until you stop it)">Preview</button>
+      <button class="tbtn accent" id="zgExportBtn" title="Export the zoom as a GIF">Export GIF</button>
+    </div>
+
+    <div id="gifProgress" class="hidden">
+      <div class="gp-inner">
+        <div id="gifText">Rendering GIF …</div>
+        <div class="gp-track"><div id="gifBar"></div></div>
+      </div>
+    </div>
+
+    <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- ============ HELP ============ -->
+    <div id="help" class="hidden">
+      <div class="help-panel" role="dialog" aria-modal="true" aria-label="ZoomDraw guide and keyboard shortcuts" tabindex="-1" onclick="event.stopPropagation()">
+        <h2>ZoomDraw</h2>
+        <p class="help-hint">Guide &amp; shortcuts — click anywhere outside this panel to close.</p>
+        <div class="help-cols">
+          <div>
+            <h3>Tools</h3>
+            <div class="krow"><span>Pen · Eraser</span><span><kbd>P</kbd> <kbd>E</kbd></span></div>
+            <div class="krow"><span>Shapes</span><span>Line · Rect · Ellipse (drag)</span></div>
+            <div class="krow"><span>Bucket</span><span>Flood fill (raster)</span></div>
+            <div class="krow"><span>Brush tips</span><span>Round · Flat · Square · Star · Spray</span></div>
+            <div class="krow"><span>Style</span><span>Opacity · Edge · Fill · Dashes</span></div>
+            <div class="krow"><span>Presets</span><span>Pencil · Marker · Highlighter</span></div>
+            <div class="krow"><span>Background</span><span>2nd color swatch</span></div>
+            <h3 style="margin-top:18px;">Mouse &amp; Touch</h3>
+            <div class="krow"><span>Draw</span><span>Left-click / 1 finger</span></div>
+            <div class="krow"><span>Pan</span><span>Right / middle drag · 2 fingers</span></div>
+            <div class="krow"><span>Zoom</span><span>Scroll · pinch (crisp to ~1e9×)</span></div>
+          </div>
+          <div>
+            <h3>Keyboard</h3>
+            <div class="krow"><span>Pen / Eraser</span><span><kbd>P</kbd> <kbd>E</kbd></span></div>
+            <div class="krow"><span>Brush size</span><span><kbd>[</kbd> <kbd>]</kbd></span></div>
+            <div class="krow"><span>Undo / Redo</span><span><kbd>Ctrl+Z</kbd> <kbd>Ctrl+Y</kbd></span></div>
+            <div class="krow"><span>Reset zoom</span><span><kbd>R</kbd></span></div>
+            <div class="krow"><span>Save / PNG</span><span><kbd>Ctrl+S</kbd> <kbd>Ctrl+Shift+S</kbd></span></div>
+            <div class="krow"><span>Help</span><span><kbd>?</kbd></span></div>
+            <h3 style="margin-top:18px;">Gamepad</h3>
+            <div class="krow"><span>Pan · Zoom</span><span>L-stick · RT / LT</span></div>
+            <div class="krow"><span>Tool · Undo</span><span>A · B</span></div>
+            <div class="krow"><span>Brush size · Colors</span><span>RB/LB · D-pad ↑↓</span></div>
+            <h3 style="margin-top:18px;">Loop mode</h3>
+            <div class="krow"><span>Stamp Loop</span><span>Mirror at center</span></div>
+            <div class="krow"><span>Draw in Stamp</span><span>Paint the box → fills whole canvas, live</span></div>
+            <div class="krow"><span>Preview</span><span>Play tunnel (loops until Stop)</span></div>
+            <div class="krow"><span>Export GIF</span><span>Seamless loop (needs local server)</span></div>
+            <h3 style="margin-top:18px;">Zoom GIF (Infinite Zoom)</h3>
+            <div class="krow"><span>Center</span><span>Dive from 1× into your view's center</span></div>
+            <div class="krow"><span>Path</span><span>Fly through nodes you place (node 1 = center · 1×)</span></div>
+            <div class="krow"><span>+ Node</span><span>Drop a node at the current view + zoom</span></div>
+            <div class="krow"><span>Drag a marker</span><span>Reposition a node · right-click removes it</span></div>
+            <div class="krow"><span>Loop · Ping-pong</span><span>Repeat, or forward-then-reverse</span></div>
+            <div class="krow"><span>Speed</span><span>Slow / Normal / Fast dive rate</span></div>
+          </div>
+        </div>
+        <div class="help-about">
+          <h3>About</h3>
+          <p>Created by <strong>Brennan Meyer</strong> with use of Claude Code.<br>
+            Santa Clarita, CA &middot; 2026-07-24 &middot;
+            <a href="mailto:brennanmmeyer@gmail.com">brennanmmeyer@gmail.com</a></p>
+          <p class="help-fine">ZoomDraw is local and private — no accounts, no uploads. Everything
+            stays in your browser and your own files.</p>
+        </div>
+      </div>
+    </div>
+
+    <input type="file" id="loadInput" accept="application/json,.json" class="hidden">
+  </div>
+
+  <!-- Bootstrap is defined first, then the modules are loaded in order with a
+       cache-busting token so a plain reload always runs the latest code (no
+       build step; a local re-fetch is instant). Classic scripts sharing
+       window.ZoomDraw also let the app open directly over file://. -->
+  <script>
+  /*
+   * Bootstrap: mode-select wiring, then constructs the app and runs the
+   * requestAnimationFrame render loop. Runs once all modules have loaded.
+   */
+  window.__zdBoot = function () {
+    'use strict';
+    var ZD = window.ZoomDraw;
+    var selectedMode = null;
+
+    var cards = [document.getElementById('cardZoom'), document.getElementById('cardLoop')];
+    var startBtn = document.getElementById('startBtn');
+
+    function selectCard(card) {
+      selectedMode = card.getAttribute('data-mode');
+      cards.forEach(function (c) { c.classList.toggle('selected', c === card); });
+      startBtn.classList.add('ready');
+    }
+    cards.forEach(function (card) {
+      card.addEventListener('click', function () { selectCard(card); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(card); }
+      });
+    });
+    // Don't let the depth dropdown toggle the card underneath awkwardly.
+    document.getElementById('loopDepth').addEventListener('click', function (e) { e.stopPropagation(); });
+
+    startBtn.addEventListener('click', function () {
+      if (selectedMode) startApp(selectedMode);
+    });
+
+    // Offer to bring back the autosaved drawing, if there is one.
+    if (ZD.Store && ZD.Store.hasSaved()) {
+      var restoreBtn = document.getElementById('restoreBtn');
+      restoreBtn.classList.remove('hidden');
+      restoreBtn.addEventListener('click', function () {
+        var data = ZD.Store.read();
+        if (data) startApp(data.mode === 'loop' ? 'loop' : 'zoom', data);
+      });
+    }
+
+    function startApp(mode, restoreData) {
+      var loopDepth = parseInt(document.getElementById('loopDepth').value, 10) || 8;
+      document.getElementById('modeSelect').style.display = 'none';
+      document.getElementById('app').classList.remove('hidden');
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var camera = new ZD.Camera();
+      var drawing = new ZD.Drawing();
+      var tools = new ZD.Tools(canvas, camera, drawing);
+      var loop = new ZD.LoopManager(canvas, camera, drawing, loopDepth);
+      tools.loop = loop; // enables draw-in-stamp (portal) when "Draw in Stamp" is on
+      var app = { canvas: canvas, camera: camera, drawing: drawing, tools: tools, loop: loop, mode: mode, loopDepth: loopDepth };
+      var ui = new ZD.UI(app);
+      app.ui = ui;
+      ui.init();
+      var panel = new ZD.ToolPanel(app);
+      app.panel = panel;
+      panel.init();
+      var store = new ZD.Store(app);
+      app.store = store;
+      tools.onChange = function () { ui.syncControls(); panel.sync(); };
+      var fillNoted = false;
+      tools.onFill = function () {
+        if (fillNoted) return;
+        fillNoted = true;
+        ui.toast('Bucket fill is raster — it pixelates if you zoom in far');
+      };
+      window.ZoomDrawApp = app; // handle for debugging / automation
+      if (mode === 'loop') {
+        ui._syncStampBtn();
+        ui._syncLoopControls();
+      } else {
+        app.zoomgif = new ZD.ZoomGif(app);
+        tools.zoomgif = app.zoomgif; // enables dragging path nodes in the pointer handler
+        document.getElementById('zoomGroup').classList.remove('hidden');
+        app.zoomgif.bindUI();
+      }
+      var gamepad = new ZD.GamepadController(app);
+
+      function resize() {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        camera.dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.max(1, Math.round(w * camera.dpr));
+        canvas.height = Math.max(1, Math.round(h * camera.dpr));
+      }
+      window.addEventListener('resize', resize);
+      resize();
+      if (restoreData) store.applyData(restoreData); // apply now that the canvas has a size
+      window.addEventListener('beforeunload', function () { store.flush(); });
+      document.addEventListener('visibilitychange', function () { if (document.hidden) store.flush(); });
+
+      canvas.addEventListener('pointerleave', function () {
+        ui.lastHover = null; ui.refreshCursor();
+      });
+
+      function render() {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        ctx.setTransform(camera.dpr, 0, 0, camera.dpr, 0, 0);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.clearRect(0, 0, w, h);
+        var O = camera.screenToWorld(w / 2, h / 2); // local origin keeps coords tiny at huge zoom
+        camera.applyTransformO(ctx, O.x, O.y);
+        drawing.render(ctx, { visibleRect: camera.visibleRect(w, h), originX: O.x, originY: O.y, cache: true });
+        if (mode === 'loop') { loop.renderStamp(ctx, camera, w, h); loop.renderStampBox(ctx); }
+        else if (app.zoomgif) { app.zoomgif.renderNodes(ctx, camera, w, h); }
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.globalCompositeOperation = 'source-over';
+      }
+
+      var lastT = performance.now(), lastSig = null, lastRev = drawing.revision;
+      // Only repaint when something that affects the picture changed. Without
+      // this the rAF loop re-rasterises every stroke 60x/s forever — brutal once
+      // the canvas holds many spray/soft strokes. Idle now costs nothing.
+      function renderSig() {
+        var L = (mode === 'loop')
+          ? (loop.isStamped() ? 1 : 0) + ',' + loop.stampScale + ',' + loop.ghost + ',' +
+            loop.showBorder + ',' + loop.live + ',' + (loop._previewing ? 1 : 0)
+          : (app.zoomgif ? app.zoomgif.mode + ',' + app.zoomgif._rev + ',' + (app.zoomgif._previewing ? 1 : 0) : '');
+        return camera.zoom + ',' + camera.panX + ',' + camera.panY + ',' + camera.dpr + ',' +
+          canvas.width + ',' + canvas.height + ',' + drawing.revision + ',' + L;
+      }
+      function frame(now) {
+        var dt = (now - lastT) / 1000;
+        lastT = now;
+        gamepad.update(dt);
+        var sig = renderSig();
+        if (sig !== lastSig) { render(); ui.updateZoom(camera.zoom); lastSig = sig; }
+        if (drawing.revision !== lastRev) { lastRev = drawing.revision; store.schedule(); }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+
+      setTimeout(function () { ui.toast('Press ? for shortcuts'); }, 500);
+    }
+  };
+  </script>
+  <script>
+  (function () {
+    var files = [
+      'lib/gif.js', 'src/engine.js', 'src/brush.js', 'src/cache.js', 'src/drawing.js', 'src/tools.js',
+      'src/fill.js', 'src/loop.js', 'src/ui.js', 'src/panel.js', 'src/store.js', 'src/zoomgif.js', 'src/controller.js'
+    ];
+    // Query strings can confuse file:// resolution in some browsers, so only
+    // cache-bust when served over http(s) — where stale caching actually bites.
+    var bust = (location.protocol === 'file:') ? '' : ('?t=' + Date.now());
+    var i = 0;
+    (function next() {
+      if (i >= files.length) { if (window.__zdBoot) window.__zdBoot(); return; }
+      var s = document.createElement('script');
+      s.src = files[i] + bust;
+      s.async = false;
+      s.onload = function () { i += 1; next(); };
+      s.onerror = function () { console.error('ZoomDraw: failed to load ' + s.src); i += 1; next(); };
+      document.body.appendChild(s);
+    })();
+  })();
+  </script>
+</body>
+</html>
