@@ -17,6 +17,8 @@
   -Steps is a list of small commands, run in order (coords are window-client pixels):
      sleep:2.5                 wait seconds
      keys:^+b                  SendKeys syntax (^ ctrl, + shift, % alt, {ENTER} ...)
+     tap:Enter / tap:ControlKey+S   real key press with scan code (use for games)
+     hold:W,1500               hold a key for N ms
      type:hello world          literal text (special SendKeys chars are escaped)
      paste:C:\path\file.txt    put file text on the clipboard, send Ctrl+V
      click:x,y                 left click
@@ -28,6 +30,13 @@
      front                     bring window to front
      shot:C:\path\out.png      capture now (several shots per run are fine)
   If no shot: step is given, one capture is saved to -Out at the end.
+
+  -Attach     drive an already-running copy instead of launching (matched by -Exe path,
+              or by -TitleMatch, which also finds console windows and owned dialogs).
+  -NoClose    leave the program running afterwards (pair with -Attach for multi-step work).
+  -ForceScreen  skip PrintWindow and always screen-copy the window.
+  Console apps: launch C:\Windows\System32\conhost.exe with the app as -ArgList to get a
+  classic console window of their own.
 
 .EXAMPLE
   .\capture-window.ps1 -Exe "C:\Apps\Foo.exe" -Wait 5 -Out C:\shots\foo.png -Steps "keys:^n","sleep:1"
@@ -85,11 +94,11 @@ public static class Native {
   public static string Title(IntPtr h) { var sb = new StringBuilder(512); GetWindowText(h, sb, 512); return sb.ToString(); }
 
   // All visible, unowned top-level windows: handle, pid, title, area
-  public static List<object[]> TopWindows() {
+  public static List<object[]> TopWindows(bool includeOwned = false) {
     var list = new List<object[]>();
     EnumWindows((h, p) => {
       if (!IsWindowVisible(h)) return true;
-      if (GetWindow(h, 4) != IntPtr.Zero) return true; // GW_OWNER: skip owned popups
+      if (!includeOwned && GetWindow(h, 4) != IntPtr.Zero) return true; // GW_OWNER: skip owned popups
       uint pid; GetWindowThreadProcessId(h, out pid);
       RECT r; GetWindowRect(h, out r);
       long area = (long)(r.R - r.L) * (r.B - r.T);
@@ -107,6 +116,13 @@ public static class Native {
   }
 
   [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
+  [DllImport("user32.dll")] public static extern uint MapVirtualKey(uint code, uint type);
+  // key down/up with a real scan code (games such as Godot ignore SendKeys)
+  public static void Key(byte vk, bool up) {
+    byte sc = (byte)MapVirtualKey(vk, 0);
+    uint ext = (vk >= 0x21 && vk <= 0x2E) ? 1u : 0u; // arrows, home/end, ins/del are extended keys
+    keybd_event(vk, sc, (up ? 2u : 0u) | ext, UIntPtr.Zero);
+  }
   [DllImport("user32.dll")] public static extern bool AttachThreadInput(uint a, uint b, bool attach);
   [DllImport("user32.dll")] public static extern bool BringWindowToTop(IntPtr h);
   [DllImport("user32.dll")] public static extern void SwitchToThisWindow(IntPtr h, bool alt);
@@ -151,11 +167,11 @@ function Find-Window([System.Diagnostics.Process]$proc) {
   while ((Get-Date) -lt $deadline) {
     $proc.Refresh()
     if (-not $proc.HasExited -and $proc.MainWindowHandle -ne [IntPtr]::Zero -and -not $TitleMatch) { return $proc.MainWindowHandle }
-    $tree = if ($proc.HasExited) { [System.Collections.Generic.HashSet[int]]::new() } else { Get-Tree $proc.Id }
-    $cands = [CapWin.Native]::TopWindows() | Where-Object {
+    $tree = if ($proc.HasExited) { @() } else { @(Get-Tree $proc.Id) }
+    $cands = [CapWin.Native]::TopWindows([bool]$TitleMatch) | Where-Object {
       ($_[3] -gt 40000) -and (
         ($TitleMatch -and $_[2] -match $TitleMatch) -or
-        (-not $TitleMatch -and $tree.Contains([int]$_[1]))
+        (-not $TitleMatch -and ($tree -contains [int]$_[1]))
       )
     } | Sort-Object { $_[3] } -Descending
     if ($cands) { return [IntPtr]$cands[0][0] }
@@ -218,6 +234,8 @@ function Save-Shot([IntPtr]$h, [string]$path) {
   $bmp.Dispose()
 }
 
+# key name (Enter, Space, W, F1, Escape, Tab, Up...) -> virtual-key code
+function Get-VK([string]$name) { return [byte][int][System.Windows.Forms.Keys]$name }
 function Set-Front([IntPtr]$h) { if (-not [CapWin.Native]::Front($h)) { Write-Warning 'could not bring window to front' } }
 function To-Screen([IntPtr]$h, [int]$x, [int]$y) {
   $pt = New-Object CapWin.Native+POINT; $pt.X = $x; $pt.Y = $y
@@ -230,13 +248,19 @@ function Escape-Keys([string]$t) { return ($t -replace '([+^%~(){}\[\]])', '{$1}
 $psi = New-Object System.Diagnostics.ProcessStartInfo
 $psi.FileName = $Exe
 $psi.Arguments = $ArgList
-$psi.UseShellExecute = $false
+$psi.UseShellExecute = $true   # own console window for console apps
 $psi.WorkingDirectory = if ($WorkDir) { $WorkDir } else { Split-Path $Exe -Parent }
 if (-not $psi.WorkingDirectory) { $psi.WorkingDirectory = (Get-Location).Path }
 $proc = $null
 if ($Attach) {
   # reuse an already-running copy (matched by full exe path)
-  $proc = Get-Process | Where-Object { $_.Path -eq $Exe -and $_.MainWindowHandle -ne [IntPtr]::Zero } | Select-Object -First 1
+  if ($TitleMatch) {
+    # match by window title (console windows have no MainWindowHandle)
+    $w = [CapWin.Native]::TopWindows($true) | Where-Object { $_[2] -match $TitleMatch } | Select-Object -First 1
+    if ($w) { $proc = Get-Process -Id $w[1] }
+  } else {
+    $proc = Get-Process | Where-Object { $_.Path -eq $Exe -and $_.MainWindowHandle -ne [IntPtr]::Zero } | Select-Object -First 1
+  }
   if (-not $proc) { throw "No running window for $Exe to attach to" }
   Write-Host "attached pid $($proc.Id)"
 } else {
@@ -299,6 +323,8 @@ try {
         for ($i = 0; $i -lt [Math]::Abs($n); $i++) { Mouse 0x0800 $one; Start-Sleep -Milliseconds 60 }
         Start-Sleep -Milliseconds 300
       }
+      'tap'    { (Set-Front $h); foreach ($k in ($arg -split '\+')) { [CapWin.Native]::Key((Get-VK $k), $false) }; Start-Sleep -Milliseconds 60; foreach ($k in ($arg -split '\+')) { [CapWin.Native]::Key((Get-VK $k), $true) }; Start-Sleep -Milliseconds 250 }
+      'hold'   { (Set-Front $h); $k, $ms = $arg -split ','; [CapWin.Native]::Key((Get-VK $k), $false); Start-Sleep -Milliseconds ([int]$ms); [CapWin.Native]::Key((Get-VK $k), $true); Start-Sleep -Milliseconds 150 }
       'shot'   { Save-Shot $h $arg; $tookShot = $true }
       default  { Write-Warning "unknown step '$s'" }
     }
