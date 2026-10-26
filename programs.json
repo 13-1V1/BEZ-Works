@@ -630,31 +630,25 @@
     },
     {
       "id": "lightbox",
-      "name": "LIGHTBOX",
+      "name": "Lightbox MV",
       "category": "art",
       "status": "ready",
       "version": "0.1.0",
-      "description": "Simple drawing app for frame-by-frame cartoons, with onion skin, layers, a timeline, an audio track and lip-sync.",
-      "note": "Video export needs ffmpeg installed.",
+      "description": "Frame-by-frame animated music videos, drawn on the beat. Add a song and it finds the tempo, every beat and the drum hits; drawings snap to bars and beats, loop as clips, and lip-sync to a voice track. Onion skin, layers and a video-editor layout.",
+      "note": "MP4 and GIF export need ffmpeg installed (winget install Gyan.FFmpeg).",
       "images": [
         {
           "full": "img/lightbox/1.webp",
           "thumb": "img/lightbox/1-thumb.webp",
-          "alt": "LIGHTBOX screenshot 1"
+          "alt": "Lightbox MV screenshot 1"
         }
       ],
       "downloads": [
         {
           "label": "Installer",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/lightbox-v0.1.0/LIGHTBOX-Setup-0.1.0.exe",
-          "sizeBytes": 1531578
-        },
-        {
-          "label": "Portable",
-          "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/lightbox-v0.1.0/LIGHTBOX-Portable-0.1.0.exe",
-          "sizeBytes": 4778496
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/lightbox-v0.1.0/Lightbox-MV-Setup-0.1.0.exe",
+          "sizeBytes": 1548999
         }
       ]
     },

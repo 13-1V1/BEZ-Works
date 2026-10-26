@@ -45,8 +45,8 @@
       ]},
       { "name": "NowhereToHide-1.0.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/NowhereToHide/dist/macos/Nowhere To Hide (Mac).zip" }
     ]},
-    { "id": "till-the-moon-bleeds", "version": "0.13.0", "title": "Till the Moon Bleeds 0.13.0", "assets": [
-      { "name": "TillTheMoonBleeds-0.13.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Desktop/7DAYS/TillTheMoonBleeds-windows.zip" }
+    { "id": "till-the-moon-bleeds", "version": "0.14.0", "title": "Till the Moon Bleeds 0.14.0", "assets": [
+      { "name": "TillTheMoonBleeds-0.14.0-win64.7z", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Desktop/7DAYS/TillTheMoonBleeds-0.14.0-win64.7z" }
     ]},
     { "id": "deadzone-arcade", "version": "0.1.0", "title": "Deadzone Arcade 0.1.0", "assets": [
       { "name": "DeadzoneArcade-0.1.0-win64.zip", "label": "Download", "platform": "Windows", "zip": [
@@ -93,9 +93,8 @@
       { "name": "TileSmith-0.2.0-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/mac/TileSmith-0.2.0-macOS-arm64.zip" },
       { "name": "TileSmith-0.2.0-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/mac/TileSmith-0.2.0-macOS-x64.zip" }
     ]},
-    { "id": "lightbox", "version": "0.1.0", "title": "LIGHTBOX 0.1.0", "assets": [
-      { "name": "LIGHTBOX-Setup-0.1.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox_0.1.0_x64-setup.exe" },
-      { "name": "LIGHTBOX-Portable-0.1.0.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox.exe" }
+    { "id": "lightbox", "version": "0.1.0", "title": "Lightbox MV 0.1.0", "assets": [
+      { "name": "Lightbox-MV-Setup-0.1.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox MV_0.1.0_x64-setup.exe" }
     ]},
     { "id": "fractal-gen", "version": "1.0.0", "title": "Fractal Gen 1.0.0", "assets": [
       { "name": "Fractal-Gen-Setup-1.0.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Fractal Gen/dist/Fractal Gen-Setup-1.0.0-x64.exe" },
