@@ -103,8 +103,11 @@ def unix_zip(path, add=()):
         for info in src.infolist():
             is_dir = info.filename.endswith("/")
             mode = ((info.external_attr >> 16) & 0o777 or (0o755 if is_dir else 0o644)) & ~0o022   # no group/other write
+            ftype = (info.external_attr >> 16) & 0o170000   # keep symlinks (Mac apps are full of them)
+            if not ftype:
+                ftype = 0o040000 if is_dir else 0o100000
             info.create_system = 3
-            info.external_attr = ((0o040000 if is_dir else 0o100000) | mode) << 16 | (0x10 if is_dir else 0)
+            info.external_attr = (ftype | mode) << 16 | (0x10 if is_dir else 0)
             if is_dir:
                 dst.writestr(info, b"")
                 continue

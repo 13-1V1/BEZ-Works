@@ -56,7 +56,8 @@
       { "name": "DeadzoneArcade-0.1.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/DeadOpsAracde-Remake/build/mac/DeadzoneArcade.zip", "unix_zip": true }
     ]},
     { "id": "musickid", "version": "1.1.3", "title": "Music KID 1.1.3", "assets": [
-      { "name": "MusicKID-Setup-1.1.3.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/MusicKeyID/installer_output/MusicKID-Setup-1.1.3.exe" }
+      { "name": "MusicKID-Setup-1.1.3.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/MusicKeyID/installer_output/MusicKID-Setup-1.1.3.exe" },
+      { "name": "MusicKID-1.1.3-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/MusicKeyID/dist/mac/MusicKID-1.1.3-macOS-arm64.zip", "add": [["scripts/mac/How to open on Mac - Apple Silicon.txt", "How to open on Mac.txt"]] }
     ]},
     { "id": "nobull-android", "version": "2.1.0.0", "title": "NoBull Music Player (Android) 2.1.0.0", "assets": [
       { "name": "NoBull-2.1.0.0.apk", "label": "Download", "platform": "Android", "file": "C:/Users/brenn/NoBull Music Player/aplayer/app/build/outputs/apk/foss/debug/NoBull-v2.1.0.0-foss-debug.apk" },

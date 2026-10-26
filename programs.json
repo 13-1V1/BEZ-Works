@@ -518,8 +518,15 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/musickid-v1.1.3/MusicKID-Setup-1.1.3.exe",
           "sizeBytes": 354562850
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/musickid-v1.1.3/MusicKID-1.1.3-macOS-arm64.zip",
+          "sizeBytes": 373909450
         }
-      ]
+      ],
+      "note": "Mac: Apple Silicon (M1 or newer) only, macOS 12 or newer. The first launch needs Open Anyway (see Install help)."
     },
     {
       "id": "nobull",
