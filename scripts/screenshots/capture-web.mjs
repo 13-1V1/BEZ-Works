@@ -82,6 +82,7 @@ try {
   });
   const page = await browser.newPage({ viewport: { width: vw, height: vh }, deviceScaleFactor: plan.scale || 1 });
   page.on('pageerror', (e) => console.log('[pageerror]', e.message));
+  page.on('response', (r) => { if (r.status() >= 400) console.log(`[http ${r.status()}] ${r.url()}`); });
   page.on('console', (m) => { if (m.type() === 'error') console.log('[console.error]', m.text()); });
 
   console.log('open', url);
