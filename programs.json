@@ -32,7 +32,7 @@
       "category": "machining",
       "status": "ready",
       "version": "1.0.3",
-      "description": "Learn G-code from zero for Fanuc mills and lathes: 33 mill and 26 lathe lessons with quizzes and coding challenges, part-print challenges, 2D/3D simulators and control-panel simulators.",
+      "description": "Learn CNC programming from zero on FANUC-style mills and lathes. 59 guided lessons (33 mill, 26 lathe), each with a quiz and a hands-on coding exercise you run in a live 2D/3D simulator. 158 quiz questions, 40 blueprint part challenges, working FANUC 0i-MF and 0i-TF control-panel simulators, a reference for 46 G-codes, 13 M-codes and 52 alarms, and a live checker that catches 62 kinds of mistakes.",
       "images": [
         {
           "full": "img/gcode-trainer/1.webp",
@@ -68,7 +68,8 @@
           "sizeBytes": 112859855
         }
       ],
-      "featured": true
+      "featured": true,
+      "note": "Teachers get a class roster with per-student progress and CSV export."
     },
     {
       "id": "bez-gpad",
