@@ -28,9 +28,9 @@
     <canvas class="hero-surface" data-surface aria-hidden="true"></canvas>
     <canvas class="hero-cut" data-cut aria-hidden="true"></canvas>
 
-    <div class="control" aria-hidden="true">
-      <ol class="gcode" data-gcode></ol>
-      <dl class="dro">
+    <div class="control">
+      <ol class="gcode" data-gcode aria-hidden="true"></ol>
+      <dl class="dro" aria-hidden="true">
         <div><dt>X</dt><dd data-x> 0.0000</dd></div>
         <div><dt>Y</dt><dd data-y> 0.0000</dd></div>
         <div><dt>Z</dt><dd data-z> 2.0000</dd></div>
@@ -38,13 +38,14 @@
         <div><dt>S</dt><dd data-s>0</dd></div>
         <div><dt>T</dt><dd data-t>3</dd></div>
       </dl>
-      <ul class="tool-table">
+      <p class="visits" data-visits hidden><span>Visitors</span> <b data-visits-count>0</b></p>
+      <ul class="tool-table" aria-hidden="true">
         <li data-tool="1"><b>T1</b> 2.0 face mill</li>
         <li data-tool="2"><b>T2</b> 1/2 90° V-bit</li>
         <li data-tool="3"><b>T3</b> 1/4 60° V-bit</li>
         <li data-tool="4"><b>T4</b> 1/8 90° engraver</li>
       </ul>
-      <p class="now-line" data-now></p>
+      <p class="now-line" data-now aria-hidden="true"></p>
     </div>
 
     <div class="hero-copy">
@@ -135,6 +136,7 @@
   <script src="js/hero/machine.js"></script>
   <script src="js/hero/effects.js"></script>
   <script src="js/hero/hero.js"></script>
+  <script src="js/visits.js" defer></script>
   <script src="js/app.js"></script>
 </body>
 </html>
