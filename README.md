@@ -45,6 +45,7 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
    }
    ```
    `downloads`, `browser`, `source`, `note` and `images` are all optional. Use `"status": "coming-soon"` for a greyed-out card with no buttons.
+   One program on two platforms (like NoBull): give each download its own `"version"`, and make `source` a list of `{ "label": "Source (Windows)", "url": "..." }`. Add `"featured": true` for a big card at the top.
 
 ## Password
 

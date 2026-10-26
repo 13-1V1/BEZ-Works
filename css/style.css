@@ -207,7 +207,7 @@ code {
 
 .btn:active { transform: translateY(1px) scale(.98); }
 
-.btn small { font-size: 12px; font-weight: 500; opacity: .78; }
+.btn small { font-size: 12px; font-weight: 500; opacity: .78; white-space: nowrap; }
 
 .btn-heat {
   color: #1a0d05;

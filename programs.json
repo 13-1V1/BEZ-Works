@@ -5,8 +5,8 @@
       "name": "Machining & CNC"
     },
     {
-      "id": "learning",
-      "name": "Learning"
+      "id": "cs-net",
+      "name": "Computer Science & Network Tech"
     },
     {
       "id": "games",
@@ -111,6 +111,74 @@
       "featured": true
     },
     {
+      "id": "jig",
+      "name": "JIG",
+      "category": "audio",
+      "status": "ready",
+      "version": "1.2.0",
+      "description": "Tightens up a song's beat timing: finds the beats and stretches the mix (or its stems) onto a steady grid, with a before/after tightness score and WAV export.",
+      "images": [
+        {
+          "full": "img/jig/1.webp",
+          "thumb": "img/jig/1-thumb.webp",
+          "alt": "JIG screenshot 1"
+        },
+        {
+          "full": "img/jig/2.webp",
+          "thumb": "img/jig/2-thumb.webp",
+          "alt": "JIG screenshot 2"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/jig-v1.2.0/JIG-Setup-1.2.0.exe",
+          "sizeBytes": 82719364
+        }
+      ],
+      "featured": true
+    },
+    {
+      "id": "hone",
+      "name": "HONE",
+      "category": "audio",
+      "status": "ready",
+      "version": "0.3.7",
+      "description": "Audio mastering app inspired by iZotope: Assist to a target loudness, Match EQ against reference tracks, album mode, clipper, EQ and limiter, with MP3 export.",
+      "images": [
+        {
+          "full": "img/hone/1.webp",
+          "thumb": "img/hone/1-thumb.webp",
+          "alt": "HONE screenshot 1"
+        },
+        {
+          "full": "img/hone/2.webp",
+          "thumb": "img/hone/2-thumb.webp",
+          "alt": "HONE screenshot 2"
+        },
+        {
+          "full": "img/hone/3.webp",
+          "thumb": "img/hone/3-thumb.webp",
+          "alt": "HONE screenshot 3"
+        },
+        {
+          "full": "img/hone/4.webp",
+          "thumb": "img/hone/4-thumb.webp",
+          "alt": "HONE screenshot 4"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/hone-v0.3.7/HONE-Setup-0.3.7.exe",
+          "sizeBytes": 7773226
+        }
+      ],
+      "featured": true
+    },
+    {
       "id": "chipload",
       "name": "CHIPLOAD",
       "category": "machining",
@@ -189,7 +257,7 @@
     {
       "id": "learnlinux",
       "name": "LearnLinux+",
-      "category": "learning",
+      "category": "cs-net",
       "status": "ready",
       "version": "1.0.1",
       "description": "Learn Linux from zero in a simulated shell that never touches your real PC: 62 lessons, 185 quiz questions and a scored practice exam, built around the CompTIA Linux+ XK0-005 objectives.",
@@ -228,7 +296,7 @@
     {
       "id": "hackpath",
       "name": "HackPath",
-      "category": "learning",
+      "category": "cs-net",
       "status": "ready",
       "version": "0.1.0",
       "description": "Learn ethical hacking from zero: 29 lessons over 7 tracks, aligned to CompTIA PenTest+. Practice targets run in sealed local Docker containers with no internet access.",
@@ -258,37 +326,6 @@
           "sizeBytes": 11600080
         }
       ]
-    },
-    {
-      "id": "ibtw",
-      "name": "I Blame The Wind",
-      "category": "games",
-      "status": "ready",
-      "version": "1.0.0",
-      "description": "Turn-based, Worms-style artillery game: destructible terrain, wind that bends every shot, 11 weapons and pixel-art scenery. Two players on one screen, gamepad supported.",
-      "images": [
-        {
-          "full": "img/ibtw/1.webp",
-          "thumb": "img/ibtw/1-thumb.webp",
-          "alt": "I Blame The Wind screenshot 1"
-        },
-        {
-          "full": "img/ibtw/2.webp",
-          "thumb": "img/ibtw/2-thumb.webp",
-          "alt": "I Blame The Wind screenshot 2"
-        },
-        {
-          "full": "img/ibtw/3.webp",
-          "thumb": "img/ibtw/3-thumb.webp",
-          "alt": "I Blame The Wind screenshot 3"
-        },
-        {
-          "full": "img/ibtw/4.webp",
-          "thumb": "img/ibtw/4-thumb.webp",
-          "alt": "I Blame The Wind screenshot 4"
-        }
-      ],
-      "browser": "play/ibtw/"
     },
     {
       "id": "nowhere-to-hide",
@@ -385,6 +422,37 @@
       ]
     },
     {
+      "id": "ibtw",
+      "name": "I Blame The Wind",
+      "category": "games",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Turn-based, Worms-style artillery game: destructible terrain, wind that bends every shot, 11 weapons and pixel-art scenery. Two players on one screen, gamepad supported.",
+      "images": [
+        {
+          "full": "img/ibtw/1.webp",
+          "thumb": "img/ibtw/1-thumb.webp",
+          "alt": "I Blame The Wind screenshot 1"
+        },
+        {
+          "full": "img/ibtw/2.webp",
+          "thumb": "img/ibtw/2-thumb.webp",
+          "alt": "I Blame The Wind screenshot 2"
+        },
+        {
+          "full": "img/ibtw/3.webp",
+          "thumb": "img/ibtw/3-thumb.webp",
+          "alt": "I Blame The Wind screenshot 3"
+        },
+        {
+          "full": "img/ibtw/4.webp",
+          "thumb": "img/ibtw/4-thumb.webp",
+          "alt": "I Blame The Wind screenshot 4"
+        }
+      ],
+      "browser": "play/ibtw/"
+    },
+    {
       "id": "musickid",
       "name": "Music KID",
       "category": "audio",
@@ -413,40 +481,21 @@
       ]
     },
     {
-      "id": "nobull-android",
-      "name": "NoBull Music Player (Android)",
+      "id": "nobull",
+      "name": "NoBull Music Player",
       "category": "audio",
       "status": "ready",
-      "version": "2.1.0.0",
-      "description": "A no-nonsense local music player for Android, built to handle a tagged music library and your own untagged bounces side by side.",
-      "images": [],
-      "downloads": [
-        {
-          "label": "Download",
-          "platform": "Android",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-android-v2.1.0.0/NoBull-2.1.0.0.apk",
-          "sizeBytes": 28784630
-        }
-      ],
-      "source": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-android-v2.1.0.0/NoBull-Android-2.1.0.0-source.zip"
-    },
-    {
-      "id": "nobull-desktop",
-      "name": "NoBull Music Player (Desktop)",
-      "category": "audio",
-      "status": "ready",
-      "version": "1.0.1",
-      "description": "The same no-nonsense player for Windows. Plays MP3, FLAC, M4A, WMA, OGG, WAV and AIFF from your own folders, with playlists and media keys.",
+      "description": "A no-nonsense local music player for Windows and Android, built to handle a tagged music library and your own untagged bounces side by side. Plays MP3, FLAC, M4A, WMA, OGG, WAV and AIFF, with playlists and media keys.",
       "images": [
         {
-          "full": "img/nobull-desktop/1.webp",
-          "thumb": "img/nobull-desktop/1-thumb.webp",
-          "alt": "NoBull Music Player (Desktop) screenshot 1"
+          "full": "img/nobull/1.webp",
+          "thumb": "img/nobull/1-thumb.webp",
+          "alt": "NoBull Music Player screenshot 1"
         },
         {
-          "full": "img/nobull-desktop/2.webp",
-          "thumb": "img/nobull-desktop/2-thumb.webp",
-          "alt": "NoBull Music Player (Desktop) screenshot 2"
+          "full": "img/nobull/2.webp",
+          "thumb": "img/nobull/2-thumb.webp",
+          "alt": "NoBull Music Player screenshot 2"
         }
       ],
       "downloads": [
@@ -454,10 +503,27 @@
           "label": "Download",
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-desktop-v1.0.1/NoBull-Music-Player-1.0.1.msi",
-          "sizeBytes": 64602845
+          "sizeBytes": 64602845,
+          "version": "1.0.1"
+        },
+        {
+          "label": "Download",
+          "platform": "Android",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-android-v2.1.0.0/NoBull-2.1.0.0.apk",
+          "sizeBytes": 28784630,
+          "version": "2.1.0.0"
         }
       ],
-      "source": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-desktop-v1.0.1/NoBull-Desktop-1.0.1-source.zip"
+      "source": [
+        {
+          "label": "Source (Windows)",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-desktop-v1.0.1/NoBull-Desktop-1.0.1-source.zip"
+        },
+        {
+          "label": "Source (Android)",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nobull-android-v2.1.0.0/NoBull-Android-2.1.0.0-source.zip"
+        }
+      ]
     },
     {
       "id": "ansa",
@@ -498,72 +564,6 @@
         }
       ],
       "source": "https://github.com/13-1V1/BEZ-Works/releases/download/ansa-v1.0.6/ANSA-1.0.6-source.zip"
-    },
-    {
-      "id": "hone",
-      "name": "HONE",
-      "category": "audio",
-      "status": "ready",
-      "version": "0.3.7",
-      "description": "Audio mastering app inspired by iZotope: Assist to a target loudness, Match EQ against reference tracks, album mode, clipper, EQ and limiter, with MP3 export.",
-      "images": [
-        {
-          "full": "img/hone/1.webp",
-          "thumb": "img/hone/1-thumb.webp",
-          "alt": "HONE screenshot 1"
-        },
-        {
-          "full": "img/hone/2.webp",
-          "thumb": "img/hone/2-thumb.webp",
-          "alt": "HONE screenshot 2"
-        },
-        {
-          "full": "img/hone/3.webp",
-          "thumb": "img/hone/3-thumb.webp",
-          "alt": "HONE screenshot 3"
-        },
-        {
-          "full": "img/hone/4.webp",
-          "thumb": "img/hone/4-thumb.webp",
-          "alt": "HONE screenshot 4"
-        }
-      ],
-      "downloads": [
-        {
-          "label": "Download",
-          "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/hone-v0.3.7/HONE-Setup-0.3.7.exe",
-          "sizeBytes": 7773226
-        }
-      ]
-    },
-    {
-      "id": "jig",
-      "name": "JIG",
-      "category": "audio",
-      "status": "ready",
-      "version": "1.2.0",
-      "description": "Tightens up a song's beat timing: finds the beats and stretches the mix (or its stems) onto a steady grid, with a before/after tightness score and WAV export.",
-      "images": [
-        {
-          "full": "img/jig/1.webp",
-          "thumb": "img/jig/1-thumb.webp",
-          "alt": "JIG screenshot 1"
-        },
-        {
-          "full": "img/jig/2.webp",
-          "thumb": "img/jig/2-thumb.webp",
-          "alt": "JIG screenshot 2"
-        }
-      ],
-      "downloads": [
-        {
-          "label": "Download",
-          "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/jig-v1.2.0/JIG-Setup-1.2.0.exe",
-          "sizeBytes": 82719364
-        }
-      ]
     },
     {
       "id": "dig",

@@ -63,7 +63,7 @@ function actionsHTML(p) {
 
   const parts = [];
   for (const d of p.downloads || []) {
-    const meta = [d.platform, formatSize(d.sizeBytes)].filter(Boolean).join(' · ');
+    const meta = [d.platform, d.version && 'v' + d.version, formatSize(d.sizeBytes)].filter(Boolean).join(' · ');
     parts.push(`
       <a class="btn btn-heat" href="${esc(d.url)}" rel="noopener">
         ${esc(d.label || 'Download')}
@@ -73,8 +73,10 @@ function actionsHTML(p) {
   if (p.browser) {
     parts.push(`<a class="btn btn-coolant" href="${esc(p.browser)}" target="_blank" rel="noopener">Open in browser</a>`);
   }
-  if (p.source) {
-    parts.push(`<a class="btn btn-quiet" href="${esc(p.source)}" target="_blank" rel="noopener">Source</a>`);
+  // source: one URL, or a list of { label, url } when there's more than one
+  const sources = typeof p.source === 'string' ? [{ label: 'Source', url: p.source }] : p.source || [];
+  for (const src of sources) {
+    parts.push(`<a class="btn btn-quiet" href="${esc(src.url)}" target="_blank" rel="noopener">${esc(src.label || 'Source')}</a>`);
   }
   return `<div class="card-actions">${parts.join('')}</div>`;
 }
