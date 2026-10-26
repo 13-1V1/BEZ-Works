@@ -26,7 +26,8 @@
         "C:/Users/brenn/NowhereToHide/dist/windows/NowhereToHide.exe",
         "C:/Users/brenn/NowhereToHide/dist/windows/LICENSE",
         "C:/Users/brenn/NowhereToHide/dist/windows/LICENSES-THIRD-PARTY.txt"
-      ]}
+      ]},
+      { "name": "NowhereToHide-1.0.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/NowhereToHide/dist/macos/Nowhere To Hide (Mac).zip" }
     ]},
     { "id": "till-the-moon-bleeds", "version": "0.13.0", "title": "Till the Moon Bleeds 0.13.0", "assets": [
       { "name": "TillTheMoonBleeds-0.13.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Desktop/7DAYS/TillTheMoonBleeds-windows.zip" }

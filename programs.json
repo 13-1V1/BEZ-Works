@@ -358,8 +358,15 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nowhere-to-hide-v1.0.0/NowhereToHide-1.0.0-win64.zip",
           "sizeBytes": 274437992
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/nowhere-to-hide-v1.0.0/NowhereToHide-1.0.0-macOS.zip",
+          "sizeBytes": 306150698
         }
-      ]
+      ],
+      "note": "Mac: Intel or Apple Silicon, macOS 11 or newer. The first launch needs Open Anyway (see Install help)."
     },
     {
       "id": "till-the-moon-bleeds",
