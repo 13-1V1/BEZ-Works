@@ -8,18 +8,18 @@ Link straight to one program by adding its id: `https://13-1v1.github.io/BEZ-Wor
 
 ## How it's built
 
-A static site (plain HTML/CSS/JS, no build step) hosted on GitHub Pages.
+A static site (plain HTML/CSS/JS, no framework, no bundler) hosted on GitHub Pages.
 
 | File | What it is |
 |---|---|
 | `programs.json` | Every program and the category list. The page builds its cards from this. |
-| `tools.json` | The "Tools I've Used" list. |
+| `tools.json` | The "Tools I've used" list. |
 | `index.html`, `css/`, `js/app.js` | Layout and code. You shouldn't need to touch these to add a program. |
-| `img/<id>/` | Picked screenshots (WebP, full size + thumbnail). |
+| `img/<id>/` | Picked screenshots (WebP, full size + thumbnail), plus an optional `preview.mp4` card video. |
 | `play/<id>/` | Web builds for programs that run in the browser. |
 | `_screenshots/` | Screenshot candidates. Git-ignored, never published. |
 
-Downloads are **not** in the repo. They live on [GitHub Releases](https://github.com/13-1V1/BEZ-Works/releases), one release per program version, tagged `<id>-v<version>`.
+Downloads are **not** in the repo. They live on [GitHub Releases](https://github.com/13-1V1/BEZ-Works/releases), one release per program version, tagged `<id>-v<version>`. A program with separate builds per platform gets one release per platform (NoBull: `nobull-desktop-v1.0.1` and `nobull-android-v2.1.0.0`).
 
 ## Add a program
 
@@ -44,8 +44,11 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
      "source": "https://github.com/..."
    }
    ```
-   `downloads`, `browser`, `source`, `note` and `images` are all optional. Use `"status": "coming-soon"` for a greyed-out card with no buttons.
-   One program on two platforms (like NoBull): give each download its own `"version"`, and make `source` a list of `{ "label": "Source (Windows)", "url": "..." }`. Add `"featured": true` for a big card at the top.
+   `version`, `downloads`, `browser`, `source`, `note` and `images` are all optional, and so is `alt` on each image. `"video": "img/<id>/preview.mp4"` plays a muted loop on the card in place of the first screenshot. `browser` can also be a full URL to a build hosted somewhere else (CHIPLOAD does this). Use `"status": "coming-soon"` for a greyed-out card with no buttons; those always sort last.
+   One program on two platforms (like NoBull): give each download its own `"version"`, and make `source` a list of `{ "label": "Source (Windows)", "url": "..." }`.
+   Cards show in the same order as `programs.json`, so put an entry where you want it on the page. `"featured": true` makes a card bigger; put featured entries first so they sit at the top.
+
+   You can also skip step 1's hand upload: add the build to `scripts/releases.json`, then run `python scripts/stage-releases.py <id>` and `python scripts/upload-releases.py <id>` The stage script writes each asset's exact size to `_releases/staged.json` for `sizeBytes`.
 
 ## Password
 
@@ -61,7 +64,7 @@ The published page is locked with [StatiCrypt](https://github.com/robinmoisson/s
   ```bash
   npx staticrypt --share https://13-1v1.github.io/BEZ-Works/ --share-remember -p <password>
   ```
-- What the lock covers: the page and the program list. What it doesn't: the download files on Releases and the browser builds in `play/` are still reachable by direct link.
+- What the lock covers: the published page, including the program list baked into it. What it doesn't: this repo is public, so `programs.json`, `img/`, `css/` and `js/` can be read on GitHub, and the download files on Releases and the browser builds in `play/` are reachable by direct link.
 
 ## Build
 

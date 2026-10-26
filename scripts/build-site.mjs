@@ -22,6 +22,8 @@ mkdirSync(OUT);
 for (const item of COPY) {
   if (existsSync(item)) cpSync(item, join(OUT, item), { recursive: true });
 }
+// the password page is adapted from StatiCrypt and points at this license
+cpSync('scripts/STATICRYPT-LICENSE.txt', join(OUT, 'STATICRYPT-LICENSE.txt'));
 
 // Inline the data. "</" is escaped so a description can never close the script tag.
 const inline = (id, file) => {

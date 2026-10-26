@@ -1,5 +1,5 @@
 {
-  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'git' = git archive of a repo's HEAD (tracked files only).",
+  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip.",
   "releases": [
     { "id": "bez-gpad", "version": "1.1", "title": "BEZ GPAD 1.1", "assets": [
       { "name": "BEZ-GPAD-Setup-1.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/installer/BEZ-GPAD-Setup-1.1.exe" },
