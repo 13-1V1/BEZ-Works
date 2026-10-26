@@ -17,3 +17,4 @@ _site/
 
 # Staged release files (uploaded to GitHub Releases, never committed)
 _releases/
+__pycache__/
