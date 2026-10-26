@@ -1,11 +1,10 @@
 // Created by: Brennan Meyer with use of Claude Code 10/25/2026 Santa Clarita, CA
 // brennanmmeyer@gmail.com
 //
-// Hero conductor. A raw blank waits in the vise; nothing happens until
-// "Cycle start". Then: T1 faces the top, T4 scribes the border, T2 V-carves
+// Hero conductor. The finished plate sits in the vise; nothing happens until
+// "Cycle start". Then a fresh blank pushes it out, T1 faces the top, T4 scribes the border, T2 V-carves
 // BEZ and the swoosh, T3 V-carves WORKS and the inner border, and a flare of
-// light runs across the finished plate. Running it again loads a fresh
-// blank, which pushes the finished plate out. "Feed" overrides the speed.
+// light runs across the finished plate. "Feed" overrides the speed.
 // Reduced motion shows the finished plate and nothing moves.
 
 (function (BEZ) {
@@ -451,7 +450,7 @@
   document.addEventListener('visibilitychange', wake);
 
   function idle(finished) {
-    // a raw blank in the vise (or the finished plate), last tool parked
+    // the finished plate (or a raw blank, mid-cycle resize), last tool parked
     layout();
     if (finished) finishPlate(stock);
     running = false; cur = null; fx.clear(); flareStart = -1;
@@ -486,7 +485,7 @@
     if (begun) return;
     begun = true;
     buildProgram();
-    idle(reduceMotion);
+    idle(true);                 // open on the finished plate
     lastW = W;
     light.x = light.tx = W * 0.65; light.y = light.ty = H * 0.35;
     if (reduceMotion) {
