@@ -70,6 +70,9 @@
     { "id": "dig", "version": "0.1.0", "title": "DIG 0.1.0", "assets": [
       { "name": "DIG-Setup-0.1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/DIG/target/release/bundle/nsis/DIG_0.1.0_x64-setup.exe" }
     ]},
+    { "id": "tilesmith", "version": "0.2.0", "title": "TileSmith 0.2.0", "assets": [
+      { "name": "TileSmith-0.2.0-win64-portable.zip", "label": "Download", "platform": "Windows", "zipdir": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/TileSmith Desktop" }
+    ]},
     { "id": "lightbox", "version": "0.1.0", "title": "LIGHTBOX 0.1.0", "assets": [
       { "name": "LIGHTBOX-Setup-0.1.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox_0.1.0_x64-setup.exe" },
       { "name": "LIGHTBOX-Portable-0.1.0.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox.exe" }

@@ -656,6 +656,41 @@
       "video": "img/zoomdraw/preview.mp4"
     },
     {
+      "id": "tilesmith",
+      "name": "TileSmith",
+      "category": "art",
+      "status": "ready",
+      "version": "0.2.0",
+      "description": "Paint seamless patterns while you watch the live repeat. Draw across any edge and the stroke continues on the opposite side. Layers, fill, shapes and image import, with PNG export of one tile or a 3 × 3 sheet.",
+      "note": "Portable: unzip and run TileSmith.exe, keeping the folder together. It can also connect to Codex so AI can paint on the canvas.",
+      "images": [
+        {
+          "full": "img/tilesmith/1.webp",
+          "thumb": "img/tilesmith/1-thumb.webp",
+          "alt": "TileSmith screenshot 1"
+        },
+        {
+          "full": "img/tilesmith/2.webp",
+          "thumb": "img/tilesmith/2-thumb.webp",
+          "alt": "TileSmith screenshot 2"
+        },
+        {
+          "full": "img/tilesmith/3.webp",
+          "thumb": "img/tilesmith/3-thumb.webp",
+          "alt": "TileSmith screenshot 3"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/tilesmith-v0.2.0/TileSmith-0.2.0-win64-portable.zip",
+          "sizeBytes": 160961492
+        }
+      ],
+      "browser": "play/tilesmith/"
+    },
+    {
       "id": "fractal-gen",
       "name": "Fractal Gen",
       "category": "art",

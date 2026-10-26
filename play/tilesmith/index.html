@@ -1,0 +1,84 @@
+<!-- Created by: Brennan Meyer with use of Codex 09/17/2026 Santa Clarita, CA -->
+<!-- brennanmmeyer@gmail.com -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; object-src 'none'; base-uri 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20232c">
+  <title>TileSmith — Make it seamless.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233662d8'/%3E%3Cpath d='M7 7h8v8H7zm10 0h8v8h-8zM7 17h8v8H7zm10 0h8v8h-8z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/engine.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/raster.js" defer></script>
+  <script src="js/automation.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="TileSmith, Make it seamless" id="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>TileSmith<small>Make it seamless.</small></span></a>
+    <nav class="file-actions" aria-label="Project">
+      <button id="new-btn" title="New tile (Ctrl+Alt+N)"><span data-icon="plus"></span><span>New</span></button>
+      <button id="open-btn" title="Open a saved project or image (Ctrl+O)"><span data-icon="folder"></span><span>Open</span></button>
+      <button id="save-btn" title="Save editable project (Ctrl+S)"><span data-icon="save"></span><span>Save project</span></button>
+    </nav>
+    <div class="header-end"><button id="help-btn" class="icon-button" aria-label="Help and keyboard shortcuts" title="Help and keyboard shortcuts"><span data-icon="help"></span></button><button id="export-btn" class="primary"><span data-icon="download"></span>Export PNG</button></div>
+  </header>
+  <div class="optionsbar">
+    <div class="history-buttons"><button id="undo-btn" class="icon-button" aria-label="Undo" title="Undo (Ctrl+Z)"><span data-icon="undo"></span></button><button id="redo-btn" class="icon-button" aria-label="Redo" title="Redo (Ctrl+Shift+Z)"><span data-icon="redo"></span></button></div>
+    <span class="divider"></span><strong id="tool-name">Brush</strong>
+    <label class="inline-control">Size <input id="size" type="range" min="1" max="256" value="24"><input id="size-number" aria-label="Brush size in pixels" type="number" min="1" max="256" value="24"><span>px</span></label>
+    <label class="inline-control opacity-control">Opacity <input id="opacity" type="range" min="1" max="100" value="100"><output id="opacity-value">100%</output></label>
+    <label class="check-control" id="filled-control" hidden><input id="filled" type="checkbox">Filled shape</label>
+    <span class="option-spacer"></span><label class="check-control"><input id="borders" type="checkbox" checked>Tile borders</label>
+  </div>
+  <main class="editor">
+    <nav class="toolrail" aria-label="Drawing tools">
+      <div id="tools"></div>
+      <div class="rail-bottom"><button id="swap-color" class="color-chip" aria-label="Switch foreground and background colors (X)" title="Switch colors (X)"><span id="back-color"></span><span id="front-color"></span></button><button id="reset-colors" class="icon-button" title="Reset colors (D)" aria-label="Reset colors to black and white"><span data-icon="reset"></span></button></div>
+    </nav>
+    <section class="workspace" aria-label="Tiled drawing workspace">
+      <div class="documentbar"><div><span class="document-dot"></span><input id="project-name" aria-label="Project name" value="Untitled tile" maxlength="80"><span id="dimensions">512 × 512 px</span></div><span class="live-label"><i></i>Live repeat</span></div>
+      <div class="canvas-wrap" id="canvas-wrap"><canvas id="viewport" tabindex="0" aria-label="Paint anywhere. Every tile repeats your drawing. Hold Space and drag to pan."></canvas><div id="brush-cursor" hidden></div><div id="canvas-hint">Paint across any edge.<small>Your strokes wrap into every repeat.</small></div></div>
+      <div class="view-controls"><div class="segmented" role="group" aria-label="Canvas view"><button id="repeat-btn" class="selected" aria-pressed="true"><span data-icon="repeat"></span>Repeat</button><button id="single-btn" aria-pressed="false"><span data-icon="square"></span>Single tile</button></div><div class="zoom-controls"><button id="zoom-out" aria-label="Zoom out"><span data-icon="minus"></span></button><button id="zoom-value" title="Reset to 100%">100%</button><button id="zoom-in" aria-label="Zoom in"><span data-icon="plus"></span></button><span class="divider"></span><button id="fit-btn" title="Fit tile (F)">Fit</button></div></div>
+    </section>
+    <aside class="inspector" aria-label="Colors and layers">
+      <section class="color-section"><div class="section-title"><h2>Color</h2><span id="color-label">Ink</span></div><div class="color-picker-row"><input id="color" type="color" value="#3662d8" aria-label="Paint color"><label>Hex color<input id="hex" value="#3662D8" maxlength="7" spellcheck="false" aria-label="Hex color"></label><button id="eyedropper-btn" class="icon-button" title="Pick color (I)" aria-label="Select eyedropper"><span data-icon="pipette"></span></button></div><div id="palette" class="palette" aria-label="Color palette"></div></section>
+      <section class="preview-section"><div class="section-title"><h2>Your tile</h2><span>Export preview</span></div><div class="tile-preview checkerboard"><canvas id="preview" width="200" height="160" aria-label="Single tile preview"></canvas></div><div class="preview-caption"><span id="preview-dimensions">512 × 512 px</span><span>Single tile</span></div></section>
+      <section class="layers-section"><div class="section-title"><h2>Layers</h2><button id="add-layer" class="icon-button small" aria-label="Add layer" title="Add layer"><span data-icon="plus"></span></button></div><label class="layer-opacity">Layer opacity<input id="layer-opacity" type="range" min="0" max="100" value="100"><output id="layer-opacity-value">100%</output></label><div id="layer-list" class="layer-list" aria-label="Layers"></div><div class="layer-actions"><button id="import-btn" title="Import image as a layer"><span data-icon="image"></span>Import image</button><div><button id="layer-up" class="icon-button small" aria-label="Move layer up" title="Move layer up"><span data-icon="up"></span></button><button id="layer-down" class="icon-button small" aria-label="Move layer down" title="Move layer down"><span data-icon="down"></span></button><button id="delete-layer" class="icon-button small" aria-label="Delete layer" title="Delete layer"><span data-icon="trash"></span></button></div></div><p class="muted layer-tip">Double-click a layer name to rename.</p></section>
+      <div class="inspector-footer"><span data-icon="wrap"></span><p>Made to repeat.<small>Edges connect automatically.</small></p></div>
+    </aside>
+  </main>
+  <footer class="statusbar"><span id="status" role="status">Ready to make something seamless.</span><span id="coordinates"></span><span class="status-shortcut">Space + drag to pan <span>•</span> Scroll to zoom</span><span id="draft-status">Local workspace</span></footer>
+</div>
+
+<dialog id="new-dialog" aria-labelledby="new-title">
+  <form id="new-form">
+    <div class="modal-heading"><span class="mini-brand"><span data-icon="repeat"></span>TileSmith <span class="dialog-slogan">Make it seamless.</span></span><button type="button" class="icon-button" id="close-new" aria-label="Close new tile dialog"><span data-icon="close"></span></button></div>
+    <div class="new-intro"><div><h1 id="new-title">Create a new tile</h1><p>Set your canvas size. Paint across any edge<br>and see every repeat as you work.</p></div><div class="tile-illustration" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <label class="field-label">Project name<input id="new-name" value="Untitled tile" maxlength="80" required></label>
+    <div class="dimension-fields"><label class="field-label">Width<div class="unit-input"><input id="new-width" type="number" min="1" max="2048" step="1" value="512" required><span>px</span></div></label><span>×</span><label class="field-label">Height<div class="unit-input"><input id="new-height" type="number" min="1" max="2048" step="1" value="512" required><span>px</span></div></label></div>
+    <div class="presets" aria-label="Tile size presets"><button type="button" data-size="128">128 × 128</button><button type="button" data-size="256">256 × 256</button><button type="button" data-size="512" class="active">512 × 512</button><button type="button" data-size="1024">1024 × 1024</button></div>
+    <label class="field-label">Background<select id="new-background"><option value="white">White</option><option value="transparent">Transparent</option></select></label>
+    <p id="new-error" class="error" role="alert"></p>
+    <div id="recovery" class="recovery" hidden><p>A recovery draft is available.</p><button id="restore-btn" type="button">Restore draft</button></div>
+    <div class="modal-footer"><button id="sample-btn" type="button" class="text-button">Try a sample</button><button type="submit" class="primary">Create tile<span data-icon="arrow"></span></button></div>
+    <p class="privacy-note">Your artwork stays on this device. No account needed.</p>
+  </form>
+</dialog>
+
+<dialog id="export-dialog" aria-labelledby="export-title"><form id="export-form"><div class="modal-heading"><h2 id="export-title">Export your artwork</h2><button type="button" class="icon-button" data-close="export-dialog" aria-label="Close export"><span data-icon="close"></span></button></div><p class="dialog-copy">Export the original tile, or a repeated sheet to share.</p><label class="field-label">Export<select id="export-mode"><option value="1">Single tile — for seamless textures</option><option value="3">3 × 3 repeat — for a pattern preview</option></select></label><p id="export-size" class="export-detail"></p><label class="check-control export-check"><input type="checkbox" id="export-white">Add a white background</label><p class="muted">Border guides are never included. Save a project to keep editable layers.</p><div class="modal-footer"><span>Lossless PNG</span><button class="primary" type="submit"><span data-icon="download"></span>Download PNG</button></div></form></dialog>
+
+<dialog id="help-dialog" aria-labelledby="help-title"><div class="modal-heading"><h2 id="help-title">A little help, a lot of possibilities.</h2><button class="icon-button" data-close="help-dialog" aria-label="Close help"><span data-icon="close"></span></button></div><p class="dialog-copy">Every tile is the same image. Paint across an edge and your stroke continues on the opposite side.</p><div class="help-grid"><span>Brush / Pencil / Eraser</span><kbd>B / P / E</kbd><span>Fill / Eyedropper</span><kbd>G / I</kbd><span>Line / Rectangle / Ellipse</span><kbd>L / R / O</kbd><span>Hand tool / Temporary pan</span><kbd>H / Space</kbd><span>Zoom / Fit tile</span><kbd>Scroll / F</kbd><span>Brush size</span><kbd>[ / ]</kbd><span>Switch colors / Reset colors</span><kbd>X / D</kbd><span>Tile borders</span><kbd>T</kbd><span>Undo / Redo</span><kbd>Ctrl Z / Ctrl Shift Z</kbd><span>Save project / Open file</span><kbd>Ctrl S / Ctrl O</kbd><span>Export PNG</span><kbd>Ctrl Shift E</kbd><span>Constrain shape / straight line</span><kbd>Shift + drag</kbd></div><p class="muted">Fill matches connected pixels on the selected layer and crosses tile edges. Imported images are centered and scaled down only if needed. Save a .tilesmith project to preserve layers; PNG exports are flattened.</p><p class="muted">Up to 2048 × 2048 pixels and 8 layers. Undo keeps up to 30 steps within a memory budget. Browser recovery is a convenience—download projects for permanent saves.</p></dialog>
+
+<dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="modal-heading"><h2 id="confirm-title">Replace this artwork?</h2></div><p id="confirm-message" class="dialog-copy">Download a project first if you want to keep your changes.</p><div class="modal-footer"><button id="confirm-cancel">Keep editing</button><button id="confirm-ok" class="primary">Continue</button></div></dialog>
+<dialog id="rename-dialog" aria-labelledby="rename-title"><form id="rename-form"><h2 id="rename-title">Rename layer</h2><label class="field-label">Layer name<input id="rename-value" required maxlength="60"></label><div class="modal-footer"><button type="button" data-close="rename-dialog">Cancel</button><button type="submit" class="primary">Rename</button></div></form></dialog>
+<input id="open-file" type="file" accept=".tilesmith,.json,image/png,image/jpeg,image/webp,image/gif,image/bmp" hidden>
+<input id="import-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp" hidden>
+<div id="toast" role="status" hidden></div>
+</body>
+</html>
+
