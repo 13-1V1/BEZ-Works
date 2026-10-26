@@ -2,9 +2,9 @@
 // brennanmmeyer@gmail.com
 //
 // One aluminum blank as seen from above. Starts as saw-cut stock; the face
-// mill reveals a face-milled finish under its cutter; etches are baked into
-// layers drawn bottom-up (scribe, groove walls, groove floor) so a new cut
-// never paints over an earlier one.
+// mill reveals a face-milled finish under its cutter; the engraver scribes
+// fine lines; the V-bits reveal the finished V-carve (tex.carved, made by
+// vcarve.js) under the cone of the bit as it moves.
 
 window.BEZ = window.BEZ || {};
 
@@ -84,7 +84,7 @@ window.BEZ = window.BEZ || {};
 
   BEZ.Stock = function (tex, wPx, hPx, dpr) {
     const layers = {};
-    for (const k of ['surface', 'scribe', 'wallDark', 'wallLit', 'floor']) {
+    for (const k of ['surface', 'scribe', 'carve']) {
       const c = makeCanvas(tex.W, tex.H);
       const x = c.getContext('2d');
       x.scale(dpr, dpr);
@@ -119,26 +119,19 @@ window.BEZ = window.BEZ || {};
         g.beginPath(); g.moveTo(ax, ay); g.lineTo(bx, by); g.stroke();
       },
 
-      // etched groove: shadowed upper-left wall, bright lower-right wall,
-      // a darker floor with a faint reflection along it
-      groove(ax, ay, bx, by, w) {
-        const o = Math.max(0.8, w * 0.2);
-        let g = layers.wallDark.x;
-        g.strokeStyle = 'rgba(16,24,32,0.92)';
-        g.lineWidth = w + o;
-        g.beginPath(); g.moveTo(ax - o * 0.6, ay - o * 0.7); g.lineTo(bx - o * 0.6, by - o * 0.7); g.stroke();
-        g = layers.wallLit.x;
-        g.strokeStyle = '#ffffff';
-        g.lineWidth = w + o;
-        g.beginPath(); g.moveTo(ax + o * 0.6, ay + o * 0.7); g.lineTo(bx + o * 0.6, by + o * 0.7); g.stroke();
-        g = layers.floor.x;
-        g.strokeStyle = '#74828e';
-        g.lineWidth = w;
-        g.beginPath(); g.moveTo(ax, ay); g.lineTo(bx, by); g.stroke();
-        g.strokeStyle = 'rgba(225,236,244,0.45)';
-        g.lineWidth = Math.max(0.6, w * 0.22);
-        g.beginPath(); g.moveTo(ax + w * 0.18, ay + w * 0.2); g.lineTo(bx + w * 0.18, by + w * 0.2); g.stroke();
+      // V-carve: reveal the carved finish inside the bit's cone (cx, cy, r in block px)
+      carve(cx, cy, r) {
+        const g = layers.carve.x;
+        g.save();
+        g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.clip();
+        const x0 = Math.max(0, cx - r), y0 = Math.max(0, cy - r);
+        const x1 = Math.min(wPx, cx + r), y1 = Math.min(hPx, cy + r);
+        if (x1 > x0 && y1 > y0) {
+          g.drawImage(tex.carved, x0 * dpr, y0 * dpr, (x1 - x0) * dpr, (y1 - y0) * dpr, x0, y0, x1 - x0, y1 - y0);
+        }
+        g.restore();
       },
+      carveAll() { layers.carve.x.drawImage(tex.carved, 0, 0, wPx, hPx); },
 
       draw(ctx, x, y) {
         ctx.save();
@@ -150,7 +143,7 @@ window.BEZ = window.BEZ || {};
         // drop shadow under the plate
         ctx.fillStyle = 'rgba(0,0,0,0.45)';
         ctx.fillRect(4, 6, wPx, hPx);
-        for (const k of ['surface', 'scribe', 'wallDark', 'wallLit', 'floor']) {
+        for (const k of ['surface', 'scribe', 'carve']) {
           ctx.drawImage(layers[k].c, 0, 0, wPx, hPx);
         }
         // broken edge: bright chamfer line on the near edges, dark on the far

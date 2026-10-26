@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+  Created by: Brennan Meyer with use of Claude Code 10/25/2026 Santa Clarita, CA
+  brennanmmeyer@gmail.com
+  Test scene: V-carve toolpaths from js/hero/vcarve.js drawn over the carved render.
+  Not part of the published site (build-site.mjs doesn't copy tests/).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&display=swap" rel="stylesheet">
+<style>body { margin: 0; background: #0b151e; color: #ccc; font: 14px monospace; } canvas { display: block; margin: 10px; }</style>
+</head>
+<body>
+<canvas id="c" width="1600" height="800" style="width:1600px;height:800px"></canvas>
+<pre id="out"></pre>
+<script src="../js/hero/vcarve.js"></script>
+<script>
+(async () => {
+  await document.fonts.load('900 100px "Big Shoulders Display"');
+  await document.fonts.load('800 100px "Big Shoulders Display"');
+  const S = 200, t0 = performance.now();
+  const bold = BEZ.vcarve.toolpaths('bold', 1, 0.25);
+  const fine = BEZ.vcarve.toolpaths('fine', Math.tan(Math.PI / 6), 0.15);
+  const t1 = performance.now();
+  const img = BEZ.vcarve.carvedImage(8 * S, 4 * S, S);
+  const t2 = performance.now();
+  const g = document.getElementById('c').getContext('2d');
+  g.fillStyle = '#c7d1d8'; g.fillRect(0, 0, 1600, 800);
+  g.drawImage(img, 0, 0);
+  g.lineWidth = 1.2;
+  for (const [set, col] of [[bold, '#ff4d00'], [fine, '#00c8ff']]) {
+    for (const p of set.paths) {
+      g.strokeStyle = col; g.beginPath();
+      p.forEach((q, k) => { const x = q.x * S, y = (4 - q.y) * S; k ? g.lineTo(x, y) : g.moveTo(x, y); });
+      g.stroke();
+    }
+  }
+  const pts = (s) => s.paths.reduce((n, p) => n + p.length, 0);
+  const len = (s) => s.paths.reduce((n, p) => n + p.slice(1).reduce((a, q, k) => a + Math.hypot(q.x - p[k].x, q.y - p[k].y), 0), 0);
+  const depth = (s) => Math.min(...s.paths.flat().map((q) => q.z));
+  document.getElementById('out').textContent =
+    `bold: ${bold.paths.length} chains, ${pts(bold)} pts, ${len(bold).toFixed(1)} in, deepest ${depth(bold).toFixed(3)}\n` +
+    `fine: ${fine.paths.length} chains, ${pts(fine)} pts, ${len(fine).toFixed(1)} in, deepest ${depth(fine).toFixed(3)}\n` +
+    `toolpaths ${(t1 - t0).toFixed(0)} ms, carved image ${(t2 - t1).toFixed(0)} ms`;
+  document.body.dataset.ready = '1';
+})();
+</script>
+</body>
+</html>

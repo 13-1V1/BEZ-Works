@@ -24,6 +24,7 @@
 //     { "drag": [[100,100],[300,200],[500,120]] },   // mouse down, move through points, up
 //     { "wheel": [800, 500, -400] },          // x, y, deltaY (negative = zoom in for most apps)
 //     { "eval": "window.foo && foo()" },      // run JS in the page, result is printed
+//     { "canvasPng": "canvas#x", "saveAs": "C:\out\x.png" },  // a canvas with transparency
 //     { "download": "#exportBtn", "saveAs": "C:\out\file.gif", "timeout": 600000 },  // save a download
 //     { "dump": true },                       // print visible buttons/links (for exploring)
 //     { "shot": "C:\\out\\auto-01-x.png" },   // viewport screenshot
@@ -94,6 +95,13 @@ try {
     else if (s.press) await page.keyboard.press(s.press);
     else if (s.hold) { await page.keyboard.down(s.hold); await sleep(s.ms || 500); await page.keyboard.up(s.hold); }
     else if (s.type) await page.keyboard.type(s.type, { delay: 30 });
+    else if (s.canvasPng) {
+      // save a canvas's own pixels (keeps transparency)
+      const url = await page.evaluate((sel) => document.querySelector(sel).toDataURL('image/png'), s.canvasPng);
+      mkdirSync(dirname(s.saveAs), { recursive: true });
+      (await import('node:fs')).writeFileSync(s.saveAs, Buffer.from(url.split(',')[1], 'base64'));
+      console.log('canvas saved', s.saveAs);
+    }
     else if (s.download) {
       // click something that triggers a file download and save it
       const [dl] = await Promise.all([

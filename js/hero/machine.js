@@ -103,6 +103,19 @@ window.BEZ = window.BEZ || {};
     ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(spin) * r * 0.42, y + Math.sin(spin) * r * 0.42); ctx.stroke();
   }
 
+  // V-bit seen end-on: a faceted cone that narrows to the tip
+  function vbit(ctx, x, y, r, spin) {
+    colletNut(ctx, x, y, r);
+    const c = r * 0.52;
+    for (let k = 0; k < 2; k++) {
+      const a = spin + k * Math.PI;
+      ctx.fillStyle = k ? '#7b8895' : '#e9eff3';
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.arc(x, y, c, a, a + Math.PI); ctx.closePath(); ctx.fill();
+    }
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.arc(x, y, Math.max(1, r * 0.07), 0, TAU); ctx.fill();
+  }
+
   function endMill(ctx, x, y, r, spin) {
     colletNut(ctx, x, y, r);
     ctx.fillStyle = '#c9d3da';
@@ -130,6 +143,7 @@ window.BEZ = window.BEZ || {};
     }
     if (kind === 'face') faceMill(ctx, x, y, r, spin);
     else if (kind === 'engraver') engraver(ctx, x, y, r, spin);
+    else if (kind === 'vbit') vbit(ctx, x, y, r, spin);
     else endMill(ctx, x, y, r, spin);
   }
 

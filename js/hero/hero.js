@@ -2,10 +2,10 @@
 // brennanmmeyer@gmail.com
 //
 // Hero conductor. A raw blank waits in the vise; nothing happens until
-// "Cycle start". Then: T1 faces the top, the carousel swaps to T2 for a light
-// etch, T3 cuts the bold etch, T4 the fine etch, and a flare of light runs
-// across the finished plate. Running it again loads a fresh blank, which
-// pushes the finished plate out. "Feed" overrides the speed.
+// "Cycle start". Then: T1 faces the top, T4 scribes the border, T2 V-carves
+// BEZ and the swoosh, T3 V-carves WORKS and the inner border, and a flare of
+// light runs across the finished plate. Running it again loads a fresh
+// blank, which pushes the finished plate out. "Feed" overrides the speed.
 // Reduced motion shows the finished plate and nothing moves.
 
 (function (BEZ) {
@@ -30,25 +30,28 @@
   const feedBtn = hero.querySelector('[data-feed]');
 
   const P = BEZ.program;
-  const program = P.build();
-  const TOOLS = program.tools;
-  const HOME = program.homeZ;
-  const LAST_TOOL = 4;
-  const POCKETS = ['face', 'engraver', 'endmill', 'endmill', null, 'engraver', 'endmill', null];
+  const TOOLS = P.TOOLS;
+  const HOME = 2;
+  const LAST_TOOL = 3;
+  const POCKETS = ['face', 'vbit', 'vbit', 'engraver', null, 'endmill', 'vbit', null];
   const TAU = Math.PI * 2;
   const ease = (u) => (u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
   const clamp01 = (u) => Math.max(0, Math.min(1, u));
   const seg = (u, a, b) => clamp01((u - a) / (b - a));
-  const loadMove = program.moves.find((m) => m.type === 'load');
+
+  // background look (prototype switch): ?bg=table or ?bg=enclosure
+  const look = new URLSearchParams(location.search).get('bg') || 'brushed';
+  const glass = look === 'enclosure' && BEZ.Glass ? BEZ.Glass() : null;
 
   let surface = null;
-  try { surface = BEZ.Surface(surfaceCanvas, { lowPower }); } catch (e) { console.warn('surface shader off:', e); }
+  try { surface = BEZ.Surface(surfaceCanvas, { lowPower, look }); } catch (e) { console.warn('surface shader off:', e); }
   if (!surface) hero.classList.add('no-webgl');
   const fx = BEZ.Effects({ lowPower });
 
+  // built once the font is in (the V-carve toolpaths come from its outlines)
+  let program = null, loadMove = null, lineEls = [], glintIn = [];
+
   // ---------- listing ----------
-  listing.innerHTML = program.lines.map((l) => `<li>${l}</li>`).join('');
-  const lineEls = [...listing.children];
   let litLine = -1;
   function lightLine(i) {
     if (i === litLine || i == null) return;
@@ -61,12 +64,24 @@
     if (nowLine) nowLine.textContent = program.lines[i];
   }
 
+  function buildProgram() {
+    const bold = BEZ.vcarve.toolpaths('bold', TOOLS[2].tanHalf, 0.25);
+    const fine = BEZ.vcarve.toolpaths('fine', TOOLS[3].tanHalf, 0.15);
+    program = P.build({ bold: bold.paths, fine: fine.paths });
+    loadMove = program.moves.find((m) => m.type === 'load');
+    // corners and ridge ends catch the finishing flare; keep them spread out
+    const all = [...bold.glints, ...fine.glints];
+    glintIn = [];
+    for (const q of all) if (glintIn.every((g) => Math.hypot(g.x - q.x, g.y - q.y) > 0.28)) glintIn.push(q);
+    listing.innerHTML = program.lines.map((l) => `<li>${l}</li>`).join('');
+    lineEls = [...listing.children];
+  }
+
   // ---------- layout ----------
   let dpr = 1, W = 0, H = 0, S = 1, jaw = 10;
   const b = { x: 0, y: 0, w: 0, h: 0 };
   let tex = null, stock = null, old = null;
-  let faceR = 1, nutR = 6, carR = 80, tc = { x: 0, y: 0 }, tcIn = { x: 0, y: 0 };
-  const width = { light: 1, bold: 3, fine: 2 };
+  let faceR = 1, nutR = 6, carR = 80, scribeW = 1.3, tc = { x: 0, y: 0 }, tcIn = { x: 0, y: 0 };
   let glints = [];
 
   const sx = (x) => b.x + x * S;
@@ -81,6 +96,7 @@
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (surface) surface.resize(W, H);
+    if (glass) glass.resize(W, H);
 
     const top = control.getBoundingClientRect().bottom - hr.top + 10;
     const bottom = copy.getBoundingClientRect().top - hr.top - 14;
@@ -92,9 +108,7 @@
     b.y = top + jaw * 1.15 + Math.max(0, (bottom - top - tall * S) / 2);
 
     faceR = 1.0 * S;
-    width.light = Math.max(1.3, 0.016 * S);
-    width.bold = Math.max(3.2, 0.125 * S);
-    width.fine = Math.max(1.8, 0.0625 * S);
+    scribeW = Math.max(1.3, 0.014 * S);
     nutR = Math.max(7, 0.2 * S);
     carR = Math.max(62, Math.min(150, 1.3 * S));
     tc = { x: Math.min(b.x + b.w + carR * 0.45, W - 28), y: b.y + b.h * 0.5 };
@@ -104,41 +118,31 @@
       if (m.fromTC) m.from = { x: tcIn.x, y: tcIn.y, z: HOME };
       if (m.type === 'change' || m.toTC) m.to = { x: tcIn.x, y: tcIn.y, z: HOME };
     }
-
-    // where the finishing flare catches an edge: corners across all the etched work
-    glints = [];
-    for (const st of [...program.design.bold, ...program.design.fine]) {
-      for (const op of st) {
-        const pt = op.m || op.l || op.a;
-        glints.push({ x: lx(pt[0]), y: ly(pt[1]) });
-      }
-    }
-    glints = glints.filter((_, i) => i % 2 === 0);
+    glints = glintIn.map((q) => ({ x: lx(q.x), y: ly(q.y) }));
 
     tex = BEZ.makeStockTextures(b.w, b.h, dpr, S, [3.3, 2, 0.7].map(ly), faceR);
+    tex.carved = BEZ.vcarve.carvedImage(b.w * dpr, b.h * dpr, S * dpr, lowPower ? 1 : 2);
     stock = BEZ.Stock(tex, b.w, b.h, dpr);
     stock.fresh = true;
     old = null;
   }
 
-  function etch(st, op, ax, ay, bx, by) {
-    if (op === 'light') st.scribe(ax, ay, bx, by, width.light);
-    else st.groove(ax, ay, bx, by, width[op]);
-  }
+  const cutRadius = (m, z) => (TOOLS[m.tool].tanHalf ? Math.max(0, -z) * TOOLS[m.tool].tanHalf * S : 0);
 
   // Draw the finished plate straight away (reduced motion, resize after a cycle)
   function finishPlate(st) {
     st.faceAll();
     for (const m of program.moves) {
-      if ((m.type !== 'cut' && m.type !== 'arc') || m.from.z >= 0 || m.op === 'face' || !m.op) continue;
+      if (m.op !== 'scribe' || (m.type !== 'cut' && m.type !== 'arc') || m.from.z >= 0) continue;
       const steps = Math.max(2, Math.ceil((m.len * S) / 3));
       let p = P.at(m, 0);
       for (let i = 1; i <= steps; i++) {
         const q = P.at(m, i / steps);
-        etch(st, m.op, lx(p.x), ly(p.y), lx(q.x), ly(q.y));
+        st.scribe(lx(p.x), ly(p.y), lx(q.x), ly(q.y), scribeW);
         p = q;
       }
     }
+    st.carveAll();
     st.fresh = false;
   }
 
@@ -156,7 +160,7 @@
   }
 
   function startCycle() {
-    if (running) return;
+    if (running || !program) return;
     // a raw blank already in the vise gets cut as-is; otherwise load a new one
     clock = stock.fresh ? loadMove.t0 + loadMove.dur : 0;
     running = true; lastCut = null; lastFace = null; cur = null; flareStart = -1;
@@ -168,29 +172,28 @@
 
   // chips leave a cutting edge along its direction of travel (spindle CW
   // seen from above), only from edges that are in the metal on the leading side
-  function throwChips(m, p, kind) {
-    const fdx = (m.to.x - m.from.x), fdy = -(m.to.y - m.from.y);
+  function throwChips(dirMove, p, kind, edgeR) {
+    const fdx = (dirMove.to.x - dirMove.from.x), fdy = -(dirMove.to.y - dirMove.from.y);
     const fl = Math.hypot(fdx, fdy) || 1;
     const fxn = fdx / fl, fyn = fdy / fl;
     const cx = sx(p.x), cy = sy(p.y);
     const edges = kind === 'face' ? 5 : 2;
-    const r = kind === 'face' ? faceR * 0.93 : Math.max(2, TOOLS[m.tool].dia * 0.5 * S);
-    const chance = kind === 'face' ? 0.16 : kind === 'engraver' ? 0.05 : 0.14;
+    const chance = kind === 'face' ? 0.16 : kind === 'engraver' ? 0.05 : 0.18;
     for (let k = 0; k < edges; k++) {
       if (Math.random() > chance) continue;
       const a = spin + (k * TAU) / edges + (Math.random() - 0.5) * 0.3;
       const ux = Math.cos(a), uy = Math.sin(a);
       if (ux * fxn + uy * fyn < 0.05) continue;              // trailing side: already cut
-      const ex = cx + ux * r, ey = cy + uy * r;
+      const ex = cx + ux * edgeR, ey = cy + uy * edgeR;
       if (ex < b.x || ex > b.x + b.w || ey < b.y || ey > b.y + b.h) continue;   // edge is in the air
-      const size = kind === 'face' ? Math.max(2.4, 0.05 * S) : kind === 'engraver' ? Math.max(1, 0.012 * S) : Math.max(1.4, TOOLS[m.tool].dia * 0.3 * S);
-      fx.chip(ex, ey, a + Math.PI / 2 - 0.2, size, kind === 'face' ? 1 : 0.6);
+      const size = kind === 'face' ? Math.max(2.4, 0.05 * S) : kind === 'engraver' ? Math.max(1, 0.012 * S) : Math.max(1.4, edgeR * 0.45);
+      fx.chip(ex, ey, a + Math.PI / 2 - 0.2, size, kind === 'face' ? 1 : 0.7);
     }
   }
 
   function arcTangent(m, u) {
     const a = m.arc.a0 + m.arc.dir * m.arc.sweep * u;
-    return { tool: m.tool, from: { x: 0, y: 0 }, to: { x: -Math.sin(a) * m.arc.dir, y: Math.cos(a) * m.arc.dir } };
+    return { from: { x: 0, y: 0 }, to: { x: -Math.sin(a) * m.arc.dir, y: Math.cos(a) * m.arc.dir } };
   }
 
   const STEP = 1 / 240;
@@ -217,19 +220,23 @@
       tool = m.tool;
       const p = P.at(m, u);
       pos = p;
-      const cutting = (m.type === 'cut' || m.type === 'arc') && p.z < 0;
-      if (!cutting) { lastCut = null; lastFace = null; continue; }
+      const inMetal = (m.type === 'cut' || m.type === 'arc' || m.plunge) && p.z < 0;
+      if (!inMetal) { lastCut = null; lastFace = null; continue; }
       stock.fresh = false;
 
       if (m.op === 'face') {
         const cx = lx(p.x), cy = ly(p.y);
         if (!lastFace || Math.hypot(cx - lastFace.x, cy - lastFace.y) > 2) { stock.face(cx, cy, faceR); lastFace = { x: cx, y: cy }; }
-        throwChips(m, p, 'face');
-      } else {
+        throwChips(m, p, 'face', faceR * 0.93);
+      } else if (m.op === 'scribe') {
         const q = { x: lx(p.x), y: ly(p.y) };
-        if (lastCut) etch(stock, m.op, lastCut.x, lastCut.y, q.x, q.y);
+        if (lastCut) stock.scribe(lastCut.x, lastCut.y, q.x, q.y, scribeW);
         lastCut = q;
-        throwChips(m.type === 'arc' ? arcTangent(m, u) : m, p, TOOLS[m.tool].kind);
+        throwChips(m.type === 'arc' ? arcTangent(m, u) : m, p, 'engraver', Math.max(1.5, 0.01 * S));
+      } else {
+        const r = cutRadius(m, p.z);
+        stock.carve(lx(p.x), ly(p.y), r + 0.6);
+        if (!m.plunge) throwChips(m, p, 'vbit', Math.max(1.5, r));
       }
     }
     if (clock >= program.duration) cur = null;
@@ -249,7 +256,7 @@
     ctx.restore();
   }
 
-  // a band of light runs corner to corner across the plate; edges flash as it passes
+  // a band of light runs corner to corner across the plate; carved corners flash as it passes
   const FLARE = 2.2;
   function drawFlare() {
     if (flareStart < 0) return;
@@ -355,20 +362,24 @@
     drawFlare();
     BEZ.machine.drawFrontJaw(ctx, b, jaw, open);
     fx.step(ctx, dt);
+    drawToolLayer(m);
+    if (glass) glass.draw(ctx, dt, lightX, lightY);
+  }
 
+  function drawToolLayer(m) {
     if (m && m.type === 'change') {
       drawCarouselEvent(m, clamp01((clock - m.t0) / m.dur));
-    } else {
-      const kind = TOOLS[tool].kind;
-      const z = pos.z;
-      if (m && m.type === 'rapid') {
-        ctx.setLineDash([4, 6]);
-        ctx.strokeStyle = 'rgba(73,217,203,0.4)'; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(sx(pos.x), sy(pos.y)); ctx.lineTo(sx(m.to.x), sy(m.to.y)); ctx.stroke();
-        ctx.setLineDash([]);
-      }
-      BEZ.machine.drawTool(ctx, kind, sx(pos.x), sy(pos.y), toolRadius(kind) * (1 + Math.max(0, z) * 0.12), spin, Math.max(0, z), 0);
+      return;
     }
+    const kind = TOOLS[tool].kind;
+    const z = pos.z;
+    if (m && m.type === 'rapid') {
+      ctx.setLineDash([4, 6]);
+      ctx.strokeStyle = 'rgba(73,217,203,0.4)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(sx(pos.x), sy(pos.y)); ctx.lineTo(sx(m.to.x), sy(m.to.y)); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    BEZ.machine.drawTool(ctx, kind, sx(pos.x), sy(pos.y), toolRadius(kind) * (1 + Math.max(0, z) * 0.12), spin, Math.max(0, z), 0);
   }
 
   function updateReadouts(m) {
@@ -404,7 +415,7 @@
     }
     light.x += (light.tx - light.x) * Math.min(1, dt * 6);
     light.y += (light.ty - light.y) * Math.min(1, dt * 6);
-    if (surface) surface.draw(light.x, light.y);
+    if (surface) surface.draw(light.x, light.y, { y: b.y + b.h / 2, pitch: 3.2 * S, width: 0.7 * S });
 
     let m = null;
     if (running) {
@@ -417,6 +428,7 @@
 
     if (running && clock >= program.duration) {
       running = false;
+      stock.carveAll();        // fill the last few corner tips under the flare
       cycleBtn.disabled = false;
       lightLine(program.lines.length - 2);
       flareStart = now;
@@ -449,13 +461,14 @@
   }
 
   function still() {
-    if (surface) surface.draw(W * 0.62, H * 0.32);
+    if (surface) surface.draw(W * 0.62, H * 0.32, { y: b.y + b.h / 2, pitch: 3.2 * S, width: 0.7 * S });
     render(0, W * 0.62, H * 0.35);
     updateReadouts(null);
   }
 
   let resizeTimer = 0, lastW = 0;
   window.addEventListener('resize', () => {
+    if (!program) return;
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       const w = hero.getBoundingClientRect().width;
@@ -467,11 +480,12 @@
     }, 180);
   });
 
-  // fonts change the control band's height, so lay out once they're in
+  // the font has to be in before the V-carve toolpaths (and the layout) are built
   let begun = false;
   const begin = () => {
     if (begun) return;
     begun = true;
+    buildProgram();
     idle(reduceMotion);
     lastW = W;
     light.x = light.tx = W * 0.65; light.y = light.ty = H * 0.35;
@@ -483,8 +497,10 @@
       wake();
     }
   };
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(begin);
-    setTimeout(begin, 2500);    // don't wait forever on a slow font
-  } else begin();
+  cycleBtn.disabled = true;
+  const fontsIn = document.fonts
+    ? Promise.all([document.fonts.load('900 100px "Big Shoulders Display"'), document.fonts.load('800 100px "Big Shoulders Display"')])
+    : Promise.resolve();
+  fontsIn.then(begin, begin);
+  setTimeout(begin, 4000);    // don't wait forever on a slow font
 })(window.BEZ);
