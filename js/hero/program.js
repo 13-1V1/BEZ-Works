@@ -2,10 +2,11 @@
 // brennanmmeyer@gmail.com
 //
 // The BEZ WORKS nameplate job: a real Fanuc-style G-code program (inches) and
-// the timeline the hero plays back. 8.0 x 4.0 6061 plate, three tools:
-//   T1 2.0 face mill   -> face the top .010
-//   T2 1/8 90 deg engraver -> light etch .005 (border, letters, swoosh)
-//   T3 3/32 end mill   -> final etch .020 (letters, swoosh)
+// the timeline the hero plays back. 8.0 x 4.0 6061 plate, four tools:
+//   T1 2.0 face mill       -> face the top .010
+//   T2 1/8 90 deg engraver -> light etch .005 (the whole layout)
+//   T3 1/8 end mill        -> bold etch .020 (BEZ, main swoosh)
+//   T4 1/16 end mill       -> fine etch .015 (WORKS, inner border, second swoosh, gems)
 // Work zero: X0 Y0 = lower-left corner of the plate, Z0 = top of the plate.
 
 window.BEZ = window.BEZ || {};
@@ -20,12 +21,13 @@ window.BEZ = window.BEZ || {};
   const TOOLS = {
     1: { name: '2.0 FACE MILL', kind: 'face', dia: 2.0, s: 6000, f: 60 },
     2: { name: '1/8 90° ENGRAVER', kind: 'engraver', dia: 0.125, s: 10000, f: 30 },
-    3: { name: '3/32 END MILL', kind: 'endmill', dia: 0.094, s: 9000, f: 20 },
+    3: { name: '1/8 END MILL', kind: 'endmill', dia: 0.125, s: 8000, f: 20 },
+    4: { name: '1/16 END MILL', kind: 'endmill', dia: 0.0625, s: 10000, f: 15 },
   };
 
   // screen-time speeds (in/s) — the picture, not the real feed
-  const SPEED = { rapid: 14, z: 6, face: 7, light: 9, final: 4.2 };
-  const EVENT = { load: 2.4, change: 2.6 };
+  const SPEED = { rapid: 20, z: 9, face: 8, light: 12, bold: 5.2, fine: 8 };
+  const EVENT = { load: 2.4, change: 2.3 };
 
   // ---- single-stroke glyphs, 1.0 tall, origin lower-left ----
   const GLYPHS = {
@@ -71,6 +73,7 @@ window.BEZ = window.BEZ || {};
   function design() {
     const midX = PLATE.w / 2;
 
+    // outer border: rounded corners (scribed only)
     const frame = [[
       { m: [0.6, 0.3] }, { l: [7.4, 0.3] }, { a: [7.7, 0.6], c: [7.4, 0.6], cw: false },
       { l: [7.7, 3.4] }, { a: [7.4, 3.7], c: [7.4, 3.4], cw: false },
@@ -78,25 +81,37 @@ window.BEZ = window.BEZ || {};
       { l: [0.3, 0.6] }, { a: [0.6, 0.3], c: [0.6, 0.6], cw: false },
     ]];
 
+    // inner border: concave "ticket" corners (arcs centered on the corners)
+    const x0 = 0.45, x1 = 7.55, y0 = 0.45, y1 = 3.55, k = 0.25;
+    const inner = [[
+      { m: [x0 + k, y0] }, { l: [x1 - k, y0] }, { a: [x1, y0 + k], c: [x1, y0], cw: true },
+      { l: [x1, y1 - k] }, { a: [x1 - k, y1], c: [x1, y1], cw: true },
+      { l: [x0 + k, y1] }, { a: [x0, y1 - k], c: [x0, y1], cw: true },
+      { l: [x0, y0 + k] }, { a: [x0 + k, y0], c: [x0, y0], cw: true },
+    ]];
+
     const bezH = 1.35, bezG = 0.32;
     const bez = word('BEZ', midX - wordWidth('BEZ', bezH, bezG) / 2, 1.95, bezH, bezG);
 
-    // swoosh: a long, shallow smile between the words (one G03)
-    const sx0 = 1.1, sx1 = 6.9, sy = 1.62, sag = 0.14;
-    const half = (sx1 - sx0) / 2;
-    const r = (half * half + sag * sag) / (2 * sag);
-    const swoosh = [[{ m: [sx0, sy] }, { a: [sx1, sy], c: [midX, sy - sag + r], cw: false }]];
+    // swooshes: long shallow smiles between the words (one G03 each)
+    const smile = (a, bx, y, sag) => {
+      const half = (bx - a) / 2, r = (half * half + sag * sag) / (2 * sag);
+      return [{ m: [a, y] }, { a: [bx, y], c: [(a + bx) / 2, y - sag + r], cw: false }];
+    };
+    const swoosh = [smile(1.1, 6.9, 1.68, 0.14)];
+    const swoosh2 = [smile(1.75, 6.25, 1.52, 0.1)];
 
     const wH = 0.6, wG = 0.2;
     const wW = wordWidth('WORKS', wH, wG);
-    const works = word('WORKS', midX - wW / 2, 0.75, wH, wG);
+    const works = word('WORKS', midX - wW / 2, 0.7, wH, wG);
 
     const dia = (cx, cy, d) => [{ m: [cx, cy + d] }, { l: [cx + d, cy] }, { l: [cx, cy - d] }, { l: [cx - d, cy] }, { l: [cx, cy + d] }];
-    const gems = [dia(midX - wW / 2 - 0.34, 1.05, 0.1), dia(midX + wW / 2 + 0.34, 1.05, 0.1)];
+    const gems = [dia(midX - wW / 2 - 0.34, 1.0, 0.1), dia(midX + wW / 2 + 0.34, 1.0, 0.1)];
 
     return {
-      light: [...frame, ...bez, ...swoosh, ...works, ...gems],
-      final: [...bez, ...swoosh, ...works, ...gems],
+      light: [...frame, ...inner, ...bez, ...swoosh, ...swoosh2, ...works, ...gems],
+      bold: [...bez, ...swoosh],
+      fine: [...inner, ...swoosh2, ...works, ...gems],
     };
   }
 
@@ -120,16 +135,16 @@ window.BEZ = window.BEZ || {};
     const lines = [];
     const moves = [];
     let pos = { x: PLATE.w + 1.2, y: PLATE.h / 2, z: HOME_Z };
-    let tool = 3;            // the last cycle ended holding T3
-    let op = null, coolant = false, spindle = 0, feed = 0;
+    let tool = 4;            // the last cycle ended holding T4
+    let op = null, spindle = 0, feed = 0;
 
     const emit = (t) => { lines.push(t); return lines.length - 1; };
     const push = (type, to, line, extra = {}) => {
-      const m = { type, line, from: { ...pos }, to: { ...pos, ...to }, tool, op, coolant, spindle, feed, ...extra };
+      const m = { type, line, from: { ...pos }, to: { ...pos, ...to }, tool, op, spindle, feed, ...extra };
       if (type === 'arc') m.len = m.arc.r * m.arc.sweep;
       else m.len = Math.hypot(m.to.x - m.from.x, m.to.y - m.from.y, m.to.z - m.from.z);
       const sp = type === 'rapid' ? SPEED.rapid : type === 'z' ? SPEED.z : SPEED[op] || SPEED.light;
-      m.dur = extra.dur || Math.max(m.len / sp, 0.06);
+      m.dur = extra.dur || Math.max(m.len / sp, type === 'z' ? 0.035 : 0.06);
       moves.push(m);
       pos = { ...m.to };
       return m;
@@ -171,13 +186,11 @@ window.BEZ = window.BEZ || {};
     const startTool = (t, x, y) => {
       spindle = TOOLS[t].s;
       push('rapid', { x, y }, emit(`G00 G54 X${n(x)} Y${n(y)} S${TOOLS[t].s} M03`), { fromTC: true });
-      coolant = true;
-      push('z', { z: CLEAR_Z }, emit(`G43 H0${t} Z${n(CLEAR_Z)} M08`));
+      push('z', { z: CLEAR_Z }, emit(`G43 H0${t} Z${n(CLEAR_Z)}`));
     };
 
     const endTool = () => {
-      push('z', { z: 1 }, emit('G00 Z1. M09'));
-      coolant = false;
+      push('z', { z: 1 }, emit('G00 Z1.'));
       push('z', { z: HOME_Z }, emit('G28 G91 Z0. M05'));
       spindle = 0; feed = 0;
       emit('G90');
@@ -190,7 +203,8 @@ window.BEZ = window.BEZ || {};
     emit('(6061 PLATE 8.0 X 4.0 X 0.5)');
     emit('(T1 2.0 FACE MILL)');
     emit('(T2 1/8 90 DEG ENGRAVER)');
-    emit('(T3 3/32 END MILL)');
+    emit('(T3 1/8 END MILL)');
+    emit('(T4 1/16 END MILL)');
     emit('G20 G17 G40 G49 G80 G90');
     push('load', {}, emit('M60 (LOAD NEW BLANK)'), { dur: EVENT.load });
 
@@ -217,12 +231,20 @@ window.BEZ = window.BEZ || {};
     cutStrokes(d.light, -0.005, 10, 30);
     endTool();
 
-    // --- final etch: letters, swoosh, gems, .020 deep ---
-    emit('(FINAL ETCH .020)');
+    // --- bold etch: BEZ and the main swoosh, .020 deep ---
+    emit('(BOLD ETCH .020)');
     toolChange(3);
-    op = 'final';
-    startTool(3, d.final[0][0].m[0], d.final[0][0].m[1]);
-    cutStrokes(d.final, -0.02, 8, 20);
+    op = 'bold';
+    startTool(3, d.bold[0][0].m[0], d.bold[0][0].m[1]);
+    cutStrokes(d.bold, -0.02, 8, 20);
+    endTool();
+
+    // --- fine etch: WORKS, inner border, second swoosh, gems, .015 deep ---
+    emit('(FINE ETCH .015)');
+    toolChange(4);
+    op = 'fine';
+    startTool(4, d.fine[0][0].m[0], d.fine[0][0].m[1]);
+    cutStrokes(d.fine, -0.015, 6, 15);
     endTool();
     op = null;
     push('rapid', {}, emit('G28 G91 X0. Y0. (PARK)'), { toTC: true, dur: 0.8 });

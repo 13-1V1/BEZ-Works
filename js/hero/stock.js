@@ -119,21 +119,25 @@ window.BEZ = window.BEZ || {};
         g.beginPath(); g.moveTo(ax, ay); g.lineTo(bx, by); g.stroke();
       },
 
-      // final etch: a groove — shadowed upper-left wall, lit lower-right wall, floor
+      // etched groove: shadowed upper-left wall, bright lower-right wall,
+      // a darker floor with a faint reflection along it
       groove(ax, ay, bx, by, w) {
-        const o = Math.max(0.7, w * 0.16);
+        const o = Math.max(0.8, w * 0.2);
         let g = layers.wallDark.x;
-        g.strokeStyle = 'rgba(20,28,36,0.9)';
+        g.strokeStyle = 'rgba(16,24,32,0.92)';
         g.lineWidth = w + o;
         g.beginPath(); g.moveTo(ax - o * 0.6, ay - o * 0.7); g.lineTo(bx - o * 0.6, by - o * 0.7); g.stroke();
         g = layers.wallLit.x;
-        g.strokeStyle = 'rgba(255,255,255,0.95)';
-        g.lineWidth = w + o * 0.6;
-        g.beginPath(); g.moveTo(ax + o * 0.55, ay + o * 0.65); g.lineTo(bx + o * 0.55, by + o * 0.65); g.stroke();
+        g.strokeStyle = '#ffffff';
+        g.lineWidth = w + o;
+        g.beginPath(); g.moveTo(ax + o * 0.6, ay + o * 0.7); g.lineTo(bx + o * 0.6, by + o * 0.7); g.stroke();
         g = layers.floor.x;
-        g.strokeStyle = '#7f8c97';
+        g.strokeStyle = '#74828e';
         g.lineWidth = w;
         g.beginPath(); g.moveTo(ax, ay); g.lineTo(bx, by); g.stroke();
+        g.strokeStyle = 'rgba(225,236,244,0.45)';
+        g.lineWidth = Math.max(0.6, w * 0.22);
+        g.beginPath(); g.moveTo(ax + w * 0.18, ay + w * 0.2); g.lineTo(bx + w * 0.18, by + w * 0.2); g.stroke();
       },
 
       draw(ctx, x, y) {
@@ -150,8 +154,8 @@ window.BEZ = window.BEZ || {};
           ctx.drawImage(layers[k].c, 0, 0, wPx, hPx);
         }
         // broken edge: bright chamfer line on the near edges, dark on the far
-        ctx.strokeStyle = 'rgba(255,255,255,0.55)';
-        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+        ctx.lineWidth = 1.6;
         ctx.beginPath(); ctx.moveTo(0.5, hPx - 0.5); ctx.lineTo(wPx - 0.5, hPx - 0.5); ctx.lineTo(wPx - 0.5, 0.5); ctx.stroke();
         ctx.strokeStyle = 'rgba(0,0,0,0.35)';
         ctx.beginPath(); ctx.moveTo(0.5, hPx - 0.5); ctx.lineTo(0.5, 0.5); ctx.lineTo(wPx - 0.5, 0.5); ctx.stroke();
