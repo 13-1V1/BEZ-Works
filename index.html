@@ -5,7 +5,7 @@
 
   Card grid, filter and lightbox originally adapted from vCard by codewithsadee (MIT) — see TEMPLATE-LICENSE.txt.
   Page content is built from programs.json and tools.json by js/app.js.
-  The hero (js/hero/) engraves "BEZ WORKS" from a real G-code program.
+  The hero (js/hero/) machines a BEZ WORKS nameplate from a real G-code program.
 -->
 <html lang="en">
 <head>
@@ -33,9 +33,17 @@
       <dl class="dro">
         <div><dt>X</dt><dd data-x> 0.0000</dd></div>
         <div><dt>Y</dt><dd data-y> 0.0000</dd></div>
-        <div><dt>Z</dt><dd data-z> 1.0000</dd></div>
+        <div><dt>Z</dt><dd data-z> 2.0000</dd></div>
         <div><dt>F</dt><dd data-f>0.</dd></div>
+        <div><dt>S</dt><dd data-s>0</dd></div>
+        <div><dt>T</dt><dd data-t>3</dd></div>
       </dl>
+      <ul class="tool-table">
+        <li data-tool="1"><b>T1</b> 2.0 face mill</li>
+        <li data-tool="2"><b>T2</b> 1/8 90° engraver</li>
+        <li data-tool="3"><b>T3</b> 3/32 end mill</li>
+      </ul>
+      <p class="now-line" data-now></p>
     </div>
 
     <div class="hero-copy">
@@ -44,6 +52,7 @@
       <div class="hero-actions">
         <a class="btn btn-heat" href="#programs">See the programs</a>
         <button class="btn btn-ghost" type="button" data-cycle>Cycle start</button>
+        <button class="btn btn-ghost btn-small" type="button" data-feed>Feed 100%</button>
       </div>
     </div>
   </header>
@@ -110,8 +119,11 @@
     <button class="lightbox-nav next" data-lb-next aria-label="Next screenshot">›</button>
   </div>
 
-  <script src="js/hero/letters.js"></script>
+  <script src="js/hero/program.js"></script>
   <script src="js/hero/surface.js"></script>
+  <script src="js/hero/stock.js"></script>
+  <script src="js/hero/machine.js"></script>
+  <script src="js/hero/effects.js"></script>
   <script src="js/hero/hero.js"></script>
   <script src="js/app.js"></script>
 </body>
