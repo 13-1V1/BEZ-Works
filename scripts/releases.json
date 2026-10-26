@@ -94,7 +94,8 @@
       { "name": "TileSmith-0.2.0-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/mac/TileSmith-0.2.0-macOS-x64.zip" }
     ]},
     { "id": "lightbox", "version": "0.1.0", "title": "Lightbox MV 0.1.0", "assets": [
-      { "name": "Lightbox-MV-Setup-0.1.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox MV_0.1.0_x64-setup.exe" }
+      { "name": "Lightbox-MV-Setup-0.1.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox MV_0.1.0_x64-setup.exe" },
+      { "name": "Lightbox-MV-Portable-0.1.0.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox MV.exe" }
     ]},
     { "id": "fractal-gen", "version": "1.0.0", "title": "Fractal Gen 1.0.0", "assets": [
       { "name": "Fractal-Gen-Setup-1.0.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Fractal Gen/dist/Fractal Gen-Setup-1.0.0-x64.exe" },

@@ -649,7 +649,13 @@
           "label": "Installer",
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/lightbox-v0.1.0/Lightbox-MV-Setup-0.1.0.exe",
-          "sizeBytes": 1548999
+          "sizeBytes": 1549637
+        },
+        {
+          "label": "Portable",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/lightbox-v0.1.0/Lightbox-MV-Portable-0.1.0.exe",
+          "sizeBytes": 4795904
         }
       ]
     },
