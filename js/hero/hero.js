@@ -38,12 +38,8 @@
   const clamp01 = (u) => Math.max(0, Math.min(1, u));
   const seg = (u, a, b) => clamp01((u - a) / (b - a));
 
-  // background look (prototype switch): ?bg=table or ?bg=enclosure
-  const look = new URLSearchParams(location.search).get('bg') || 'brushed';
-  const glass = look === 'enclosure' && BEZ.Glass ? BEZ.Glass() : null;
-
   let surface = null;
-  try { surface = BEZ.Surface(surfaceCanvas, { lowPower, look }); } catch (e) { console.warn('surface shader off:', e); }
+  try { surface = BEZ.Surface(surfaceCanvas, { lowPower }); } catch (e) { console.warn('surface shader off:', e); }
   if (!surface) hero.classList.add('no-webgl');
   const fx = BEZ.Effects({ lowPower });
 
@@ -95,7 +91,6 @@
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (surface) surface.resize(W, H);
-    if (glass) glass.resize(W, H);
 
     const top = control.getBoundingClientRect().bottom - hr.top + 10;
     const bottom = copy.getBoundingClientRect().top - hr.top - 14;
@@ -362,7 +357,6 @@
     BEZ.machine.drawFrontJaw(ctx, b, jaw, open);
     fx.step(ctx, dt);
     drawToolLayer(m);
-    if (glass) glass.draw(ctx, dt, lightX, lightY);
   }
 
   function drawToolLayer(m) {
@@ -414,7 +408,7 @@
     }
     light.x += (light.tx - light.x) * Math.min(1, dt * 6);
     light.y += (light.ty - light.y) * Math.min(1, dt * 6);
-    if (surface) surface.draw(light.x, light.y, { y: b.y + b.h / 2, pitch: 3.2 * S, width: 0.7 * S });
+    if (surface) surface.draw(light.x, light.y);
 
     let m = null;
     if (running) {
@@ -460,7 +454,7 @@
   }
 
   function still() {
-    if (surface) surface.draw(W * 0.62, H * 0.32, { y: b.y + b.h / 2, pitch: 3.2 * S, width: 0.7 * S });
+    if (surface) surface.draw(W * 0.62, H * 0.32);
     render(0, W * 0.62, H * 0.35);
     updateReadouts(null);
   }
