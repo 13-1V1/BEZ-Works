@@ -12,7 +12,9 @@
       { "name": "BEZ-MaPPer-Setup-0.1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ MaPPer/src-tauri/target/release/bundle/nsis/BEZ MaPPer_0.1.0_x64-setup.exe" }
     ]},
     { "id": "gcode-trainer", "version": "1.0.3", "title": "G-Code Trainer 1.0.3", "assets": [
-      { "name": "G-Code-Trainer-Setup-1.0.3.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.3/G-Code Trainer Setup 1.0.3.exe" }
+      { "name": "G-Code-Trainer-Setup-1.0.3.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.3/G-Code Trainer Setup 1.0.3.exe" },
+      { "name": "GCodeTrainer-1.0.3-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.3/mac/GCodeTrainer-1.0.3-macOS-arm64.zip" },
+      { "name": "GCodeTrainer-1.0.3-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.3/mac/GCodeTrainer-1.0.3-macOS-x64.zip" }
     ]},
     { "id": "learnlinux", "version": "1.0.1", "title": "LearnLinux+ 1.0.1", "assets": [
       { "name": "LearnLinux-Setup-1.0.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/LearnLinux+/dist/LearnLinux-Setup-1.0.1.exe" },
@@ -87,7 +89,9 @@
       { "name": "DIG-Setup-0.1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/DIG/target/release/bundle/nsis/DIG_0.1.0_x64-setup.exe" }
     ]},
     { "id": "tilesmith", "version": "0.2.0", "title": "TileSmith 0.2.0", "assets": [
-      { "name": "TileSmith-0.2.0-win64-portable.zip", "label": "Download", "platform": "Windows", "zipdir": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/TileSmith Desktop" }
+      { "name": "TileSmith-0.2.0-win64-portable.zip", "label": "Download", "platform": "Windows", "zipdir": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/TileSmith Desktop" },
+      { "name": "TileSmith-0.2.0-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/mac/TileSmith-0.2.0-macOS-arm64.zip" },
+      { "name": "TileSmith-0.2.0-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/Documents/Codex/2026-09-17/i-qw/outputs/mac/TileSmith-0.2.0-macOS-x64.zip" }
     ]},
     { "id": "lightbox", "version": "0.1.0", "title": "LIGHTBOX 0.1.0", "assets": [
       { "name": "LIGHTBOX-Setup-0.1.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Lightbox/Lightbox_0.1.0_x64-setup.exe" },
@@ -95,7 +99,9 @@
     ]},
     { "id": "fractal-gen", "version": "1.0.0", "title": "Fractal Gen 1.0.0", "assets": [
       { "name": "Fractal-Gen-Setup-1.0.0.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/Fractal Gen/dist/Fractal Gen-Setup-1.0.0-x64.exe" },
-      { "name": "Fractal-Gen-Portable-1.0.0.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/Fractal Gen/dist/Fractal Gen-Portable-1.0.0-x64.exe" }
+      { "name": "Fractal-Gen-Portable-1.0.0.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/Fractal Gen/dist/Fractal Gen-Portable-1.0.0-x64.exe" },
+      { "name": "FractalGen-1.0.0-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/Fractal Gen/dist/mac/FractalGen-1.0.0-macOS-arm64.zip" },
+      { "name": "FractalGen-1.0.0-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/Fractal Gen/dist/mac/FractalGen-1.0.0-macOS-x64.zip" }
     ]},
     { "id": "planet-gen", "version": "0.9.0", "title": "BEZ Planet Gen 0.9.0", "assets": [
       { "name": "BEZPlanetGen-0.9.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Planet Gen/build/BEZPlanetGen-v0.9.0-win64.zip" },
@@ -106,7 +112,9 @@
       { "name": "BEZPlanetMaze-1.3.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/Planet Maze/build/mac/BEZPlanetMaze-macOS.zip", "add": [["scripts/mac/How to open on Mac.txt", "How to open on Mac.txt"]] }
     ]},
     { "id": "the-judge", "version": "1.0.0", "title": "The Judge 1.0.0", "assets": [
-      { "name": "The-Judge-Setup-1.0.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/The Judge/dist/The Judge Setup 1.0.0.exe" }
+      { "name": "The-Judge-Setup-1.0.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/The Judge/dist/The Judge Setup 1.0.0.exe" },
+      { "name": "TheJudge-1.0.0-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/The Judge/dist/mac/TheJudge-1.0.0-macOS-arm64.zip" },
+      { "name": "TheJudge-1.0.0-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/The Judge/dist/mac/TheJudge-1.0.0-macOS-x64.zip" }
     ]},
     { "id": "ai-workbench", "version": "1.0.0", "title": "AI Workbench 1.0.0", "assets": [
       { "name": "AI-Workbench-1.0.0-scripts.zip", "label": "Download", "platform": "Windows", "zipdir": "_releases/_scrubbed/ai-workbench/AI-Workbench" }

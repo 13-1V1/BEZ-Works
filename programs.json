@@ -66,10 +66,22 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/G-Code-Trainer-Setup-1.0.3.exe",
           "sizeBytes": 112859855
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/GCodeTrainer-1.0.3-macOS-arm64.zip",
+          "sizeBytes": 134123204
+        },
+        {
+          "label": "Intel",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/GCodeTrainer-1.0.3-macOS-x64.zip",
+          "sizeBytes": 137903522
         }
       ],
       "featured": true,
-      "note": "Teachers get a class roster with per-student progress and CSV export."
+      "note": "Teachers get a class roster with per-student progress and CSV export. Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help)."
     },
     {
       "id": "bez-gpad",
@@ -690,7 +702,7 @@
       "status": "ready",
       "version": "0.2.0",
       "description": "Paint seamless patterns while you watch the live repeat. Draw across any edge and the stroke continues on the opposite side. Layers, fill, shapes and image import, with PNG export of one tile or a 3 × 3 sheet.",
-      "note": "Portable: unzip and run TileSmith.exe, keeping the folder together. It can also connect to Codex so AI can paint on the canvas.",
+      "note": "Windows: unzip and run TileSmith.exe, keeping the folder together. It can also connect to Codex so AI can paint on the canvas (Windows only). Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help).",
       "images": [
         {
           "full": "img/tilesmith/1.webp",
@@ -714,6 +726,18 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/tilesmith-v0.2.0/TileSmith-0.2.0-win64-portable.zip",
           "sizeBytes": 160961492
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/tilesmith-v0.2.0/TileSmith-0.2.0-macOS-arm64.zip",
+          "sizeBytes": 130517356
+        },
+        {
+          "label": "Intel",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/tilesmith-v0.2.0/TileSmith-0.2.0-macOS-x64.zip",
+          "sizeBytes": 136146079
         }
       ],
       "browser": "play/tilesmith/"
@@ -759,8 +783,21 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/fractal-gen-v1.0.0/Fractal-Gen-Portable-1.0.0.exe",
           "sizeBytes": 81957172
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/fractal-gen-v1.0.0/FractalGen-1.0.0-macOS-arm64.zip",
+          "sizeBytes": 99793914
+        },
+        {
+          "label": "Intel",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/fractal-gen-v1.0.0/FractalGen-1.0.0-macOS-x64.zip",
+          "sizeBytes": 106007587
         }
-      ]
+      ],
+      "note": "Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help)."
     },
     {
       "id": "planet-gen",
@@ -882,8 +919,21 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/the-judge-v1.0.0/The-Judge-Setup-1.0.0.exe",
           "sizeBytes": 86965087
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/the-judge-v1.0.0/TheJudge-1.0.0-macOS-arm64.zip",
+          "sizeBytes": 105917250
+        },
+        {
+          "label": "Intel",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/the-judge-v1.0.0/TheJudge-1.0.0-macOS-x64.zip",
+          "sizeBytes": 112130916
         }
-      ]
+      ],
+      "note": "Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help)."
     },
     {
       "id": "bez-launch",
