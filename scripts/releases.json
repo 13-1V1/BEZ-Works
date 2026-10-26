@@ -1,5 +1,5 @@
 {
-  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip.",
+  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip; 'unix_zip': true re-marks a zip made on Windows as Unix-made so Macs keep the app's run permission.",
   "releases": [
     { "id": "bez-gpad", "version": "1.1", "title": "BEZ GPAD 1.1", "assets": [
       { "name": "BEZ-GPAD-Setup-1.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/installer/BEZ-GPAD-Setup-1.1.exe" },
@@ -32,11 +32,12 @@
     { "id": "till-the-moon-bleeds", "version": "0.13.0", "title": "Till the Moon Bleeds 0.13.0", "assets": [
       { "name": "TillTheMoonBleeds-0.13.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Desktop/7DAYS/TillTheMoonBleeds-windows.zip" }
     ]},
-    { "id": "deadzone-arcade", "version": "0.1.0-alpha", "title": "Deadzone Arcade 0.1.0-alpha", "assets": [
-      { "name": "DeadzoneArcade-0.1.0-alpha-win64.zip", "label": "Download", "platform": "Windows", "zip": [
+    { "id": "deadzone-arcade", "version": "0.1.0", "title": "Deadzone Arcade 0.1.0", "assets": [
+      { "name": "DeadzoneArcade-0.1.0-win64.zip", "label": "Download", "platform": "Windows", "zip": [
         "C:/Users/brenn/DeadOpsAracde-Remake/build/DeadzoneArcade.exe",
         "C:/Users/brenn/DeadOpsAracde-Remake/build/DeadzoneArcade.pck"
-      ]}
+      ]},
+      { "name": "DeadzoneArcade-0.1.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/DeadOpsAracde-Remake/build/mac/DeadzoneArcade.zip", "unix_zip": true }
     ]},
     { "id": "musickid", "version": "1.1.3", "title": "Music KID 1.1.3", "assets": [
       { "name": "MusicKID-Setup-1.1.3.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/MusicKeyID/installer_output/MusicKID-Setup-1.1.3.exe" }

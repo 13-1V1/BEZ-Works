@@ -401,8 +401,8 @@
       "name": "Deadzone Arcade",
       "category": "games",
       "status": "ready",
-      "version": "0.1.0-alpha",
-      "description": "Top-down, wave-based zombie horde shooter: five round types, a points shop and stacking perks. Gamepad supported.",
+      "version": "0.1.0",
+      "description": "Top-down, wave-based zombie horde shooter: five objective types (clear, hold, hunt, path and blackout) plus a boss every fifth round, a points shop and stacking perks. Gamepad supported.",
       "images": [
         {
           "full": "img/deadzone-arcade/1.webp",
@@ -424,10 +424,17 @@
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/deadzone-arcade-v0.1.0-alpha/DeadzoneArcade-0.1.0-alpha-win64.zip",
-          "sizeBytes": 367906692
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/deadzone-arcade-v0.1.0/DeadzoneArcade-0.1.0-win64.zip",
+          "sizeBytes": 368011885
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/deadzone-arcade-v0.1.0/DeadzoneArcade-0.1.0-macOS.zip",
+          "sizeBytes": 396278844
         }
-      ]
+      ],
+      "note": "Mac: Intel or Apple Silicon. The first launch needs Open Anyway (see Install help). On an older computer, set Graphics quality to Low."
     },
     {
       "id": "ibtw",
