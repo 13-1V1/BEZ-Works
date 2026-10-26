@@ -1,0 +1,29 @@
+HOW TO OPEN THIS ON A MAC
+=========================
+
+Works on Intel and Apple Silicon Macs.
+
+This app isn't registered with Apple, so the Mac blocks it the first time.
+That's expected. Here's how to get past it (one time only):
+
+1. Double-click the app, or the "Start" file if there is one.
+   (Optional: drag an app into Applications first.)
+2. The Mac says it "can't be opened" or "can't be verified".
+   Click "Done" (not "Move to Trash").
+3. Open System Settings -> Privacy & Security, scroll to the bottom,
+   and click "Open Anyway" next to the app's name. Enter your Mac password.
+4. Click "Open Anyway" once more. The app starts.
+
+After that it opens normally with a double-click.
+
+On older macOS: right-click the app, choose Open, then click Open.
+
+If none of that works, open the Terminal app, type this with a space at
+the end (don't press Enter yet):
+
+    xattr -cr
+
+then drag the app onto the Terminal window, press Enter, and double-click
+the app again.
+
+Problems? Email brennanmmeyer@gmail.com

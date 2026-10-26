@@ -12,6 +12,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 import zipfile
 from pathlib import Path
 
@@ -87,14 +88,21 @@ def scrub_zip(path, rules):
     tmp.replace(path)
 
 
-def unix_zip(path):
+def unix_zip(path, add=()):
     """Mark every entry as made on Unix so Mac unzip keeps the run permission (staged copy only).
-    Zips written on Windows say 'MS-DOS', and macOS then ignores the stored permissions."""
+    Zips written on Windows say 'MS-DOS', and macOS then ignores the stored permissions.
+    add: [[source file, name in zip, optional mode], ...] extra files to put in (e.g. the Mac open-me note)."""
     tmp = path.with_suffix(".tmp")
     with zipfile.ZipFile(path) as src, zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED, allowZip64=True) as dst:
+        for extra, arc, *mode in add:   # optional third item: permission, e.g. "755" for a launcher
+            info = zipfile.ZipInfo(arc, date_time=time.localtime()[:6])
+            info.create_system = 3
+            info.external_attr = (0o100000 | int(mode[0] if mode else "644", 8)) << 16
+            info.compress_type = zipfile.ZIP_DEFLATED
+            dst.writestr(info, (ROOT / extra).read_bytes())
         for info in src.infolist():
             is_dir = info.filename.endswith("/")
-            mode = (info.external_attr >> 16) & 0o777 or (0o755 if is_dir else 0o644)
+            mode = ((info.external_attr >> 16) & 0o777 or (0o755 if is_dir else 0o644)) & ~0o022   # no group/other write
             info.create_system = 3
             info.external_attr = ((0o040000 if is_dir else 0o100000) | mode) << 16 | (0x10 if is_dir else 0)
             if is_dir:
@@ -131,8 +139,8 @@ def main():
                 make_git_zip(a["git"], dst, rel["id"])
             if "scrub" in a:
                 scrub_zip(dst, a["scrub"])
-            if a.get("unix_zip"):
-                unix_zip(dst)
+            if a.get("unix_zip") or a.get("add"):
+                unix_zip(dst, a.get("add", []))
             rows.append({**{k: v for k, v in a.items() if k in ("name", "label", "platform", "source")},
                          "sizeBytes": dst.stat().st_size})
         staged[rel["id"]] = {"tag": tag, "version": rel["version"], "title": rel["title"], "assets": rows}

@@ -291,8 +291,15 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/learnlinux-v1.0.1/LearnLinux-Portable-1.0.1.zip",
           "sizeBytes": 8751780
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/learnlinux-v1.0.1/LearnLinux-1.0.1-macOS.zip",
+          "sizeBytes": 560939
         }
-      ]
+      ],
+      "note": "Mac: needs Python 3.10 or newer (free from python.org). Unzip and double-click Start LearnLinux+. Tab completion is Windows-only."
     },
     {
       "id": "hackpath",
@@ -301,7 +308,7 @@
       "status": "ready",
       "version": "0.1.0",
       "description": "Learn ethical hacking from zero: 29 lessons over 7 tracks, aligned to CompTIA PenTest+. Practice targets run in sealed local Docker containers with no internet access.",
-      "note": "Needs Docker Desktop. The first run needs internet to download the practice containers.",
+      "note": "Needs Docker Desktop. The first run needs internet to download the practice containers. Mac: needs Python 3.11 or newer (free from python.org); unzip and double-click Start HackPath.",
       "images": [
         {
           "full": "img/hackpath/1.webp",
@@ -325,6 +332,12 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/hackpath-v0.1.0/HackPath-Setup-0.1.0.exe",
           "sizeBytes": 11600080
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/hackpath-v0.1.0/HackPath-0.1.0-macOS.zip",
+          "sizeBytes": 174507
         }
       ]
     },
@@ -784,8 +797,15 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/planet-gen-v0.9.0/BEZPlanetGen-0.9.0-win64.zip",
           "sizeBytes": 35572291
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/planet-gen-v0.9.0/BEZPlanetGen-0.9.0-macOS.zip",
+          "sizeBytes": 65595248
         }
-      ]
+      ],
+      "note": "Mac: Intel or Apple Silicon. The first launch needs Open Anyway (see Install help)."
     },
     {
       "id": "planet-maze",
@@ -817,8 +837,15 @@
           "platform": "Windows",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/planet-maze-v1.3.0/BEZPlanetMaze-1.3.0-win64.zip",
           "sizeBytes": 34601064
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/planet-maze-v1.3.0/BEZPlanetMaze-1.3.0-macOS.zip",
+          "sizeBytes": 64482778
         }
-      ]
+      ],
+      "note": "Mac: Intel or Apple Silicon. The first launch needs Open Anyway (see Install help)."
     },
     {
       "id": "the-judge",

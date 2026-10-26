@@ -1,5 +1,5 @@
 {
-  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip; 'unix_zip': true re-marks a zip made on Windows as Unix-made so Macs keep the app's run permission.",
+  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip; 'unix_zip': true re-marks a zip made on Windows as Unix-made so Macs keep the app's run permission; 'add' puts extra files (like the Mac open-me note) into the zip.",
   "releases": [
     { "id": "bez-gpad", "version": "1.1", "title": "BEZ GPAD 1.1", "assets": [
       { "name": "BEZ-GPAD-Setup-1.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/installer/BEZ-GPAD-Setup-1.1.exe" },
@@ -16,10 +16,24 @@
     ]},
     { "id": "learnlinux", "version": "1.0.1", "title": "LearnLinux+ 1.0.1", "assets": [
       { "name": "LearnLinux-Setup-1.0.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/LearnLinux+/dist/LearnLinux-Setup-1.0.1.exe" },
-      { "name": "LearnLinux-Portable-1.0.1.zip", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/LearnLinux+/dist/LearnLinux+ v1.0.1 (Windows, portable).zip" }
+      { "name": "LearnLinux-Portable-1.0.1.zip", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/LearnLinux+/dist/LearnLinux+ v1.0.1 (Windows, portable).zip" },
+      { "name": "LearnLinux-1.0.1-macOS.zip", "label": "Download", "platform": "macOS", "zip": [
+        ["C:/Users/brenn/LearnLinux+/learnlinux.py", "LearnLinux+/learnlinux.py"],
+        ["C:/Users/brenn/LearnLinux+/linuxplus", "LearnLinux+/linuxplus"],
+        ["C:/Users/brenn/LearnLinux+/README.md", "LearnLinux+/README.md"]
+      ], "scrub": { "drop": ["__pycache__"] },
+        "add": [["scripts/mac/Start LearnLinux+.command", "LearnLinux+/Start LearnLinux+.command", "755"], ["scripts/mac/How to open on Mac.txt", "LearnLinux+/How to open on Mac.txt"]] }
     ]},
     { "id": "hackpath", "version": "0.1.0", "title": "HackPath 0.1.0", "assets": [
-      { "name": "HackPath-Setup-0.1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/HackPath/dist/HackPath-Setup-0.1.0.exe" }
+      { "name": "HackPath-Setup-0.1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/HackPath/dist/HackPath-Setup-0.1.0.exe" },
+      { "name": "HackPath-0.1.0-macOS.zip", "label": "Download", "platform": "macOS", "zip": [
+        ["C:/Users/brenn/HackPath/hackpath.py", "HackPath/hackpath.py"],
+        ["C:/Users/brenn/HackPath/hackpath", "HackPath/hackpath"],
+        ["C:/Users/brenn/HackPath/content", "HackPath/content"],
+        ["C:/Users/brenn/HackPath/labs", "HackPath/labs"],
+        ["C:/Users/brenn/HackPath/README.md", "HackPath/README.md"]
+      ], "scrub": { "drop": ["__pycache__"] },
+        "add": [["scripts/mac/Start HackPath.command", "HackPath/Start HackPath.command", "755"], ["scripts/mac/How to open on Mac.txt", "HackPath/How to open on Mac.txt"]] }
     ]},
     { "id": "nowhere-to-hide", "version": "1.0.0", "title": "Nowhere to Hide 1.0.0", "assets": [
       { "name": "NowhereToHide-1.0.0-win64.zip", "label": "Download", "platform": "Windows", "zip": [
@@ -84,10 +98,12 @@
       { "name": "Fractal-Gen-Portable-1.0.0.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/Fractal Gen/dist/Fractal Gen-Portable-1.0.0-x64.exe" }
     ]},
     { "id": "planet-gen", "version": "0.9.0", "title": "BEZ Planet Gen 0.9.0", "assets": [
-      { "name": "BEZPlanetGen-0.9.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Planet Gen/build/BEZPlanetGen-v0.9.0-win64.zip" }
+      { "name": "BEZPlanetGen-0.9.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Planet Gen/build/BEZPlanetGen-v0.9.0-win64.zip" },
+      { "name": "BEZPlanetGen-0.9.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/Planet Gen/build/mac/BEZPlanetGen-macOS.zip", "add": [["scripts/mac/How to open on Mac.txt", "How to open on Mac.txt"]] }
     ]},
     { "id": "planet-maze", "version": "1.3.0", "title": "BEZ Planet Maze 1.3.0", "assets": [
-      { "name": "BEZPlanetMaze-1.3.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Planet Maze/build/BEZPlanetMaze-v1.3.0-win64.zip" }
+      { "name": "BEZPlanetMaze-1.3.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Planet Maze/build/BEZPlanetMaze-v1.3.0-win64.zip" },
+      { "name": "BEZPlanetMaze-1.3.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/Planet Maze/build/mac/BEZPlanetMaze-macOS.zip", "add": [["scripts/mac/How to open on Mac.txt", "How to open on Mac.txt"]] }
     ]},
     { "id": "the-judge", "version": "1.0.0", "title": "The Judge 1.0.0", "assets": [
       { "name": "The-Judge-Setup-1.0.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/The Judge/dist/The Judge Setup 1.0.0.exe" }
