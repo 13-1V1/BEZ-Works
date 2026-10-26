@@ -398,7 +398,7 @@
       "name": "Till the Moon Bleeds",
       "category": "games",
       "status": "ready",
-      "version": "0.13.0",
+      "version": "0.14.0",
       "description": "Open-world voxel survival: mine and build on fully destructible terrain, craft, fight off zombies, and survive a blood-moon horde every 7th night. Gamepad supported.",
       "images": [
         {
@@ -416,10 +416,11 @@
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/till-the-moon-bleeds-v0.13.0/TillTheMoonBleeds-0.13.0-win64.zip",
-          "sizeBytes": 2125695666
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/till-the-moon-bleeds-v0.14.0/TillTheMoonBleeds-0.14.0-win64.7z",
+          "sizeBytes": 1278225771
         }
-      ]
+      ],
+      "note": "New in 0.14: a story with an ending, traders and townsfolk, and raider camps that keep watch and hold their walls. It's a .7z: Windows 11 opens it with Extract All; on Windows 10 use the free 7-Zip."
     },
     {
       "id": "deadzone-arcade",
