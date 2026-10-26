@@ -53,6 +53,11 @@ Fonts: Big Shoulders Display (the carve text), IBM Plex Mono, and Instrument San
 ## Release and screenshot pipeline (`scripts/`, run locally on Brennan's PC)
 
 - `releases.json` lists the Release assets by their absolute source paths on this machine. The `ai-workbench`, `revu` and `game-studio` zips come from hand-made copies in `_releases/_scrubbed/` (gitignored) with personal paths removed. If that folder is gone, remake it before restaging those three. `stage-releases.py [id ...]` builds `_releases/<tag>/` (hard link, zip, zipdir, git archive, or scrub of personal paths). `upload-releases.py [id ...]` uploads with `gh`. It's idempotent and checks sizes. Update `sizeBytes` in `programs.json` to match.
+- Mac builds (no Mac here, so none are tested on real hardware):
+  - Godot: add a macOS preset copied from NowhereToHide's `export_presets.cfg` (universal, ad-hoc signed). Apple Silicon export needs `textures/vram_compression/import_etc2_astc=true` in project.godot.
+  - Electron: `scripts/mac/pack-electron-mac.py` puts the Windows build's `app.asar` into the official Electron Mac zip, ad-hoc signs it with `_releases/_tools/rcodesign.exe`, and zips it with symlinks intact. One zip per chip (arm64, x64). Needs Windows Developer Mode for symlinks.
+  - Python console apps: source zip plus a `scripts/mac/*.command` launcher (users install Python).
+  - Mac zips made on Windows must be marked Unix-made or Macs drop the run permission: use `"unix_zip": true` or `"add"` in releases.json. `scripts/mac/How to open on Mac.txt` goes in every Mac zip.
 - Screenshots: `screenshots/capture-window.ps1` (Win32 window capture with scripted input) and `screenshots/capture-web.mjs <plan.json>` (Playwright plus installed Chrome, step list in a JSON plan). Candidates go in `_screenshots/` (gitignored). `make-contact-sheet.py` builds a picker page, and `apply-picks.py [picks.json]` converts the picks to `img/<id>/N.webp` (1600 px) and `N-thumb.webp` (800 px).
 - Screenshots must be full-window shots of current builds in real use, never test or proof images.
 
