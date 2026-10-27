@@ -87,6 +87,8 @@
             <strong>Mac apps:</strong> Unzip and double-click the app. The first time, macOS says it
             can't be verified: click <em>Done</em>, then open <em>System Settings → Privacy &amp; Security</em>,
             scroll down and click <em>Open Anyway</em>. After that it opens normally.
+            If the Mac says the app is <em>damaged</em> and only offers Move to Trash, open Terminal, type
+            <code>xattr -cr</code> and a space, drag the app onto the Terminal window, press Return, then open it again.
           </li>
           <li>
             <strong>Android apps (.apk):</strong> Open the downloaded file on your phone. If Android

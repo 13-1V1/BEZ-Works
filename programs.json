@@ -71,13 +71,13 @@
           "label": "Apple Silicon",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/GCodeTrainer-1.0.3-macOS-arm64.zip",
-          "sizeBytes": 134123204
+          "sizeBytes": 134123306
         },
         {
           "label": "Intel",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/GCodeTrainer-1.0.3-macOS-x64.zip",
-          "sizeBytes": 137903522
+          "sizeBytes": 137903605
         }
       ],
       "featured": true,
@@ -457,7 +457,7 @@
           "label": "Download",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/deadzone-arcade-v0.1.0/DeadzoneArcade-0.1.0-macOS.zip",
-          "sizeBytes": 396278844
+          "sizeBytes": 396280496
         }
       ],
       "note": "Mac: Intel or Apple Silicon. The first launch needs Open Anyway (see Install help). On an older computer, set Graphics quality to Low."
@@ -739,13 +739,13 @@
           "label": "Apple Silicon",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/tilesmith-v0.2.0/TileSmith-0.2.0-macOS-arm64.zip",
-          "sizeBytes": 130517356
+          "sizeBytes": 130517255
         },
         {
           "label": "Intel",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/tilesmith-v0.2.0/TileSmith-0.2.0-macOS-x64.zip",
-          "sizeBytes": 136146079
+          "sizeBytes": 136145996
         }
       ],
       "browser": "play/tilesmith/"
@@ -796,13 +796,13 @@
           "label": "Apple Silicon",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/fractal-gen-v1.0.0/FractalGen-1.0.0-macOS-arm64.zip",
-          "sizeBytes": 99793914
+          "sizeBytes": 99793901
         },
         {
           "label": "Intel",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/fractal-gen-v1.0.0/FractalGen-1.0.0-macOS-x64.zip",
-          "sizeBytes": 106007587
+          "sizeBytes": 106007580
         }
       ],
       "note": "Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help)."
@@ -932,13 +932,13 @@
           "label": "Apple Silicon",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/the-judge-v1.0.0/TheJudge-1.0.0-macOS-arm64.zip",
-          "sizeBytes": 105917250
+          "sizeBytes": 105917090
         },
         {
           "label": "Intel",
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/the-judge-v1.0.0/TheJudge-1.0.0-macOS-x64.zip",
-          "sizeBytes": 112130916
+          "sizeBytes": 112130765
         }
       ],
       "note": "Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help)."

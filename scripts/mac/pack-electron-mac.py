@@ -164,17 +164,32 @@ def main():
     (res / "electron.icns").unlink(missing_ok=True)
     make_icns(a.icon, res / "app.icns")
     patch_plist(app / "Contents" / "Info.plist", a.name, a.id, a.version)
-    # Electron's helper apps don't name their main executable; codesign needs it to seal them
-    for helper in (app / "Contents" / "Frameworks").glob("*.app"):
-        pl_path = helper / "Contents" / "Info.plist"
-        with open(pl_path, "rb") as f:
-            pl = plistlib.load(f)
-        if "CFBundleExecutable" not in pl:
-            exe = [p.name for p in (helper / "Contents" / "MacOS").iterdir()]
-            assert len(exe) == 1, (helper, exe)
-            pl["CFBundleExecutable"] = exe[0]
-            with open(pl_path, "wb") as f:
-                plistlib.dump(pl, f)
+    # Rebrand like electron-packager does (Electron's "rebranding with downloaded binaries"):
+    # the main program and the four helper apps carry the app's name. This matters: Electron
+    # sets app.isPackaged from the executable's name, and an app still called "Electron"
+    # thinks it is a dev build (G-Code Trainer then loaded its dev server and opened DevTools).
+    macos = app / "Contents" / "MacOS"
+    (macos / "Electron").rename(macos / a.name)
+    pl_path = app / "Contents" / "Info.plist"
+    with open(pl_path, "rb") as f:
+        pl = plistlib.load(f)
+    pl["CFBundleExecutable"] = a.name
+    with open(pl_path, "wb") as f:
+        plistlib.dump(pl, f)
+    for helper in sorted((app / "Contents" / "Frameworks").glob("Electron Helper*.app")):
+        suffix = helper.name[len("Electron Helper"):-len(".app")]          # "", " (GPU)", ...
+        new_name = f"{a.name} Helper{suffix}"
+        exe_dir = helper / "Contents" / "MacOS"
+        (exe_dir / f"Electron Helper{suffix}").rename(exe_dir / new_name)
+        hp = helper / "Contents" / "Info.plist"
+        with open(hp, "rb") as f:
+            hpl = plistlib.load(f)
+        tag = suffix.strip(" ()").lower()
+        hpl.update({"CFBundleExecutable": new_name, "CFBundleName": new_name, "CFBundleDisplayName": new_name,
+                    "CFBundleIdentifier": f"{a.id}.helper" + (f".{tag}" if tag else "")})
+        with open(hp, "wb") as f:
+            plistlib.dump(hpl, f)
+        helper.rename(helper.with_name(new_name + ".app"))
 
     subprocess.run([a.rcodesign, "sign", str(app)], check=True)
 

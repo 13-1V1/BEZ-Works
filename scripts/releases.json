@@ -1,5 +1,5 @@
 {
-  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip; 'unix_zip': true re-marks a zip made on Windows as Unix-made so Macs keep the app's run permission; 'add' puts extra files (like the Mac open-me note) into the zip.",
+  "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip; 'unix_zip': true re-marks a zip made on Windows as Unix-made so Macs keep the app's run permission; 'add' puts extra files (like the Mac open-me note) into the zip; 'sign': true ad-hoc signs the .app with rcodesign (Apple Silicon won't run unsigned apps, and recent macOS calls them damaged).",
   "releases": [
     { "id": "bez-gpad", "version": "1.1", "title": "BEZ GPAD 1.1", "assets": [
       { "name": "BEZ-GPAD-Setup-1.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/installer/BEZ-GPAD-Setup-1.1.exe" },
@@ -53,7 +53,7 @@
         "C:/Users/brenn/DeadOpsAracde-Remake/build/DeadzoneArcade.exe",
         "C:/Users/brenn/DeadOpsAracde-Remake/build/DeadzoneArcade.pck"
       ]},
-      { "name": "DeadzoneArcade-0.1.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/DeadOpsAracde-Remake/build/mac/DeadzoneArcade.zip", "unix_zip": true }
+      { "name": "DeadzoneArcade-0.1.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/DeadOpsAracde-Remake/build/mac/DeadzoneArcade.zip", "unix_zip": true, "sign": true }
     ]},
     { "id": "musickid", "version": "1.1.3", "title": "Music KID 1.1.3", "assets": [
       { "name": "MusicKID-Setup-1.1.3.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/MusicKeyID/installer_output/MusicKID-Setup-1.1.3.exe" },
