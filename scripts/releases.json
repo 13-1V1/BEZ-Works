@@ -12,7 +12,9 @@
       { "name": "BEZ-MaPPer-Setup-0.1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ MaPPer/src-tauri/target/release/bundle/nsis/BEZ MaPPer_0.1.0_x64-setup.exe" }
     ]},
     { "id": "gcode-trainer", "version": "1.0.9", "title": "G-Code Trainer 1.0.9", "assets": [
-      { "name": "G-Code-Trainer-Setup-1.0.9.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.9/G-Code Trainer Setup 1.0.9.exe" }
+      { "name": "G-Code-Trainer-Setup-1.0.9.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.9/G-Code Trainer Setup 1.0.9.exe" },
+      { "name": "GCodeTrainer-1.0.9-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.9/mac/GCodeTrainer-1.0.9-macOS-arm64.zip" },
+      { "name": "GCodeTrainer-1.0.9-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.9/mac/GCodeTrainer-1.0.9-macOS-x64.zip" }
     ]},
     { "id": "learnlinux", "version": "1.0.1", "title": "LearnLinux+ 1.0.1", "assets": [
       { "name": "LearnLinux-Setup-1.0.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/LearnLinux+/dist/LearnLinux-Setup-1.0.1.exe" },

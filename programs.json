@@ -70,14 +70,14 @@
         {
           "label": "Apple Silicon",
           "platform": "macOS",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/GCodeTrainer-1.0.3-macOS-arm64.zip",
-          "sizeBytes": 134123306
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.9/GCodeTrainer-1.0.9-macOS-arm64.zip",
+          "sizeBytes": 135126745
         },
         {
           "label": "Intel",
           "platform": "macOS",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/GCodeTrainer-1.0.3-macOS-x64.zip",
-          "sizeBytes": 137903605
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.9/GCodeTrainer-1.0.9-macOS-x64.zip",
+          "sizeBytes": 141276914
         }
       ],
       "featured": true,
