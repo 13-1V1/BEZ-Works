@@ -31,7 +31,7 @@
       "name": "G-Code Trainer",
       "category": "machining",
       "status": "ready",
-      "version": "1.0.3",
+      "version": "1.0.9",
       "description": "Learn CNC programming from zero on FANUC-style mills and lathes. 59 guided lessons (33 mill, 26 lathe), each with a quiz and a hands-on coding exercise you run in a live 2D/3D simulator. 158 quiz questions, 40 blueprint part challenges, working FANUC 0i-MF and 0i-TF control-panel simulators, a reference for 46 G-codes, 13 M-codes and 52 alarms, and a live checker that catches 62 kinds of mistakes.",
       "images": [
         {
@@ -64,8 +64,8 @@
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.3/G-Code-Trainer-Setup-1.0.3.exe",
-          "sizeBytes": 112859855
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.9/G-Code-Trainer-Setup-1.0.9.exe",
+          "sizeBytes": 113252008
         },
         {
           "label": "Apple Silicon",
