@@ -11,10 +11,10 @@
     { "id": "bez-mapper", "version": "0.1.0", "title": "BEZ MaPPer 0.1.0", "assets": [
       { "name": "BEZ-MaPPer-Setup-0.1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ MaPPer/src-tauri/target/release/bundle/nsis/BEZ MaPPer_0.1.0_x64-setup.exe" }
     ]},
-    { "id": "gcode-trainer", "version": "1.0.10", "title": "G-Code Trainer 1.0.10", "assets": [
-      { "name": "G-Code-Trainer-Setup-1.0.10.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.10/G-Code Trainer Setup 1.0.10.exe" },
-      { "name": "GCodeTrainer-1.0.10-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.10/mac/GCodeTrainer-1.0.10-macOS-arm64.zip" },
-      { "name": "GCodeTrainer-1.0.10-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.10/mac/GCodeTrainer-1.0.10-macOS-x64.zip" }
+    { "id": "gcode-trainer", "version": "1.0.13", "title": "G-Code Trainer 1.0.13", "assets": [
+      { "name": "G-Code-Trainer-Setup-1.0.13.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.13/G-Code Trainer Setup 1.0.13.exe" },
+      { "name": "GCodeTrainer-1.0.13-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.13/mac/GCodeTrainer-1.0.13-macOS-arm64.zip" },
+      { "name": "GCodeTrainer-1.0.13-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/OneDrive/Documents/Projects/Misc/G Code Trainer/releases/v1.0.13/mac/GCodeTrainer-1.0.13-macOS-x64.zip" }
     ]},
     { "id": "learnlinux", "version": "1.0.1", "title": "LearnLinux+ 1.0.1", "assets": [
       { "name": "LearnLinux-Setup-1.0.1.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/LearnLinux+/dist/LearnLinux-Setup-1.0.1.exe" },

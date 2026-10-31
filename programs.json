@@ -31,7 +31,7 @@
       "name": "G-Code Trainer",
       "category": "machining",
       "status": "ready",
-      "version": "1.0.10",
+      "version": "1.0.13",
       "description": "Learn CNC programming from zero on FANUC-style mills and lathes. 59 guided lessons (33 mill, 26 lathe), each with a quiz and a hands-on coding exercise you run in a live 2D/3D simulator. 158 quiz questions, 40 blueprint part challenges, working FANUC 0i-MF and 0i-TF control-panel simulators, a reference for 46 G-codes, 13 M-codes and 52 alarms, and a live checker that catches 62 kinds of mistakes.",
       "images": [
         {
@@ -64,20 +64,20 @@
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.10/G-Code-Trainer-Setup-1.0.10.exe",
-          "sizeBytes": 113252101
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.13/G-Code-Trainer-Setup-1.0.13.exe",
+          "sizeBytes": 111652842
         },
         {
           "label": "Apple Silicon",
           "platform": "macOS",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.10/GCodeTrainer-1.0.10-macOS-arm64.zip",
-          "sizeBytes": 135126727
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.13/GCodeTrainer-1.0.13-macOS-arm64.zip",
+          "sizeBytes": 132487506
         },
         {
           "label": "Intel",
           "platform": "macOS",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.10/GCodeTrainer-1.0.10-macOS-x64.zip",
-          "sizeBytes": 141276893
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.0.13/GCodeTrainer-1.0.13-macOS-x64.zip",
+          "sizeBytes": 138637671
         }
       ],
       "featured": true,
