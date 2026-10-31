@@ -893,6 +893,51 @@
       "note": "Mac: Intel or Apple Silicon. The first launch needs Open Anyway (see Install help)."
     },
     {
+      "id": "bez-pro-write",
+      "name": "BEZ Pro Write",
+      "category": "tools",
+      "status": "ready",
+      "version": "1.1.3",
+      "description": "A step-by-step coach for professional writing: emails, memos, business letters, cover letters and short reports, built on the 7 C's. You type every word; it points out spots to look at and explains why, but never rewrites. Practice mode, progress tracking, and export to Word, text or PDF. Fully offline.",
+      "note": "Mac: one download for Intel and Apple Silicon, macOS 11 or newer. The first time, right-click the app and choose Open.",
+      "images": [
+        {
+          "full": "img/bez-pro-write/1.webp",
+          "thumb": "img/bez-pro-write/1-thumb.webp",
+          "alt": "BEZ Pro Write pointing out spots in a sample email, with explanations"
+        },
+        {
+          "full": "img/bez-pro-write/2.webp",
+          "thumb": "img/bez-pro-write/2-thumb.webp",
+          "alt": "The 7 C's check with readability and style scores"
+        },
+        {
+          "full": "img/bez-pro-write/3.webp",
+          "thumb": "img/bez-pro-write/3-thumb.webp",
+          "alt": "Practice mode: made-up writing situations in levels"
+        },
+        {
+          "full": "img/bez-pro-write/4.webp",
+          "thumb": "img/bez-pro-write/4-thumb.webp",
+          "alt": "The built-in 7 C's guide"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-pro-write-v1.1.3/BEZ-Pro-Write-1.1.3-x64.msi",
+          "sizeBytes": 10457088
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-pro-write-v1.1.3/BEZ-Pro-Write-1.1.3-macOS-universal.dmg",
+          "sizeBytes": 20120433
+        }
+      ]
+    },
+    {
       "id": "the-judge",
       "name": "The Judge",
       "category": "tools",
