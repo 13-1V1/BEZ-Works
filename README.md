@@ -44,7 +44,7 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
      "source": "https://github.com/..."
    }
    ```
-   `version`, `downloads`, `browser`, `source`, `note` and `images` are all optional, and so is `alt` on each image. `"video": "img/<id>/preview.mp4"` plays a muted loop on the card in place of the first screenshot. `browser` can also be a full URL to a build hosted somewhere else (CHIPLOAD does this). Use `"status": "coming-soon"` for a greyed-out card with no buttons; those always sort last.
+   `version`, `downloads`, `browser`, `source`, `note`, `rooms` and `images` are all optional, and so is `alt` on each image. `"video": "img/<id>/preview.mp4"` plays a muted loop on the card in place of the first screenshot. `browser` can also be a full URL to a build hosted somewhere else (CHIPLOAD does this). Use `"status": "coming-soon"` for a greyed-out card with no buttons; those always sort last.
    One program on two platforms (like NoBull): give each download its own `"version"`, and make `source` a list of `{ "label": "Source (Windows)", "url": "..." }`.
    Cards show in the same order as `programs.json`, so put an entry where you want it on the page. `"featured": true` makes a card bigger; put featured entries first so they sit at the top.
 
@@ -52,7 +52,7 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
 
 ## Build
 
-GitHub Actions (`.github/workflows/pages.yml`) runs `scripts/build-site.mjs` on every push to `main`. That script copies the site into `_site/`, tucks `programs.json` and `tools.json` inside `index.html`.
+GitHub Actions (`.github/workflows/pages.yml`) runs `scripts/build-site.mjs` on every push to `main`. That script copies the site into `_site/`, tucks `programs.json` and `tools.json` inside `index.html`, and also publishes `programs.json` on its own so the [BMeyer portfolio](https://13-1v1.github.io/BMeyer/) can list each program in the room named in its `rooms` field.
 
 ## Preview locally
 

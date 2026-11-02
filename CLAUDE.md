@@ -60,6 +60,7 @@ Fonts: Big Shoulders Display (the carve text), IBM Plex Mono, and Instrument San
 
 - Every code file starts with the two-line header from Brennan's global CLAUDE.md (`Created by: Brennan Meyer with use of Claude Code MM/DD/YYYY Santa Clarita, CA` / `brennanmmeyer@gmail.com`), in that file's comment syntax.
 - Keep the dark theme. Design tokens are CSS custom properties at the top of `css/style.css`. Everything must work at phone width with no horizontal scroll.
-- No per-program tech stack on cards. The footer is only "Brennan Meyer · brennanmmeyer@gmail.com".
+- No per-program tech stack on cards. The footer is only "Brennan Meyer · brennanmmeyer@gmail.com"; the name links to the BMeyer portfolio.
+- `rooms` on a program (e.g. `["manufacturing"]`) lists it in that room of the BMeyer portfolio, which fetches the published `programs.json`. Room ids are the portfolio's page names: `manufacturing`, `welding`, `network`, `creative-electives`, etc.
 - Program ids are lowercase with hyphens. Browser builds hosted here go in `play/<id>/`; `browser` can also be an outside URL (CHIPLOAD's is).
 - Don't add license or "personal use" caveats to programs. Brennan has said every installer should be downloadable.

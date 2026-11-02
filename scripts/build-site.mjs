@@ -4,6 +4,7 @@
 // Builds the published site into _site/:
 //   1. copies the page, styles, script, images and browser builds
 //   2. tucks programs.json + tools.json inside index.html (saves two fetches on load)
+//   3. also publishes programs.json as a file; the BMeyer portfolio reads its "rooms" lists
 //
 // Usage:  node scripts/build-site.mjs
 
@@ -11,7 +12,7 @@ import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } fr
 import { join } from 'node:path';
 
 const OUT = '_site';
-const COPY = ['css', 'js', 'img', 'play', '.nojekyll', 'TEMPLATE-LICENSE.txt'];
+const COPY = ['css', 'js', 'img', 'play', '.nojekyll', 'TEMPLATE-LICENSE.txt', 'programs.json'];
 
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT);
