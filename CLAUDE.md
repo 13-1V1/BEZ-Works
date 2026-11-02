@@ -2,29 +2,24 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-BEZ Works is Brennan Meyer's download site for his programs. It's a static site (plain HTML/CSS/JS, no framework, no bundler) on GitHub Pages at https://13-1v1.github.io/BEZ-Works/, password-locked with StatiCrypt. README.md covers adding a program, the password, and credits.
+BEZ Works is Brennan Meyer's download site for his programs. It's a static site (plain HTML/CSS/JS, no framework, no bundler) on GitHub Pages at https://13-1v1.github.io/BEZ-Works/. Public, no password. README.md covers adding a program and credits.
 
 ## Commands
 
 ```bash
-npm ci                                              # once: installs StatiCrypt, which the build needs
-python -m http.server 8787                          # preview the unlocked source (npm run serve)
-node scripts/build-site.mjs                         # build _site/ unlocked
-STATICRYPT_PASSWORD=... node scripts/build-site.mjs # build _site/ locked, same as CI (bash syntax)
+python -m http.server 8787     # preview the source (npm run serve)
+node scripts/build-site.mjs    # build _site/, same as CI
 ```
-
-In PowerShell, set the password first with `$env:STATICRYPT_PASSWORD = '...'`.
 
 There's no lint and no test runner. `tests/vcarve.html` is a standalone scene (open it through the local server) that draws the V-carve toolpaths over the carved render and prints chain counts and timings. Use it when changing `js/hero/vcarve.js`. `tests/` is never copied to `_site/`.
 
-Publishing: pushing to `main` runs `.github/workflows/pages.yml` (`npm ci`, then build with secret `SITE_PASSWORD` as `STATICRYPT_PASSWORD`, then deploy to Pages).
+Publishing: pushing to `main` runs `.github/workflows/pages.yml` (build, then deploy to Pages).
 
 ## Data vs. layout
 
 - `programs.json` (categories plus programs) and `tools.json` drive everything. `js/app.js` renders the cards, filters, lightbox, and `#id` deep links from them. Adding a program shouldn't need HTML or JS changes.
-- `app.js` `loadJSON(path, inlineId)` reads an inline `<script type="application/json">` first, then falls back to fetching. `build-site.mjs` inlines both JSON files into `index.html` before locking, so the published page doesn't fetch them. The repo itself is public, so the lock hides the page, not the data. The unlocked local preview just fetches them.
+- `app.js` `loadJSON(path, inlineId)` reads an inline `<script type="application/json">` first, then falls back to fetching. `build-site.mjs` inlines both JSON files into `index.html`, so the published page doesn't fetch them. The local preview just fetches them.
 - `status: "coming-soon"` cards sort last and show no buttons. `featured: true` cards span wider. Download URLs point to GitHub Releases, tagged `<id>-v<version>`. Binaries are never committed.
-- `.staticrypt.json` holds the salt. Don't regenerate it, or saved logins and share links break.
 
 ## Hero animation (`js/hero/`)
 

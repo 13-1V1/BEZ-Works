@@ -50,25 +50,9 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
 
    You can also skip step 1's hand upload: add the build to `scripts/releases.json`, then run `python scripts/stage-releases.py <id>` and `python scripts/upload-releases.py <id>` The stage script writes each asset's exact size to `_releases/staged.json` for `sizeBytes`.
 
-## Password
-
-The published page is locked with [StatiCrypt](https://github.com/robinmoisson/staticrypt) (MIT). Visitors type the password once; "Remember me" keeps them in for 30 days.
-
-- The password is the repo secret `SITE_PASSWORD`. Change it with:
-  ```bash
-  gh secret set SITE_PASSWORD --repo 13-1V1/BEZ-Works
-  ```
-  then re-run the **Publish site** action (or push any change).
-- `.staticrypt.json` holds the salt. Keep it, or old "remember me" logins and share links stop working.
-- Make a link that opens without typing the password:
-  ```bash
-  npx staticrypt --share https://13-1v1.github.io/BEZ-Works/ --share-remember -p <password>
-  ```
-- What the lock covers: the published page, including the program list baked into it. What it doesn't: this repo is public, so `programs.json`, `img/`, `css/` and `js/` can be read on GitHub, and the download files on Releases and the browser builds in `play/` are reachable by direct link.
-
 ## Build
 
-GitHub Actions (`.github/workflows/pages.yml`) runs `scripts/build-site.mjs` on every push to `main`. That script copies the site into `_site/`, tucks `programs.json` and `tools.json` inside `index.html`, and locks it.
+GitHub Actions (`.github/workflows/pages.yml`) runs `scripts/build-site.mjs` on every push to `main`. That script copies the site into `_site/`, tucks `programs.json` and `tools.json` inside `index.html`.
 
 ## Preview locally
 
@@ -81,4 +65,3 @@ Then open http://localhost:8787.
 ## Credits
 
 Look and feel adapted from [vCard](https://github.com/codewithsadee/vcard-personal-portfolio) by codewithsadee, MIT License — see `TEMPLATE-LICENSE.txt`.
-Password page adapted from [StatiCrypt](https://github.com/robinmoisson/staticrypt), MIT License — see `scripts/STATICRYPT-LICENSE.txt`.

@@ -22,7 +22,7 @@ function formatSize(bytes) {
   return Math.max(1, Math.round(bytes / 1024)) + ' KB';
 }
 
-// The published build tucks the JSON inside the page (so the password lock covers it).
+// The published build tucks the JSON inside the page (saves two fetches).
 // Local preview falls back to fetching the files.
 async function loadJSON(path, inlineId) {
   const inline = document.getElementById(inlineId);
