@@ -141,7 +141,7 @@
   }
 
   // ---------- state ----------
-  let clock = 0, running = false, override = 1;
+  let clock = 0, running = false, override = 2;
   let pos = { x: 0, y: 0, z: HOME }, tool = LAST_TOOL, cur = null;
   let lastCut = null, lastFace = null;
   let spin = 0, now = 0, flareStart = -1;
