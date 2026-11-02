@@ -1,8 +1,8 @@
 // Created by: Brennan Meyer with use of Claude Code 10/25/2026 Santa Clarita, CA
 // brennanmmeyer@gmail.com
 //
-// Hero conductor. The finished plate sits in the vise; nothing happens until
-// "Cycle start". Then a fresh blank pushes it out, T1 faces the top, T4 scribes the border, T2 V-carves
+// Hero conductor. The finished plate sits in the vise for 2 s, then the cycle
+// starts by itself once (or on "Cycle start"). Then a fresh blank pushes it out, T1 faces the top, T4 scribes the border, T2 V-carves
 // BEZ and the swoosh, T3 V-carves WORKS and the inner border, and a flare of
 // light runs across the finished plate. "Feed" overrides the speed.
 // Reduced motion shows the finished plate and nothing moves.
@@ -154,6 +154,7 @@
   }
 
   function startCycle() {
+    autoPending = false;
     if (running || !program) return;
     // a raw blank already in the vise gets cut as-is; otherwise load a new one
     clock = stock.fresh ? loadMove.t0 + loadMove.dur : 0;
@@ -437,11 +438,20 @@
     feedBtn.textContent = `Feed ${Math.round(override * 100)}%`;
   });
 
+  // one automatic cycle, AUTO_DELAY ms after the plate first shows; held until the hero is on-screen
+  const AUTO_DELAY = 2000;
+  let autoPending = false;
+  function autoStart() {
+    if (!autoPending || !visible || document.hidden) return;
+    autoPending = false;
+    startCycle();
+  }
+
   new IntersectionObserver((entries) => {
     visible = entries[0].isIntersecting;
-    if (visible) wake();
+    if (visible) { wake(); setTimeout(autoStart, 600); }
   }, { threshold: 0.02 }).observe(hero);
-  document.addEventListener('visibilitychange', wake);
+  document.addEventListener('visibilitychange', () => { wake(); setTimeout(autoStart, 600); });
 
   function idle(finished) {
     // the finished plate (or a raw blank, mid-cycle resize), last tool parked
@@ -488,6 +498,8 @@
     } else {
       cycleBtn.classList.add('ready');
       wake();
+      autoPending = true;
+      setTimeout(autoStart, AUTO_DELAY);
     }
   };
   cycleBtn.disabled = true;

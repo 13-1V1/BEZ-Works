@@ -36,7 +36,7 @@ The hero is a machined nameplate: a CNC job plays back on an 8 × 4 in aluminum 
 | `hero.js` | The conductor. It builds the program after the fonts load, lays out the plate between the control band and the copy, steps the clock at 1/240 s, reveals the cuts, and drives the DRO, G-code listing, and tool table. |
 
 Behavior the user asked for, so keep it:
-- The page opens on the finished plate. Nothing auto-starts.
+- The page opens on the finished plate, then the cycle auto-starts once after 2 s (held until the hero is on-screen and the tab is visible).
 - Cycle start loads a new blank that pushes the old one out.
 - No coolant and no heat trail.
 - Chips only where they'd really come off the cutter.
