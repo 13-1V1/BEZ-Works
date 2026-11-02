@@ -226,6 +226,45 @@
       "browser": "https://13-1v1.github.io/chipload/"
     },
     {
+      "id": "bez-inprints",
+      "name": "BEZ InPrints",
+      "category": "machining",
+      "status": "ready",
+      "version": "0.9.2",
+      "description": "An offline trainer for reading welding prints (AWS A2.4:2020) and machine prints with GD&T (ASME Y14.5-2018). It has 100 short lessons, 30 full shop prints to read against the clock, a symbol builder, 3D views of welds and tolerance zones, and practice cert tests. For welders, machinists, apprentices, and anyone studying for a print-reading test.",
+      "note": "Windows 10 or 11, 64-bit. Installs just for you, no admin needed. If Windows says it protected your PC, click More info, then Run anyway.",
+      "images": [
+        {
+          "full": "img/bez-inprints/1.webp",
+          "thumb": "img/bez-inprints/1-thumb.webp",
+          "alt": "BEZ InPrints home screen with rank, welding and machinist progress"
+        },
+        {
+          "full": "img/bez-inprints/2.webp",
+          "thumb": "img/bez-inprints/2-thumb.webp",
+          "alt": "A Print Challenge: a full welding shop print with the question beside it"
+        },
+        {
+          "full": "img/bez-inprints/3.webp",
+          "thumb": "img/bez-inprints/3-thumb.webp",
+          "alt": "Symbol Builder reading a welding symbol in plain English"
+        },
+        {
+          "full": "img/bez-inprints/4.webp",
+          "thumb": "img/bez-inprints/4-thumb.webp",
+          "alt": "An angularity tolerance zone shown in 3D"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-inprints-v0.9.2/BEZ-InPrints-0.9.2-x64-setup.exe",
+          "sizeBytes": 2496746
+        }
+      ]
+    },
+    {
       "id": "bez-cam",
       "name": "BEZ CAM",
       "category": "machining",

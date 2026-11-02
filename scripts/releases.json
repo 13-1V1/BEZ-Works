@@ -112,6 +112,9 @@
       { "name": "BEZPlanetMaze-1.3.0-win64.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Planet Maze/build/BEZPlanetMaze-v1.3.0-win64.zip" },
       { "name": "BEZPlanetMaze-1.3.0-macOS.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/Planet Maze/build/mac/BEZPlanetMaze-macOS.zip", "add": [["scripts/mac/How to open on Mac.txt", "How to open on Mac.txt"]] }
     ]},
+    { "id": "bez-inprints", "version": "0.9.2", "title": "BEZ InPrints 0.9.2", "assets": [
+      { "name": "BEZ-InPrints-0.9.2-x64-setup.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ InPrints/src-tauri/target/release/bundle/nsis/BEZ InPrints_0.9.2_x64-setup.exe" }
+    ]},
     { "id": "bez-pro-write", "version": "1.2.2", "title": "BEZ Pro Write 1.2.2", "assets": [
       { "name": "BEZ-Pro-Write-1.2.2-x64.msi", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Pro Write/src-tauri/target/release/bundle/msi/BEZ Pro Write_1.2.2_x64_en-US.msi" },
       { "name": "BEZ-Pro-Write-1.2.2-macOS-universal.dmg", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/BEZ Pro Write/release/mac/BEZ Pro Write_1.2.2_universal.dmg" }
