@@ -90,8 +90,8 @@
       "category": "machining",
       "rooms": ["manufacturing"],
       "status": "ready",
-      "version": "1.1",
-      "description": "G-code notepad with a “spell checker” for Fanuc mill and lathe code: errors underline red, warnings yellow, with one-click fixes. Insert a safe start block with one click.",
+      "version": "1.3.4",
+      "description": "G-code notepad with a “spell checker” for Fanuc mill and lathe code: errors underline red, warnings yellow, with one-click fixes. The Code Wizard on the side writes hole cycles, tool changes, threads and grooves from a few boxes, starting from the tool and speed already at the cursor.",
       "images": [
         {
           "full": "img/bez-gpad/1.webp",
@@ -113,14 +113,14 @@
         {
           "label": "Installer",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-gpad-v1.1/BEZ-GPAD-Setup-1.1.exe",
-          "sizeBytes": 26983759
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-gpad-v1.3.4/BEZ-GPAD-Setup-1.3.4.exe",
+          "sizeBytes": 27320557
         },
         {
           "label": "Portable",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-gpad-v1.1/BEZ-GPAD-Portable-1.1.exe",
-          "sizeBytes": 37003604
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-gpad-v1.3.4/BEZ-GPAD-Portable-1.3.4.exe",
+          "sizeBytes": 37382423
         }
       ],
       "featured": true
