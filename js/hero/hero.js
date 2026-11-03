@@ -95,7 +95,7 @@
     const top = control.getBoundingClientRect().bottom - hr.top + 10;
     const bottom = copy.getBoundingClientRect().top - hr.top - 14;
     const tall = 4 + 0.42 * 2.6;                     // plate + both jaws
-    S = Math.min((W - 32) / 9.5, Math.max(60, bottom - top) / tall, 128);
+    S = Math.max(4, Math.min((W - 32) / 9.5, Math.max(60, bottom - top) / tall, 128));   // a hidden window reports 0 width
     jaw = 0.42 * S;
     b.w = 8 * S; b.h = 4 * S;
     b.x = (W - b.w) / 2;

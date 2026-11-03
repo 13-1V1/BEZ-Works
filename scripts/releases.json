@@ -115,9 +115,9 @@
     { "id": "bez-inprints", "version": "0.9.2", "title": "BEZ InPrints 0.9.2", "assets": [
       { "name": "BEZ-InPrints-0.9.2-x64-setup.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ InPrints/src-tauri/target/release/bundle/nsis/BEZ InPrints_0.9.2_x64-setup.exe" }
     ]},
-    { "id": "bez-pro-write", "version": "1.2.2", "title": "BEZ Pro Write 1.2.2", "assets": [
-      { "name": "BEZ-Pro-Write-1.2.2-x64.msi", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Pro Write/src-tauri/target/release/bundle/msi/BEZ Pro Write_1.2.2_x64_en-US.msi" },
-      { "name": "BEZ-Pro-Write-1.2.2-macOS-universal.dmg", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/BEZ Pro Write/release/mac/BEZ Pro Write_1.2.2_universal.dmg" }
+    { "id": "bez-pro-write", "version": "1.4.1", "title": "BEZ Pro Write 1.4.1", "assets": [
+      { "name": "BEZ-Pro-Write-1.4.1-x64.msi", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Pro Write/src-tauri/target/release/bundle/msi/BEZ Pro Write_1.4.1_x64_en-US.msi" },
+      { "name": "BEZ-Pro-Write-1.4.1-macOS-universal.dmg", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/BEZ Pro Write/release/mac/BEZ Pro Write_1.4.1_universal.dmg" }
     ]},
     { "id": "the-judge", "version": "1.0.0", "title": "The Judge 1.0.0", "assets": [
       { "name": "The-Judge-Setup-1.0.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/The Judge/dist/The Judge Setup 1.0.0.exe" },
