@@ -949,8 +949,8 @@
       "name": "BEZ Pro Write",
       "category": "tools",
       "status": "ready",
-      "version": "1.4.1",
-      "description": "A step-by-step coach for professional writing: emails, memos, business letters, cover letters and short reports, built on the 7 C's. You type every word; it points out spots to look at and explains why, but never rewrites. The 7 C's check walks you through one spot at a time and outlines it in your writing. Practice mode with 16 scenarios, a progress page, export to Word, text or PDF, and Read it aloud with six natural voices. Fully offline, or try it in the browser.",
+      "version": "1.5.0",
+      "description": "A step-by-step coach for professional writing: emails, chat messages, memos, business letters, cover letters and short reports, built on the 7 C's. You type every word; it points out spots to look at and explains why, but never rewrites. The 7 C's check walks you through one spot at a time and outlines it in your writing. Practice mode with 16 scenarios, a progress page, export to Word, text or PDF, and Read it aloud with six natural voices. Fully offline, or try it in the browser.",
       "note": "Mac: one download for Intel and Apple Silicon, macOS 11 or newer. The first time on macOS 15 or newer, go to System Settings > Privacy & Security and click Open Anyway; on macOS 11 to 14, right-click the app and choose Open.",
       "images": [
         {
@@ -978,18 +978,18 @@
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-pro-write-v1.4.1/BEZ-Pro-Write-1.4.1-x64.msi",
-          "sizeBytes": 319668224
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-pro-write-v1.5.0/BEZ-Pro-Write-1.5.0-x64.msi",
+          "sizeBytes": 319725568
         },
         {
           "label": "Download",
           "platform": "macOS",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-pro-write-v1.4.1/BEZ-Pro-Write-1.4.1-macOS-universal.dmg",
-          "sizeBytes": 333773602
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-pro-write-v1.5.0/BEZ-Pro-Write-1.5.0-macOS-universal.dmg",
+          "sizeBytes": 333880671
         }
       ],
       "browser": "play/bez-pro-write/",
-      "source": "https://github.com/13-1V1/BEZ-Pro-Write-Source/tree/v1.4.1"
+      "source": "https://github.com/13-1V1/BEZ-Pro-Write-Source/tree/v1.5.0"
     },
     {
       "id": "the-judge",
