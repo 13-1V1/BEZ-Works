@@ -992,6 +992,45 @@
       "source": "https://github.com/13-1V1/BEZ-Pro-Write-Source/tree/v1.5.0"
     },
     {
+      "id": "bez-remas",
+      "name": "B's E-Z Read Me a Story",
+      "category": "tools",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Reads your documents out loud. Open a PDF, EPUB, Word, text or Markdown file, press Play, and follow along as the words light up. It remembers your place in every book and works offline with a built-in voice.",
+      "note": "Windows, 64-bit. The built-in voice is a one-time 320 MB download. If Windows says it protected your PC, click More info, then Run anyway.",
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-remas-v1.0.0/BEZ-ReMaS-1.0.0-x64.exe",
+          "sizeBytes": 254786529
+        }
+      ],
+      "images": [
+        {
+          "full": "img/bez-remas/1.webp",
+          "thumb": "img/bez-remas/1-thumb.webp",
+          "alt": "B's E-Z Read Me a Story library with an EPUB, a PDF, a Word file and a text file"
+        },
+        {
+          "full": "img/bez-remas/2.webp",
+          "thumb": "img/bez-remas/2-thumb.webp",
+          "alt": "A story being read aloud, with the current sentence and word highlighted"
+        },
+        {
+          "full": "img/bez-remas/3.webp",
+          "thumb": "img/bez-remas/3-thumb.webp",
+          "alt": "Reader settings beside a story: text size, font and highlight options"
+        },
+        {
+          "full": "img/bez-remas/4.webp",
+          "thumb": "img/bez-remas/4-thumb.webp",
+          "alt": "The Appearance settings with light and dark color themes"
+        }
+      ]
+    },
+    {
       "id": "the-judge",
       "name": "The Judge",
       "category": "tools",
