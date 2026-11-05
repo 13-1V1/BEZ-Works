@@ -39,6 +39,14 @@
         <div><dt>T</dt><dd data-t>3</dd></div>
       </dl>
       <p class="visits" data-visits hidden><span>Visitors</span> <b data-visits-count>0</b></p>
+      <div class="search-panel" role="search" data-search-panel>
+        <div class="search-head">
+          <label for="program-search">Search</label>
+          <span class="search-count" aria-live="polite" data-search-count></span>
+        </div>
+        <input class="search-input" id="program-search" type="search" placeholder="Name, CNC, Mac…" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-controls="search-results" data-search>
+        <div class="search-results" id="search-results" data-search-results hidden></div>
+      </div>
       <ul class="tool-table" aria-hidden="true">
         <li data-tool="1"><b>T1</b> 2.0 face mill</li>
         <li data-tool="2"><b>T2</b> 1/2 90° V-bit</li>
@@ -67,18 +75,9 @@
         <nav class="filter-list" aria-label="Filter by category" data-filters></nav>
       </div>
 
-      <div class="program-search" role="search">
-        <label class="sr-only" for="program-search">Search programs</label>
-        <input class="search-input" id="program-search" type="search" placeholder="Search programs" autocomplete="off" spellcheck="false" enterkeyhint="search" data-search>
-        <span class="search-count" aria-live="polite" data-search-count></span>
-      </div>
-
       <ul class="program-list" data-programs>
         <li class="loading">Loading programs…</li>
       </ul>
-      <p class="search-empty" data-search-empty hidden>
-        No programs match that. <button class="link-btn" type="button" data-search-clear>Show all programs</button>
-      </p>
     </section>
 
     <section class="install" aria-labelledby="install-title">
@@ -152,6 +151,7 @@
   <script src="js/hero/effects.js"></script>
   <script src="js/hero/hero.js"></script>
   <script src="js/visits.js" defer></script>
+  <script src="js/search.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
