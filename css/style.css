@@ -197,6 +197,7 @@ code {
   border-radius: 10px;
   backdrop-filter: blur(6px);
   pointer-events: auto;
+  cursor: text;
   transition: border-color .15s, box-shadow .15s;
 }
 
@@ -206,7 +207,7 @@ code {
 }
 
 .search-head { display: flex; justify-content: space-between; gap: 12px; }
-.search-head label { color: var(--coolant); font-weight: 500; }
+.search-head label { color: var(--coolant); font-weight: 500; cursor: text; }
 .search-count { color: var(--alu-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 .search-input {
@@ -234,6 +235,7 @@ code {
   max-height: min(560px, calc(100svh - 200px));
   overflow-y: auto;
   overscroll-behavior: contain;
+  cursor: default;
   background: rgba(8, 16, 23, .96);
   border: 1px solid var(--edge-bright);
   border-radius: 10px;

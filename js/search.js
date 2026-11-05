@@ -99,6 +99,11 @@ function initSearch(programs, catNames, openProgram) {
 
   const rows = () => [...box.querySelectorAll('[data-result]')];
 
+  // The whole panel is the search box, not just the line of text inside it
+  panel.addEventListener('click', (e) => {
+    if (!box.contains(e.target)) input.focus();
+  });
+
   input.addEventListener('input', update);
   input.addEventListener('focus', update);
   input.addEventListener('keydown', (e) => {
