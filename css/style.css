@@ -340,6 +340,48 @@ code {
   box-shadow: 0 2px 0 #7a3510, 0 0 18px -4px rgba(255, 122, 47, .8);
 }
 
+/* ---------- search: stays on screen while scrolling the cards ---------- */
+
+.program-search {
+  position: sticky;
+  top: 8px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 112px 10px 16px;
+  border-radius: var(--radius-btn);
+  background: var(--anodize-800);
+  border: 1px solid var(--edge-bright);
+  box-shadow: 0 8px 20px -10px #000;
+  color: var(--alu);
+  font: 500 16px var(--f-body);   /* 16px stops phones zooming in on focus */
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.search-input::placeholder { color: var(--alu-dim); opacity: 1; }
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--heat);
+  box-shadow: 0 0 0 3px rgba(255, 122, 47, .25), 0 8px 20px -10px #000;
+}
+
+.search-count {
+  position: absolute;
+  right: 40px;
+  color: var(--alu-dim);
+  font: 13px var(--f-mono);
+  pointer-events: none;
+}
+
+.search-empty { color: var(--alu-dim); }
+
 /* ---------- program cards ---------- */
 
 .program-list {
@@ -365,7 +407,7 @@ code {
   box-shadow: 0 20px 40px -24px rgba(0, 0, 0, .8), 0 1px 0 rgba(255, 255, 255, .04) inset;
   transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
   transition: transform .35s var(--ease-out), border-color .25s, box-shadow .3s;
-  scroll-margin-top: 16px;
+  scroll-margin-top: 72px;   /* clear of the search bar */
 }
 
 /* glint that follows the pointer, like light across a machined face */

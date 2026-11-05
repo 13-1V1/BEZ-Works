@@ -997,7 +997,7 @@
       "category": "tools",
       "status": "ready",
       "version": "1.0.0",
-      "description": "Reads your documents out loud. Open a PDF, EPUB, Word, text or Markdown file, press Play, and follow along as the words light up. It remembers your place in every book and works offline with a built-in voice.",
+      "description": "Reads your documents aloud. Open a PDF, EPUB, Word, text or Markdown file, press Play, and follow along as the words light up. It remembers your place in every book and works offline with a built-in voice.",
       "note": "Windows, 64-bit. The built-in voice is a one-time 320 MB download. If Windows says it protected your PC, click More info, then Run anyway.",
       "downloads": [
         {

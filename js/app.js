@@ -100,16 +100,109 @@ function cardHTML(p, catNames) {
     </li>`;
 }
 
-/* ---------- Filters ---------- */
+/* ---------- Filters and search ---------- */
+
+let activeCat = 'all';
+let tokens = [];
+const searchIndex = new Map();   // program id -> { name, all } as searchable text
+
+// Lower case, no apostrophes, punctuation to spaces. Hyphenated words are kept
+// both ways so "gcode", "g code" and "code" all find G-Code.
+function searchable(parts) {
+  const text = parts.filter(Boolean).join(' ').toLowerCase().replace(/['’]/g, '');
+  const spaced = (t) => ' ' + t.replace(/[^a-z0-9]+/g, ' ').trim() + ' ';
+  return spaced(text) + spaced(text.replace(/-/g, ''));
+}
+
+function indexProgram(p, catName) {
+  const platforms = (p.downloads || []).map((d) => d.platform);
+  searchIndex.set(p.id, {
+    name: searchable([p.name, p.id]),
+    all: searchable([p.name, p.id, p.description, p.note, catName, ...platforms,
+      platforms.includes('macOS') && 'mac', p.browser && 'browser web online']),
+  });
+}
+
+// Words match from their start. "mac" has to be whole, or it finds every "machine".
+const hasToken = (text, t) => text.includes(t === 'mac' ? ' mac ' : ' ' + t);
+
+function applyFilters() {
+  let shown = 0;
+  document.querySelectorAll('.program-card').forEach((c) => {
+    const entry = searchIndex.get(c.id);
+    const show = (activeCat === 'all' || c.dataset.category === activeCat)
+      && tokens.every((t) => hasToken(entry.all, t));
+    c.hidden = !show;
+    // name matches go ahead of ones that only match the description
+    c.style.order = tokens.length && tokens.every((t) => hasToken(entry.name, t)) ? -1 : '';
+    if (show) shown++;
+  });
+  $('[data-search-count]').textContent = tokens.length ? `${shown} ${shown === 1 ? 'program' : 'programs'}` : '';
+  $('[data-search-empty]').hidden = shown > 0;
+}
 
 function setFilter(catId) {
+  activeCat = catId;
   document.querySelectorAll('.filter-btn').forEach((b) => {
     const on = b.dataset.filter === catId;
     b.classList.toggle('active', on);
     b.setAttribute('aria-pressed', on);
   });
-  document.querySelectorAll('.program-card').forEach((c) => {
-    c.hidden = catId !== 'all' && c.dataset.category !== catId;
+  applyFilters();
+}
+
+function setSearch(text) {
+  tokens = text.toLowerCase().replace(/['’-]/g, '').split(/[^a-z0-9]+/).filter(Boolean);
+  applyFilters();
+}
+
+function clearSearch() {
+  $('[data-search]').value = '';
+  setSearch('');
+}
+
+// The bar stays on screen while scrolling, so bring the results back up under it
+function showResults(list, bar) {
+  const top = list.getBoundingClientRect().top;
+  const gap = bar.offsetHeight + 12;
+  if (top < gap) window.scrollBy(0, top - gap);
+}
+
+function firstResult(list) {
+  const cards = [...list.querySelectorAll('.program-card:not([hidden])')];
+  return cards.find((c) => c.style.order === '-1') || cards[0];
+}
+
+function wireSearch(list) {
+  const input = $('[data-search]');
+  const bar = $('.program-search');
+
+  input.addEventListener('input', () => {
+    setSearch(input.value);
+    showResults(list, bar);
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      clearSearch();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const card = firstResult(list);
+      if (card) flashCard(card);
+      input.blur();   // closes the phone keyboard
+    }
+  });
+  $('[data-search-clear]').addEventListener('click', () => {
+    clearSearch();
+    setFilter('all');
+    input.focus();
+  });
+  // "/" jumps to the search box from anywhere on the page
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target.closest('input, textarea, select') || !$('.lightbox').hidden) return;
+    e.preventDefault();
+    bar.scrollIntoView({ block: 'center' });
+    input.focus();
   });
 }
 
@@ -199,7 +292,12 @@ function focusHash() {
   if (!id) return;
   const card = document.getElementById(id);
   if (!card || !card.classList.contains('program-card')) return;
+  clearSearch();
   setFilter('all');
+  flashCard(card);
+}
+
+function flashCard(card) {
   card.scrollIntoView({ behavior: 'smooth', block: 'start' });
   card.classList.add('highlight');
   setTimeout(() => card.classList.remove('highlight'), 2500);
@@ -271,11 +369,14 @@ async function init() {
     const ordered = [...data.programs].sort((a, b) =>
       (a.status === 'coming-soon') - (b.status === 'coming-soon'));
 
+    data.programs.forEach((p) => indexProgram(p, catNames[p.category]));
+
     const list = $('[data-programs]');
     list.innerHTML = ordered.map((p) => cardHTML(p, catNames)).join('')
       || '<li class="empty">No programs yet.</li>';
 
     renderFilters(data.categories);
+    wireSearch(list);
     wireTilt(list);
 
     list.addEventListener('click', (e) => {

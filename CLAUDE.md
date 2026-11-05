@@ -19,6 +19,7 @@ Publishing: pushing to `main` runs `.github/workflows/pages.yml` (build, then de
 
 - `programs.json` (categories plus programs) and `tools.json` drive everything. `js/app.js` renders the cards, filters, lightbox, and `#id` deep links from them. Adding a program shouldn't need HTML or JS changes.
 - `app.js` `loadJSON(path, inlineId)` reads an inline `<script type="application/json">` first, then falls back to fetching. `build-site.mjs` inlines both JSON files into `index.html`, so the published page doesn't fetch them. The local preview just fetches them.
+- The search bar in `app.js` works from the same data: name, id, description, note, category and platforms, matched from the start of each word. It combines with the category filter and needs no setup for a new program. `/` focuses it, Enter jumps to the first result, Esc clears it.
 - `status: "coming-soon"` cards sort last and show no buttons. `featured: true` cards span wider. Download URLs point to GitHub Releases, tagged `<id>-v<version>`. Binaries are never committed.
 
 ## Hero animation (`js/hero/`)

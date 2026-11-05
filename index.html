@@ -67,9 +67,18 @@
         <nav class="filter-list" aria-label="Filter by category" data-filters></nav>
       </div>
 
+      <div class="program-search" role="search">
+        <label class="sr-only" for="program-search">Search programs</label>
+        <input class="search-input" id="program-search" type="search" placeholder="Search programs" autocomplete="off" spellcheck="false" enterkeyhint="search" data-search>
+        <span class="search-count" aria-live="polite" data-search-count></span>
+      </div>
+
       <ul class="program-list" data-programs>
         <li class="loading">Loading programs…</li>
       </ul>
+      <p class="search-empty" data-search-empty hidden>
+        No programs match that. <button class="link-btn" type="button" data-search-clear>Show all programs</button>
+      </p>
     </section>
 
     <section class="install" aria-labelledby="install-title">
