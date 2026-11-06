@@ -996,15 +996,27 @@
       "name": "B's E-Z Read Me a Story",
       "category": "tools",
       "status": "ready",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Reads your documents aloud. Open a PDF, EPUB, Word, text or Markdown file, press Play, and follow along as the words light up. It remembers your place in every book and works offline with a built-in voice.",
-      "note": "Windows, 64-bit. The built-in voice is a one-time 320 MB download. If Windows says it protected your PC, click More info, then Run anyway.",
+      "note": "Windows, 64-bit. The built-in voice is a one-time 320 MB download. If Windows says it protected your PC, click More info, then Run anyway. Mac: Apple Silicon only (M1 or newer), no Intel version. The first time, drag it to Applications and try to open it, then go to System Settings > Privacy & Security, click Open Anyway, and confirm.",
       "downloads": [
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-remas-v1.0.0/BEZ-ReMaS-1.0.0-x64.exe",
-          "sizeBytes": 254786529
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-remas-v1.0.1/BEZ-ReMaS-1.0.1-x64.exe",
+          "sizeBytes": 254786509
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-remas-v1.0.1/BEZ-ReMaS-1.0.1-arm64.dmg",
+          "sizeBytes": 303529201
+        },
+        {
+          "label": "Apple Silicon (zip)",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-remas-v1.0.1/BEZ-ReMaS-1.0.1-arm64.zip",
+          "sizeBytes": 301200163
         }
       ],
       "images": [
