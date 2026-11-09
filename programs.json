@@ -951,6 +951,57 @@
       "note": "Mac: Intel or Apple Silicon. The first launch needs Open Anyway (see Install help)."
     },
     {
+      "id": "bez-layout",
+      "name": "B's E-Z Layout",
+      "category": "tools",
+      "status": "ready",
+      "version": "0.9.57",
+      "description": "A simple drawing app for construction sketches: floor plans, site plans, framing layouts, and door and window details. Every size is in feet and inches, every sheet prints true to scale, and 388 ready-made templates cover doors, kitchens, electrical, framing and more. Made for people who have never used CAD.",
+      "note": "Windows 10 or 11, 64-bit. If Windows says it protected your PC, click More info, then Run anyway. Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help).",
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-layout-v0.9.57/BEZ-Layout-Setup-0.9.57.exe",
+          "sizeBytes": 125481739
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-layout-v0.9.57/BEZ-Layout-0.9.57-macOS-arm64.zip",
+          "sizeBytes": 133802444
+        },
+        {
+          "label": "Intel",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-layout-v0.9.57/BEZ-Layout-0.9.57-macOS-x64.zip",
+          "sizeBytes": 139260448
+        }
+      ],
+      "images": [
+        {
+          "full": "img/bez-layout/1.webp",
+          "thumb": "img/bez-layout/1-thumb.webp",
+          "alt": "A site and floor plan for a 3-bed house, drawn to scale with a title block"
+        },
+        {
+          "full": "img/bez-layout/2.webp",
+          "thumb": "img/bez-layout/2-thumb.webp",
+          "alt": "A front elevation of a house with roof, siding and stone labeled"
+        },
+        {
+          "full": "img/bez-layout/3.webp",
+          "thumb": "img/bez-layout/3-thumb.webp",
+          "alt": "The Templates library open with doors, windows, kitchen and bath pieces"
+        },
+        {
+          "full": "img/bez-layout/4.webp",
+          "thumb": "img/bez-layout/4-thumb.webp",
+          "alt": "A commercial site plan with a sales floor, offices and a 19-stall parking lot"
+        }
+      ]
+    },
+    {
       "id": "bez-pro-write",
       "name": "BEZ Pro Write",
       "category": "tools",

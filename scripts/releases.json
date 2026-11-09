@@ -121,6 +121,11 @@
       { "name": "BEZ-ReMaS-1.0.1-arm64.dmg", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/BEZ ReMaS/desktop/dist/mac/BEZ-ReMaS-1.0.1-arm64.dmg" },
       { "name": "BEZ-ReMaS-1.0.1-arm64.zip", "label": "Apple Silicon (zip)", "platform": "macOS", "file": "C:/Users/brenn/BEZ ReMaS/desktop/dist/mac/BEZ-ReMaS-1.0.1-arm64.zip" }
     ]},
+    { "id": "bez-layout", "version": "0.9.57", "title": "B's E-Z Layout 0.9.57", "assets": [
+      { "name": "BEZ-Layout-Setup-0.9.57.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Layout/dist/BEZ Layout Setup 0.9.57.exe" },
+      { "name": "BEZ-Layout-0.9.57-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/BEZ Layout/dist/mac/BEZ-Layout-0.9.57-macOS-arm64.zip" },
+      { "name": "BEZ-Layout-0.9.57-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/BEZ Layout/dist/mac/BEZ-Layout-0.9.57-macOS-x64.zip" }
+    ]},
     { "id": "bez-pro-write", "version": "1.5.0", "title": "BEZ Pro Write 1.5.0", "assets": [
       { "name": "BEZ-Pro-Write-1.5.0-x64.msi", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Pro Write/src-tauri/target/release/bundle/msi/BEZ Pro Write_1.5.0_x64_en-US.msi" },
       { "name": "BEZ-Pro-Write-1.5.0-macOS-universal.dmg", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/BEZ Pro Write/release/mac/BEZ Pro Write_1.5.0_universal.dmg" }
