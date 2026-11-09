@@ -27,6 +27,37 @@
   ],
   "programs": [
     {
+      "id": "bez-cam",
+      "name": "BEZ CAM",
+      "category": "machining",
+      "rooms": ["manufacturing"],
+      "status": "ready",
+      "version": "1.0",
+      "description": "Beginner-friendly CAM: a SolidWorks-style program that turns a part into Fanuc G-code. Mill only for now.",
+      "note": "Windows 10 or 11, 64-bit. Installs just for you, no admin needed, and sets itself up the first time it starts. If Windows says it protected your PC, click More info, then Run anyway.",
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-cam-v1.0/BEZ-CAM-Setup-1.0.exe",
+          "sizeBytes": 538447839
+        }
+      ],
+      "images": [
+        {
+          "full": "img/bez-cam/1.webp",
+          "thumb": "img/bez-cam/1-thumb.webp",
+          "alt": "Make G-code's first question, which side faces up, with the part sitting in its stock"
+        },
+        {
+          "full": "img/bez-cam/2.webp",
+          "thumb": "img/bez-cam/2-thumb.webp",
+          "alt": "A sample block with a pocket and two holes open on the Features tab"
+        }
+      ],
+      "featured": true
+    },
+    {
       "id": "gcode-trainer",
       "name": "G-Code Trainer",
       "category": "machining",
@@ -275,37 +306,7 @@
           "sizeBytes": 5967308
         }
       ]
-    },
-    {
-      "id": "bez-cam",
-      "name": "BEZ CAM",
-      "category": "machining",
-      "rooms": ["manufacturing"],
-      "status": "ready",
-      "version": "1.0",
-      "description": "Beginner-friendly CAM: a SolidWorks-style program that turns a part into Fanuc G-code. Mill only for now.",
-      "note": "Windows 10 or 11, 64-bit. Installs just for you, no admin needed, and sets itself up the first time it starts. If Windows says it protected your PC, click More info, then Run anyway.",
-      "downloads": [
-        {
-          "label": "Download",
-          "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-cam-v1.0/BEZ-CAM-Setup-1.0.exe",
-          "sizeBytes": 538447839
-        }
-      ],
-      "images": [
-        {
-          "full": "img/bez-cam/1.webp",
-          "thumb": "img/bez-cam/1-thumb.webp",
-          "alt": "Make G-code's first question, which side faces up, with the part sitting in its stock"
-        },
-        {
-          "full": "img/bez-cam/2.webp",
-          "thumb": "img/bez-cam/2-thumb.webp",
-          "alt": "A sample block with a pocket and two holes open on the Features tab"
-        }
-      ]
-    },
+    },
     {
       "id": "bez-mapper",
       "name": "BEZ MaPPer",
