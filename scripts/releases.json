@@ -121,6 +121,9 @@
       { "name": "BEZ-ReMaS-1.0.1-arm64.dmg", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/BEZ ReMaS/desktop/dist/mac/BEZ-ReMaS-1.0.1-arm64.dmg" },
       { "name": "BEZ-ReMaS-1.0.1-arm64.zip", "label": "Apple Silicon (zip)", "platform": "macOS", "file": "C:/Users/brenn/BEZ ReMaS/desktop/dist/mac/BEZ-ReMaS-1.0.1-arm64.zip" }
     ]},
+    { "id": "bez-cam", "version": "1.0", "title": "BEZ CAM 1.0", "assets": [
+      { "name": "BEZ-CAM-Setup-1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ CAM/dist/BEZ CAM Setup 1.0.exe" }
+    ]},
     { "id": "bez-layout", "version": "0.9.57", "title": "B's E-Z Layout 0.9.57", "assets": [
       { "name": "BEZ-Layout-Setup-0.9.57.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Layout/dist/BEZ Layout Setup 0.9.57.exe" },
       { "name": "BEZ-Layout-0.9.57-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/BEZ Layout/dist/mac/BEZ-Layout-0.9.57-macOS-arm64.zip" },

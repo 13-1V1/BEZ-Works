@@ -280,10 +280,21 @@
       "id": "bez-cam",
       "name": "BEZ CAM",
       "category": "machining",
-      "rooms": ["manufacturing"],
-      "status": "coming-soon",
-      "description": "Beginner-friendly CAM: a SolidWorks-style FreeCAD setup that turns a part into Fanuc G-code. Mill only for now.",
-      "images": []
+      "rooms": [
+        "manufacturing"
+      ],
+      "status": "ready",
+      "version": "1.0",
+      "description": "Beginner-friendly CAM: a SolidWorks-style program that turns a part into Fanuc G-code. Mill only for now.",
+      "note": "Windows 10 or 11, 64-bit. Installs just for you, no admin needed, and sets itself up the first time it starts. If Windows says it protected your PC, click More info, then Run anyway.",
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-cam-v1.0/BEZ-CAM-Setup-1.0.exe",
+          "sizeBytes": 538447839
+        }
+      ]
     },
     {
       "id": "bez-mapper",
