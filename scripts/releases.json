@@ -1,9 +1,9 @@
 {
   "_about": "What goes on GitHub Releases. scripts/stage-releases.py builds _releases/<tag>/ from this; scripts/upload-releases.py uploads it. 'file' = copy as-is under a clean name; 'zip' = zip a list of files/folders; 'zipdir' = zip a whole folder, leaving out anything listed in 'exclude'; 'git' = git archive of a repo's HEAD (tracked files only); 'scrub' = after zipping, drop the listed names and replace text inside the zip; 'source': true marks a source-code zip; 'unix_zip': true re-marks a zip made on Windows as Unix-made so Macs keep the app's run permission; 'add' puts extra files (like the Mac open-me note) into the zip; 'sign': true ad-hoc signs the .app with rcodesign (Apple Silicon won't run unsigned apps, and recent macOS calls them damaged).",
   "releases": [
-    { "id": "bez-gpad", "version": "1.3.4", "title": "BEZ GPAD 1.3.4", "assets": [
-      { "name": "BEZ-GPAD-Setup-1.3.4.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/installer/BEZ-GPAD-Setup-1.3.4.exe" },
-      { "name": "BEZ-GPAD-Portable-1.3.4.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/BEZ GPAD.exe" }
+    { "id": "bez-gpad", "version": "1.3.5", "title": "BEZ GPAD 1.3.5", "assets": [
+      { "name": "BEZ-GPAD-Setup-1.3.5.exe", "label": "Installer", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/installer/BEZ-GPAD-Setup-1.3.5.exe" },
+      { "name": "BEZ-GPAD-Portable-1.3.5.exe", "label": "Portable", "platform": "Windows", "file": "C:/Users/brenn/BEZ GPAD/dist/BEZ GPAD.exe" }
     ]},
     { "id": "chipload", "version": "1.0.0", "title": "CHIPLOAD 1.0.0", "assets": [
       { "name": "CHIPLOAD-1.0.0.apk", "label": "Download", "platform": "Android", "file": "C:/Users/brenn/Chipload/chipload/dist/chipload-1.0.0-debug.apk" }
@@ -121,13 +121,13 @@
       { "name": "BEZ-ReMaS-1.0.1-arm64.dmg", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/BEZ ReMaS/desktop/dist/mac/BEZ-ReMaS-1.0.1-arm64.dmg" },
       { "name": "BEZ-ReMaS-1.0.1-arm64.zip", "label": "Apple Silicon (zip)", "platform": "macOS", "file": "C:/Users/brenn/BEZ ReMaS/desktop/dist/mac/BEZ-ReMaS-1.0.1-arm64.zip" }
     ]},
-    { "id": "bez-cam", "version": "1.0", "title": "BEZ CAM 1.0", "assets": [
-      { "name": "BEZ-CAM-Setup-1.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ CAM/dist/BEZ CAM Setup 1.0.exe" }
+    { "id": "bez-cam", "version": "1.0.1", "title": "BEZ CAM 1.0.1", "assets": [
+      { "name": "BEZ-CAM-Setup-1.0.1.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ CAM/dist/BEZ CAM Setup 1.0.1.exe" }
     ]},
-    { "id": "bez-layout", "version": "0.9.57", "title": "B's E-Z Layout 0.9.57", "assets": [
-      { "name": "BEZ-Layout-Setup-0.9.57.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Layout/dist/BEZ Layout Setup 0.9.57.exe" },
-      { "name": "BEZ-Layout-0.9.57-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/BEZ Layout/dist/mac/BEZ-Layout-0.9.57-macOS-arm64.zip" },
-      { "name": "BEZ-Layout-0.9.57-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/BEZ Layout/dist/mac/BEZ-Layout-0.9.57-macOS-x64.zip" }
+    { "id": "bez-layout", "version": "0.9.59", "title": "B's E-Z Layout 0.9.59", "assets": [
+      { "name": "BEZ-Layout-Setup-0.9.59.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Layout/dist/B's E-Z Layout Setup 0.9.59.exe" },
+      { "name": "BEZ-Layout-0.9.59-macOS-arm64.zip", "label": "Apple Silicon", "platform": "macOS", "file": "C:/Users/brenn/BEZ Layout/dist/mac/BEZ-Layout-0.9.59-macOS-arm64.zip" },
+      { "name": "BEZ-Layout-0.9.59-macOS-x64.zip", "label": "Intel", "platform": "macOS", "file": "C:/Users/brenn/BEZ Layout/dist/mac/BEZ-Layout-0.9.59-macOS-x64.zip" }
     ]},
     { "id": "bez-pro-write", "version": "1.5.0", "title": "BEZ Pro Write 1.5.0", "assets": [
       { "name": "BEZ-Pro-Write-1.5.0-x64.msi", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Pro Write/src-tauri/target/release/bundle/msi/BEZ Pro Write_1.5.0_x64_en-US.msi" },
