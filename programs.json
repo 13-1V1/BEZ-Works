@@ -437,13 +437,13 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "A physics siege shooter: blast drones out of brick, glass and concrete towers with as few rounds as you can. 24 levels across 4 sectors, 6 ammo types, craters and collapsing towers, plus Siege, Demolition and a tower Workshop.",
-      "note": "Windows: unzip and run ShootTheShit.exe; if Windows says it protected your PC, click More info, then Run anyway. Mac: one download for Intel and Apple Silicon; the first launch needs Open Anyway (see Install help). Android: allow installs from unknown sources when asked. The browser version plays best in landscape.",
+      "note": "Windows: installs just for you, no admin needed; if Windows says it protected your PC, click More info, then Run anyway. Mac: one download for Intel and Apple Silicon; the first launch needs Open Anyway (see Install help). Android: allow installs from unknown sources when asked. The browser version plays best in landscape.",
       "downloads": [
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/shoot-the-shit-v1.0.0/ShootTheShit-1.0.0-Windows.zip",
-          "sizeBytes": 83016432
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/shoot-the-shit-v1.0.0/ShootTheShit-Setup-1.0.0.exe",
+          "sizeBytes": 71037220
         },
         {
           "label": "Download",

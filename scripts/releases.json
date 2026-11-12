@@ -127,7 +127,7 @@
       { "name": "BEZ-ReMaS-1.0.1-arm64.zip", "label": "Apple Silicon (zip)", "platform": "macOS", "file": "C:/Users/brenn/BEZ ReMaS/desktop/dist/mac/BEZ-ReMaS-1.0.1-arm64.zip" }
     ]},
     { "id": "shoot-the-shit", "version": "1.0.0", "title": "Shoot The Shit 1.0.0", "assets": [
-      { "name": "ShootTheShit-1.0.0-Windows.zip", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Shoot The Shit/ShootTheShit.zip" },
+      { "name": "ShootTheShit-Setup-1.0.0.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/Shoot The Shit/ShootTheShit-Setup-1.0.0.exe" },
       { "name": "ShootTheShit-Mac-1.0.0.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/Shoot The Shit/ShootTheShit-Mac-1.0.0.zip" },
       { "name": "ShootTheShit-1.0.0.apk", "label": "Download", "platform": "Android", "file": "C:/Users/brenn/Shoot The Shit/ShootTheShit-1.0.0.apk" }
     ]},
