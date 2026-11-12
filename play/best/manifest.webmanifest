@@ -1,0 +1,15 @@
+{
+  "name": "BEST — Blast Everything in Space Time",
+  "short_name": "BEST",
+  "description": "A cyberpunk-fantasy scrolling shooter with weapon slots, 3D bosses, boss rush and practice. Keyboard, gamepad and touch.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#04050c",
+  "theme_color": "#04050c",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

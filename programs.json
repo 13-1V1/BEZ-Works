@@ -571,6 +571,63 @@
       "browser": "play/ibtw/"
     },
     {
+      "id": "best",
+      "name": "BEST",
+      "category": "games",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "Blast Everything in Space Time: a cyberpunk-fantasy scrolling shooter. 25 stages that swing between vertical and horizontal, 3D bosses that fly in through a wormhole, four ships, nine weapons that evolve, up to five weapon slots with cores, and a drone that levels up beside you. Boss Rush, Practice, and a second loop once you win. Keyboard, gamepad and touch.",
+      "images": [
+        {
+          "full": "img/best/1.webp",
+          "thumb": "img/best/1-thumb.webp",
+          "alt": "BEST screenshot 1"
+        },
+        {
+          "full": "img/best/2.webp",
+          "thumb": "img/best/2-thumb.webp",
+          "alt": "BEST screenshot 2"
+        },
+        {
+          "full": "img/best/3.webp",
+          "thumb": "img/best/3-thumb.webp",
+          "alt": "BEST screenshot 3"
+        },
+        {
+          "full": "img/best/4.webp",
+          "thumb": "img/best/4-thumb.webp",
+          "alt": "BEST screenshot 4"
+        },
+        {
+          "full": "img/best/5.webp",
+          "thumb": "img/best/5-thumb.webp",
+          "alt": "BEST screenshot 5"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/best-v1.0.0/BEST-Setup-1.0.0.exe",
+          "sizeBytes": 116464012
+        },
+        {
+          "label": "Apple Silicon",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/best-v1.0.0/BEST-1.0.0-macOS-arm64.zip",
+          "sizeBytes": 136286801
+        },
+        {
+          "label": "Intel",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/best-v1.0.0/BEST-1.0.0-macOS-x64.zip",
+          "sizeBytes": 142500493
+        }
+      ],
+      "browser": "play/best/",
+      "note": "Plays in the browser too, on phones and tablets. Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help)."
+    },
+    {
       "id": "musickid",
       "name": "Music KID",
       "category": "audio",
