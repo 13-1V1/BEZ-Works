@@ -674,10 +674,16 @@
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/best-v1.0.0/BEST-1.0.0-macOS-x64.zip",
           "sizeBytes": 142500493
+        },
+        {
+          "label": "Download",
+          "platform": "Android",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/best-v1.0.0/BEST-1.0.0.apk",
+          "sizeBytes": 40321800
         }
       ],
       "browser": "play/best/",
-      "note": "Plays in the browser too, on phones and tablets. Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help)."
+      "note": "Plays in the browser too, on phones and tablets. Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help). Android: allow installs from unknown sources when asked; plays in portrait with touch or a gamepad."
     },
     {
       "id": "musickid",
