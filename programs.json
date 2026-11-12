@@ -54,7 +54,7 @@
           "thumb": "img/bez-cam/2-thumb.webp",
           "alt": "A sample block with a pocket and two holes open on the Features tab"
         }
-      ],
+      ],
       "featured": true
     },
     {
@@ -306,7 +306,7 @@
           "sizeBytes": 5967308
         }
       ]
-    },
+    },
     {
       "id": "bez-mapper",
       "name": "BEZ MaPPer",
@@ -427,6 +427,58 @@
           "platform": "macOS",
           "url": "https://github.com/13-1V1/BEZ-Works/releases/download/hackpath-v0.1.0/HackPath-0.1.0-macOS.zip",
           "sizeBytes": 174507
+        }
+      ]
+    },
+    {
+      "id": "shoot-the-shit",
+      "name": "Shoot The Shit",
+      "category": "games",
+      "status": "ready",
+      "version": "1.0.0",
+      "description": "A physics siege shooter: blast drones out of brick, glass and concrete towers with as few rounds as you can. 24 levels across 4 sectors, 6 ammo types, craters and collapsing towers, plus Siege, Demolition and a tower Workshop.",
+      "note": "Windows: unzip and run ShootTheShit.exe; if Windows says it protected your PC, click More info, then Run anyway. Mac: one download for Intel and Apple Silicon; the first launch needs Open Anyway (see Install help). Android: allow installs from unknown sources when asked. The browser version plays best in landscape.",
+      "downloads": [
+        {
+          "label": "Download",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/shoot-the-shit-v1.0.0/ShootTheShit-1.0.0-Windows.zip",
+          "sizeBytes": 83016432
+        },
+        {
+          "label": "Download",
+          "platform": "macOS",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/shoot-the-shit-v1.0.0/ShootTheShit-Mac-1.0.0.zip",
+          "sizeBytes": 105424846
+        },
+        {
+          "label": "Download",
+          "platform": "Android",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/shoot-the-shit-v1.0.0/ShootTheShit-1.0.0.apk",
+          "sizeBytes": 98835692
+        }
+      ],
+      "browser": "play/shoot-the-shit/",
+      "images": [
+        {
+          "full": "img/shoot-the-shit/1.webp",
+          "thumb": "img/shoot-the-shit/1-thumb.webp",
+          "alt": "A shell blast tearing through a brick tower with drones inside"
+        },
+        {
+          "full": "img/shoot-the-shit/2.webp",
+          "thumb": "img/shoot-the-shit/2-thumb.webp",
+          "alt": "Collapsing towers on the skyline level"
+        },
+        {
+          "full": "img/shoot-the-shit/3.webp",
+          "thumb": "img/shoot-the-shit/3-thumb.webp",
+          "alt": "The title screen with Play, Levels, Modes and Armory"
+        },
+        {
+          "full": "img/shoot-the-shit/4.webp",
+          "thumb": "img/shoot-the-shit/4-thumb.webp",
+          "alt": "The Modes screen: Siege, Demolition and the Workshop"
         }
       ]
     },
