@@ -624,7 +624,7 @@
     },
     {
       "id": "best",
-      "name": "BEST",
+      "name": "B.E.S.T. Scrolling Shooter",
       "category": "games",
       "status": "ready",
       "version": "1.0.0",
@@ -633,27 +633,27 @@
         {
           "full": "img/best/1.webp",
           "thumb": "img/best/1-thumb.webp",
-          "alt": "BEST screenshot 1"
+          "alt": "B.E.S.T. Scrolling Shooter screenshot 1"
         },
         {
           "full": "img/best/2.webp",
           "thumb": "img/best/2-thumb.webp",
-          "alt": "BEST screenshot 2"
+          "alt": "B.E.S.T. Scrolling Shooter screenshot 2"
         },
         {
           "full": "img/best/3.webp",
           "thumb": "img/best/3-thumb.webp",
-          "alt": "BEST screenshot 3"
+          "alt": "B.E.S.T. Scrolling Shooter screenshot 3"
         },
         {
           "full": "img/best/4.webp",
           "thumb": "img/best/4-thumb.webp",
-          "alt": "BEST screenshot 4"
+          "alt": "B.E.S.T. Scrolling Shooter screenshot 4"
         },
         {
           "full": "img/best/5.webp",
           "thumb": "img/best/5-thumb.webp",
-          "alt": "BEST screenshot 5"
+          "alt": "B.E.S.T. Scrolling Shooter screenshot 5"
         }
       ],
       "downloads": [
