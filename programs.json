@@ -34,6 +34,11 @@
       "status": "ready",
       "version": "1.0.1",
       "description": "Beginner-friendly CAM: a SolidWorks-style program that turns a part into Fanuc G-code. Mill only for now.",
+      "details": [
+        "BEZ CAM is for someone who has never programmed a mill. It follows SolidWorks naming, menus and mouse controls, so you can model a part with sketches, Smart Dimension, extruded bosses and cuts, fillets, patterns, and build assemblies and drawings, using plain shop words and tooltips on every command.",
+        "To make G-code, you open the CAM guide and answer a short series of questions: which way the part sits, the raw block and its material, what to cut, and which tools to use. It finds holes, pockets and outside profiles on its own, picks tools and works out speeds and feeds, then posts a Fanuc program in inches.",
+        "Warnings come before anything risky, every step has a Back button, and a setup sheet lists the work offset for each blank. It also tells you when a failed feature means the program is out of date. Mill only for now."
+      ],
       "note": "Windows 10 or 11, 64-bit. Installs just for you, no admin needed, and sets itself up the first time it starts. If Windows says it protected your PC, click More info, then Run anyway.",
       "downloads": [
         {
@@ -64,7 +69,12 @@
       "rooms": ["manufacturing"],
       "status": "ready",
       "version": "1.0.15",
-      "description": "Learn CNC programming from zero on FANUC-style mills and lathes. 59 guided lessons (33 mill, 26 lathe), each with a quiz and a hands-on coding exercise you run in a live 2D/3D simulator. 158 quiz questions, 40 blueprint part challenges, working FANUC 0i-MF and 0i-TF control-panel simulators, a reference for 46 G-codes, 13 M-codes and 52 alarms, and a live checker that catches 62 kinds of mistakes.",
+      "description": "Learn CNC programming from zero on FANUC-style mills and lathes. 67 guided lessons (35 mill, 32 lathe), each with a quiz and a hands-on coding exercise you run in a live 2D/3D simulator. 158 quiz questions, 40 blueprint part challenges, working FANUC 0i-MF and 0i-TF control-panel simulators, a reference for 46 G-codes, 13 M-codes and 52 alarms, and a live checker that catches 62 kinds of mistakes.",
+      "details": [
+        "G-Code Trainer is a course in the language CNC machines run, written for people who have never typed a line of it. It aims at Fanuc-controlled mills and a Fanuc 0i-TF System A lathe, and everything is inch-native (G20), with G21 taught as the explicit switch. Each student gets a profile, so shared PCs keep progress separate.",
+        "Each lesson is a reading page and a quiz, then a coding challenge you write in an editor beside a live simulator. You watch the toolpath in 2D or 3D with playback you can scrub, and read a DRO. Part challenges hand you a print, a tool table and stock, and you write the whole program from safe start to M30.",
+        "A free-practice Simulator lets you set the blank, tools and work offsets, with a checker that offers fixes. Fanuc control-panel simulators and a glossary round it out."
+      ],
       "images": [
         {
           "full": "img/gcode-trainer/1.webp",
@@ -123,6 +133,11 @@
       "status": "ready",
       "version": "1.3.5",
       "description": "G-code notepad with a “spell checker” for Fanuc mill and lathe code: errors underline red, warnings yellow, with one-click fixes. The Code Wizard on the side writes hole cycles, tool changes, threads and grooves from a few boxes, starting from the tool and speed already at the cursor.",
+      "details": [
+        "BEZ GPAD is a plain notepad for hand-writing Fanuc G-code, made for students and shop programmers on Fanuc 0i-F controls (0i-MF mill, 0i-TF lathe). Everything is in inches. It checks and explains your code; it is not a full simulator.",
+        "You type, and letters go uppercase on their own while the middle pane explains each line in plain English. Hover an underline to see what is wrong, what the machine would do if the program ran, and what to type instead. Most problems get a Fix button, Fix all clears them at once, with a CHECK comment on any guessed value.",
+        "A Setup Wizard builds a whole mill or lathe program step by step. A Pre-flight Check makes a printable sheet to sign before the program goes to the machine. Shop calculators and a 2D backplot, where you click points to place holes, are built in."
+      ],
       "images": [
         {
           "full": "img/bez-gpad/1.webp",
@@ -164,6 +179,11 @@
       "status": "ready",
       "version": "1.2.0",
       "description": "Tightens up a song's beat timing: finds the beats and stretches the mix (or its stems) onto a steady grid, with a before/after tightness score and WAV export.",
+      "details": [
+        "JIG is for producers with a finished song, or a set of stems, that drifts off the beat. Open a file and JIG finds every beat and bar line, then shows each beat's drift in a lane under the waveform: green within 5 ms, yellow within 15 ms, red beyond that. A Before and After score shows the gain.",
+        "Press Quantize and JIG renders a version with the beats on the grid, without changing pitch. Flip between original and result, or turn on a click track. If it misses, drag, add or delete markers, pin beat 1, or hit Half or Double when it read the tempo wrong.",
+        "You can tighten the whole song or one section, with heavy stretches marked. With stems, every stem moves by the same amount so they stay in phase. Export writes a new WAV and leaves your original alone."
+      ],
       "images": [
         {
           "full": "img/jig/1.webp",
@@ -194,6 +214,11 @@
       "status": "ready",
       "version": "0.3.7",
       "description": "Audio mastering app inspired by iZotope: Assist to a target loudness, Match EQ against reference tracks, album mode, clipper, EQ and limiter, with MP3 export.",
+      "details": [
+        "HONE is a stand-alone mastering program for people who make their own music and want a release-ready file without a DAW. You open or drop in a WAV, FLAC or MP3, press one button, and Master Assist reads the whole song and suggests a setting aimed at a target loudness.",
+        "From there you can stay in Easy view with seven main controls or open Detail view for every module: graphic and parametric EQ, dynamics, imager, low end, clipper and a true-peak maximizer with several characters. Match EQ pulls your mix toward a reference track or a tone target. Compare the level-matched original and master, hear only what a module changed, and loop any section.",
+        "Album mode masters a set of songs to one target. Track Info writes title, artist, artwork and lyrics into the file."
+      ],
       "images": [
         {
           "full": "img/hone/1.webp",
@@ -234,6 +259,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Machinist calculator: speeds and feeds, tap drills, threads, bolt circles and more, with a “How was this figured?” breakdown on every result. Works offline.",
+      "details": [
+        "CHIPLOAD is a calculator for the shop floor, built for a phone you might be holding with gloves on. It has big buttons, a number pad with fraction keys, a glove mode, and an answer bar you can read across the room. Imperial is the default and metric is one tap away.",
+        "Start from the search box: type \"tap\", \"1/4-20\" or a decimal and you land in the right tool with the value filled in. A job sheet takes whatever you know about the tool, material, machine and cut, then works out speed, feed, removal rate and cut time. Save your machine and it limits RPM to what your spindle can do, then figures the feed to match.",
+        "Tools include tap drills by percent thread, thread data, bolt circles with G81/G83 output, drill charts, and a G-code and M-code reference."
+      ],
       "images": [
         {
           "full": "img/chipload/1.webp",
@@ -269,6 +299,11 @@
       "status": "ready",
       "version": "0.9.3",
       "description": "An offline trainer for reading welding prints (AWS A2.4:2020) and machine prints with GD&T (ASME Y14.5-2018). It has 100 short lessons, 30 full shop prints to read against the clock, a symbol builder, 3D views of welds and tolerance zones, and practice cert tests. For welders, machinists, apprentices, and anyone studying for a print-reading test.",
+      "details": [
+        "BEZ InPrints teaches you to read welding prints (AWS A2.4:2020) and machine prints with GD&T (ASME Y14.5-2018). It is made for welders, machinists, apprentices, and anyone studying for a print-reading or certification test. It works offline, with no account.",
+        "You work through 30 units of short lessons. Each lesson has a quick explanation, five Try it questions, and a hands-on challenge. Your rank climbs from Helper to Master Inspector as you finish lessons and prints.",
+        "The Symbol Builder lets you build a weld symbol or feature control frame from a description, or turn one into plain English. The 3D view shows welds, holes and tolerance zones you can turn, and a slider shows bonus tolerance growing at MMC. Cert Prep gives timed practice tests with a Weak Spots drill, and a searchable Reference covers the symbols and callouts."
+      ],
       "note": "Windows 10 or 11, 64-bit. Installs just for you, no admin needed. If Windows says it protected your PC, click More info, then Run anyway. Mac: one download for Intel and Apple Silicon. The first time, try to open it, then go to System Settings > Privacy & Security and click Open Anyway.",
       "images": [
         {
@@ -315,6 +350,11 @@
       "status": "ready",
       "version": "0.1.0",
       "description": "Manufacturing process planner for machined parts. A step-by-step wizard asks about the part (shape, size, material, features, machines) and builds the process plan, with setup sheets and inspection plans you can print.",
+      "details": [
+        "BEZ MaPPer is for machinists, programmers and students who need a process plan for a milled or turned part. It handles machined parts only: milling and turning, plus saw, deburr, outside finishing and inspection.",
+        "You answer one group of questions per page: the job, an optional drawing, shape and size, material and stock, features such as holes, tapped holes, pockets, slots and turned steps, your machines, and outside work like anodize or heat treat. The app builds the route from shop rules, with an operation card for each step showing its tools and times. You can edit operations or open the full editor.",
+        "Speeds and feeds come from cited tables, and every number is labeled by where it came from. When the plan is right, print the packet and release the revision, which freezes it."
+      ],
       "note": "Reading drawings is optional and uses your own Anthropic API key.",
       "images": [
         {
@@ -350,6 +390,11 @@
       "status": "ready",
       "version": "1.0.1",
       "description": "Learn Linux from zero in a simulated shell that never touches your real PC: 62 lessons, 185 quiz questions and a scored practice exam, built around the CompTIA Linux+ XK0-005 objectives (the exam version before today's XK0-006).",
+      "details": [
+        "LearnLinux+ is for anyone who wants to learn the Linux command line without risking their own computer, from brand new to Linux+ exam prep. Everything runs in a pretend system held in memory. You can run rm -rf and nothing real changes, and closing the program wipes it all.",
+        "You start in guided lessons that drop you at a real prompt and check your work after each command. There are 62 lessons in 13 sections, from first commands through permissions, pipelines, scripting, processes, services, networking, storage, troubleshooting, security and a final capstone. Type hint, solution or terms at any point to get a nudge, the exact command, or an explanation of the flags.",
+        "There is also a free-play sandbox, a quiz that only asks about lessons you have finished, a scored practice exam with an 80 percent pass mark, and a searchable glossary of names and flags."
+      ],
       "images": [
         {
           "full": "img/learnlinux/1.webp",
@@ -397,6 +442,11 @@
       "status": "ready",
       "version": "0.1.0",
       "description": "Learn ethical hacking from zero: 29 lessons over 7 tracks, aligned to CompTIA PenTest+. Practice targets run in sealed local Docker containers with no internet access.",
+      "details": [
+        "HackPath is a beginner course in ethical hacking that runs on your own PC. You read a short lesson, do the work against a practice target, and HackPath checks your result before the next lesson unlocks. Authorization is taught first on every track, and each track ends with you writing a real report.",
+        "The lessons run from foundations and recon through the web track, which covers the OWASP Top 10, then password attacks, privilege escalation, log reading, hardening, and scoping and disclosure. Each lesson lists the PenTest+ exam domains it covers. You can switch between a full walkthrough and a quick path with only the hands-on steps.",
+        "Targets are only ones HackPath builds itself, so there is no field to type an address into. A built-in check proves the lab network is sealed every time you start, and labs stay locked if anything leaks."
+      ],
       "note": "Needs Docker Desktop. The first run needs internet to download the practice containers. Mac: needs Python 3.11 or newer (free from python.org); unzip and double-click Start HackPath.",
       "images": [
         {
@@ -489,6 +539,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Single-player extraction FPS on a tiny spherical planet, where the curve of the horizon tells you how far away an enemy is. Grab loot and reach the beacon before the hunters close in. Gamepad supported.",
+      "details": [
+        "You drop onto a planet only about 490 feet in radius. The ground curves away so close that you see less of an enemy the farther off they are: all of them up close, then head and shoulders, then a scalp, then nothing. That is how you judge range.",
+        "Each raid runs 4 to 8 minutes. You open crates, either fast and loud or slow and quiet, while hunter squads arrive on a rising threat curve. Stand in the beacon for 8 seconds to extract. If you die or the clock runs out, you lose what you carried. A free starter kit and banked Salvage Data survive, and a shop sells better weapons.",
+        "Sound matters as much as sight. Gunfire, footsteps and crates all carry set distances, and the hunters hear you by the same rules. Gamepad is supported."
+      ],
       "images": [
         {
           "full": "img/nowhere-to-hide/1.webp",
@@ -529,6 +584,11 @@
       "status": "ready",
       "version": "0.14.0",
       "description": "Open-world voxel survival: mine and build on fully destructible terrain, craft, fight off zombies, and survive a blood-moon horde every 7th night. Gamepad supported.",
+      "details": [
+        "Till the Moon Bleeds is a first-person survival game in the spirit of 7 Days to Die. You mine and build in an open world with smooth, fully destructible terrain, scavenge loot, craft, and manage hunger, thirst and temperature while zombies roam. Every seventh night a blood moon brings a horde, so what you build in the daytime has to hold.",
+        "Beyond digging and base building there is a lot to work with: modular firearms with attachments, melee, traps and electricity, farming, weather, and vehicles from a bicycle up. Attributes and perks level up your character. Traders buy and sell for currency and hand out quests, and raiders hold camps you can clear. A story told through found documents leads to a real ending, and a journal tracks your goals.",
+        "It auto-saves when you close the window, and gamepad play is fully supported and rebindable."
+      ],
       "images": [
         {
           "full": "img/till-the-moon-bleeds/1.webp",
@@ -557,7 +617,12 @@
       "category": "games",
       "status": "ready",
       "version": "0.1.0",
-      "description": "Top-down, wave-based zombie horde shooter: five objective types (clear, hold, hunt, path and blackout) plus a boss every fifth round, a points shop and stacking perks. Gamepad supported.",
+      "description": "Top-down, wave-based zombie horde shooter: four objective types (clear, hold, hunt and path) plus a boss every fifth round, a points shop and stacking perks. Gamepad supported.",
+      "details": [
+        "Deadzone Arcade is a score-chasing, top-down zombie shooter. You pick one of four survivors, each with different starting trade-offs, then work through rounds. Clear and Hunt rounds are about killing; Hold means standing in a marked zone; Path rounds are a winding chain of arenas where you just have to reach the end. Path rounds end at a three-way fork: a free weapon, a refuge to heal, or a harder round that pays more.",
+        "Spend points at the supply crate, the fuel drums and the tech station. There are 14 weapons, from ballistic guns to a Tesla Coil and a railgun, and 10 mods that apply to every gun you own, most with a downside. Perks and armor stack.",
+        "Weapons unlock for good against lifetime kills. Gamepad is a full control scheme, and on-screen prompts follow whichever device you used last."
+      ],
       "images": [
         {
           "full": "img/deadzone-arcade/1.webp",
@@ -598,6 +663,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Turn-based, Worms-style artillery game: destructible terrain, wind that bends every shot, 11 weapons and pixel-art scenery. Two players on one screen, gamepad supported.",
+      "details": [
+        "I Blame The Wind is a turn-based artillery game in the Worms mold, for two players sharing one screen. Red Squad and Blue Squad each field three soldiers on a randomly built battlefield: rolling hills, highlands, valleys or canyons.",
+        "On your turn you have 35 seconds to move, jump, pick a weapon, aim with the mouse and hold to charge the shot. Wind changes every turn and is shown by a large arrow at the top of the screen, so you read it before every shot. Explosions carve holes in the terrain, loose chunks break off, and a bad fall or a drop into the water costs you.",
+        "The 11 weapons are Bazooka, Grenade, Cluster Bomb, Sniper Rifle, Mortar, Shotgun, Assault Rifle, Railgun (pierces terrain and everyone in line), Dynamite, Airstrike and Land Mine. A gamepad works as well as mouse and keyboard."
+      ],
       "images": [
         {
           "full": "img/ibtw/1.webp",
@@ -629,6 +699,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Blast Everything in Space Time: a cyberpunk-fantasy scrolling shooter. 25 stages that swing between vertical and horizontal, 3D bosses that fly in through a wormhole, four ships, nine weapons that evolve, up to five weapon slots with cores, and a drone that levels up beside you. Boss Rush, Practice, and a second loop once you win. Keyboard, gamepad and touch.",
+      "details": [
+        "BEST is an arcade shooter you can pick up fast and keep building on. Choose from four ships: the balanced Enforcer, the tanky Juggernaut, the glass-cannon Wraith, or the Artificer with its Shield-Orb swarm. Your ship fires automatically. You steer, hold Focus to slow down and show your hitbox, and use missiles or a bomb in a pinch.",
+        "Kills and pods bank level-ups that you open when you choose, then you pick one of three upgrades. You can add weapon slots, mount different weapons in each, and install cores such as Rapid, Shock, Railgun and Detonation. Your drone has three stances: Hunter, Guardian and Forager.",
+        "There are 19 enemy types, introduced gradually. Between stages you shop at a Dock. The campaign has three save bays, Boss Rush replays all 25 bosses, and Practice lets you start at any stage you have reached."
+      ],
       "images": [
         {
           "full": "img/best/1.webp",
@@ -693,6 +768,11 @@
       "status": "ready",
       "version": "1.1.3",
       "description": "Scans a song and tells you its key, tempo and chords. Includes a play-along chord chart with guitar and piano shapes, batch scanning of folders, and fully offline operation.",
+      "details": [
+        "Music KID is for musicians, DJs and anyone learning songs by ear. You open a song, or drag in a file or a whole folder, and it works out the key, tempo, time signature and chords. DJs also get the Camelot code. Chords come as simple names like C, Am, F, G, with detailed names such as Cmaj7 or Dsus4 added only where it is confident.",
+        "To play along, press play and the current bar lights up while the chord appears large with guitar and piano shapes. Click any bar to jump there, or type any chord to look it up. It suggests a capo when a song sits in an awkward guitar key.",
+        "Each scan saves a text file next to the song with a bar-by-bar chord chart and timed chord list. Folder scans add a text and CSV summary."
+      ],
       "images": [
         {
           "full": "img/musickid/1.webp",
@@ -726,7 +806,12 @@
       "name": "NoBull Music Player",
       "category": "audio",
       "status": "ready",
-      "description": "A no-nonsense local music player for Windows and Android, built to handle a tagged music library and your own untagged bounces side by side. Plays MP3, FLAC, M4A, WMA, OGG, WAV and AIFF, with playlists and media keys.",
+      "description": "A no-nonsense local music player for Windows and Android, built to handle a tagged music library and your own untagged bounces side by side. Plays MP3, FLAC, M4A, WMA, OGG and WAV, with playlists and media keys.",
+      "details": [
+        "NoBull is a plain local music player for people who make music as well as collect it. Files with no tags still show up in full on the Songs and Folders views, where an untitled export belongs, instead of landing in an Unknown bucket.",
+        "Point it at your music folders and switch each one on or off without losing the list. Browse by song, album, artist, genre or folder. Sorting is remembered per view and names sort naturally, so mix v2 comes before mix v10. Playlists are ordinary .m3u files you can drop in, rename or edit in Notepad, and the ones you export read the same on the phone and the desktop.",
+        "For checking mixes, it can change playback speed without changing pitch. With the EQ off, speed at normal and volume at full, your audio goes out untouched."
+      ],
       "images": [
         {
           "full": "img/nobull/1.webp",
@@ -774,6 +859,11 @@
       "status": "ready",
       "version": "1.0.6",
       "description": "Serum-style wavetable synth built on Vital: arpeggiator, granular and multisample oscillators, two effect buses, 8 macros and 10 LFOs. VST3 plugin or standalone.",
+      "details": [
+        "ANSA is a wavetable synthesizer for producers who want Serum-style sound design, running as a VST3 plugin or standalone. Each of its three oscillators can switch between modes, including wavetable, sampler, granular, and multisample playback of SFZ instruments with velocity crossfades, keyswitches and round robin.",
+        "Modulation is deep: 8 macros, 10 LFOs, and the oscillators and filters themselves can be used as audio-rate sources, for example an oscillator into a filter cutoff. The arpeggiator has selectable modes and a Latch that is Off, Hold or Add,.",
+        "Effects run on two buses, A and B, side by side or one feeding the other. The 12 effects include a frequency shifter, a plate reverb and a convolution reverb that loads impulse responses from WAV files. You can drag effects to reorder them. Hovering a control shows a short description. MIDI learn and MPE are supported."
+      ],
       "images": [
         {
           "full": "img/ansa/1.webp",
@@ -815,6 +905,11 @@
       "status": "ready",
       "version": "0.1.0",
       "description": "Sample librarian for music producers: scans your sample folders for type, BPM and key, auditions instantly, and drags straight into your DAW. Duplicates go to a quarantine folder, never deleted.",
+      "details": [
+        "DIG is for producers whose sample folders have outgrown browsing by hand. Point it at a folder and it scans the files, sorts each as a one-shot, loop or longer recording, and measures BPM, key (in Open Key notation) and levels. Every row shows a small waveform.",
+        "Searching is the main job. Combine filename, folder, tempo, key, length, format, bit depth, tags and favorites in one search. Arrow through the list and each sample plays as you land on it, with a metronome you can run over loops. Drag one sample, or a selection, straight into your DAW. You can group samples into project folders.",
+        "DIG watches your folders, so new bounces show up on their own. When it is unsure of a tempo it shows a dash, and it never gives a one-shot a BPM. Everything stays on your computer."
+      ],
       "images": [
         {
           "full": "img/dig/1.webp",
@@ -838,6 +933,11 @@
       "status": "ready",
       "version": "0.1.0",
       "description": "Frame-by-frame animated music videos, drawn on the beat. Add a song and it finds the tempo, every beat and the drum hits; drawings snap to bars and beats, loop as clips, and lip-sync to a voice track. Onion skin, layers and a video-editor layout.",
+      "details": [
+        "Lightbox MV is for making animated music videos by hand, one drawing at a time. You draw with brush, curve, fill, eraser and select tools, with onion skin and layers, in a video-editor layout with a timeline.",
+        "Add a song and it detects the tempo, the beats and the drum hits, then draws a beat grid on the timeline. Drawings snap to bars, beats and hits, and Fit to beat lines a run of frames up with the music. Mark a stretch as a clip and repeat it, drop in section markers, and use a metronome while you work.",
+        "A parts library lets you build a character from swappable pieces such as mouths, and lip-sync reads a voice track and swaps the mouth shape on each frame. Export to MP4, GIF or an image sequence, with the audio mixed in."
+      ],
       "note": "MP4 and GIF export need ffmpeg installed (winget install Gyan.FFmpeg).",
       "images": [
         {
@@ -868,6 +968,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Infinite-zoom drawing: strokes stay sharp at any depth. Loop mode turns your drawing into an endless tunnel you can export as a GIF.",
+      "details": [
+        "ZoomDraw is a private drawing app built around an infinite-zoom canvas. You can zoom from far out to a very deep level, and strokes are stored as vectors, so lines stay sharp at any depth. Brush size is measured in screen pixels, so the pen always feels the same.",
+        "You pick a mode at launch. Infinite Zoom is a plain endless canvas. Zoom Loop adds a mirror stamp, a small copy of your drawing placed at the center. Zooming into it looks the same as the full view, which makes an endless tunnel. You choose a loop depth of 4, 8, 16 or 32 times, and the loop exports as a seamless GIF.",
+        "Tools include pen, eraser, line, rectangle, ellipse and a bucket fill, plus opacity, soft or hard edges, tip shapes and brush presets. You can save your drawing, export a PNG, or draw with touch or gamepad."
+      ],
       "images": [
         {
           "full": "img/zoomdraw/1.webp",
@@ -905,6 +1010,11 @@
       "status": "ready",
       "version": "0.2.0",
       "description": "Paint seamless patterns while you watch the live repeat. Draw across any edge and the stroke continues on the opposite side. Layers, fill, shapes and image import, with PNG export of one tile or a 3 × 3 sheet.",
+      "details": [
+        "TileSmith is a pixel painting tool for making seamless, repeating patterns and textures. You see the live repeat while you paint, and every visible copy edits the same image, so a stroke that crosses an edge or corner continues on the opposite side.",
+        "Start by entering the size of one tile in pixels, up to 2048 by 2048, or open a sample. Paint with brush, pencil, eraser, fill, eyedropper, line, rectangle and ellipse, with up to eight layers you can hide, reorder, rename and set to different opacity. Fill even connects across tile edges. You can import an image as a layer or open one to work from.",
+        "Save a project to keep your layers, and export a PNG of one tile or a 3 by 3 repeat sheet to check the pattern. Undo covers up to 30 steps, and the app saves a recovery draft as you work."
+      ],
       "note": "Windows: unzip and run TileSmith.exe, keeping the folder together. It can also connect to Codex so AI can paint on the canvas (Windows only). Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help).",
       "images": [
         {
@@ -952,6 +1062,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Living recursive kaleidoscope. Scroll to travel through it, and save what you like. Fully offline, with a flash limiter on by default.",
+      "details": [
+        "Fractal Gen opens already running: a shape repeats inside itself hundreds of times, turning and shifting through color. There is no blank canvas to start from. Use it as a visual toy, a display, or a source of images.",
+        "Scroll to travel into the recursion, and drag the picture, which follows with a bit of weight. The arrow keys cross-fade through ten presets. Press M for nine live variations of what you see, and click one to make it the new starting point. Six knobs along the bottom each change many things at once, and none of them can produce a broken picture. You can also drop in your own image to use as the repeating shape.",
+        "Ctrl+S saves a PNG at twice your screen resolution. A seed, a short text code, restores a picture exactly. Gamepads work too."
+      ],
       "images": [
         {
           "full": "img/fractal-gen/1.webp",
@@ -1009,6 +1124,11 @@
       "status": "ready",
       "version": "0.9.0",
       "description": "Generate a planet, walk around on it, and export it as a game asset: meshes, a Godot scene and a heightmap.",
+      "details": [
+        "BEZ Planet Gen is for game developers who need a planet and want to know whether it is any good to stand on. The app opens with a planet already on screen. Drag to spin it, roll a new one, or start from a preset: Earthlike, Desert, Ice, Volcanic, Barren, Moon or Alien.",
+        "When you find one you like, walk on its surface to check it. You can load your own images for the seabed, shore, ground, mountains and peaks, and they wrap with no seams at the poles. Every planet comes from a seed string, so you can copy it and get the same world back.",
+        "Export gives you a render mesh and a separate collision mesh as .glb files, a ready-to-use Godot scene, a 16-bit heightmap, a biome map and vegetation placement data. Scale is 1 unit to 1 meter, with the origin at the planet center."
+      ],
       "images": [
         {
           "full": "img/planet-gen/1.webp",
@@ -1054,6 +1174,11 @@
       "status": "ready",
       "version": "1.3.0",
       "description": "A maze wrapped around a planet. Walk it in first person or export it as a game asset.",
+      "details": [
+        "BEZ Planet Maze builds one maze across the whole surface of a smooth planet. There is no terrain and no water, just corridors and walls on one continuous sphere with no seams or poles. You can walk it in first person, or export it as a game-ready asset.",
+        "You control five settings: planet radius, path width, wall thickness, wall height and complexity. Low complexity gives straighter corridors with loops. High complexity gives a strict perfect maze with exactly one route between any two points. A seed string reproduces any maze, so you can copy one to share it.",
+        "There is no start or end, but every cell can be reached from every other. An export gives you a model file with ground and walls as separate named parts, a scene with collision set up, and a JSON file of the maze layout for pathfinding and minimaps."
+      ],
       "images": [
         {
           "full": "img/planet-maze/1.webp",
@@ -1094,6 +1219,11 @@
       "status": "ready",
       "version": "0.9.59",
       "description": "A simple drawing app for construction sketches: floor plans, site plans, framing layouts, and door and window details. Every size is in feet and inches, every sheet prints true to scale, and 388 ready-made templates cover doors, kitchens, electrical, framing and more. Made for people who have never used CAD.",
+      "details": [
+        "B's E-Z Layout is a drawing app for construction sketches, made for people who have never used CAD. You can draw floor plans, site plans, framing layouts and door and window details. Every size is in feet and inches, and every sheet prints true to scale.",
+        "Pick a tool such as Room, Wall, Line, Rectangle, Arc, Dimension, Text or Fill (33 hatch patterns), then type a size like 3' 6\" and press Enter. Rules like Parallel, Perpendicular, Equal and Fix stay on while you drag. A template drop-down holds hundreds of ready-made pieces, from doors and kitchens to electrical, framing and elevations, with search, Recent and Favorites.",
+        "Set up the sheet with 11 paper sizes, 13 scales and a title block, then print at 100 percent, save a vector PDF, or email it. Autosave recovers your drawing after a crash, and Help has searchable pages and six hands-on tutorials."
+      ],
       "note": "Windows 10 or 11, 64-bit. If Windows says it protected your PC, click More info, then Run anyway. Mac: pick Apple Silicon (M1 or newer) or Intel. The first launch needs Open Anyway (see Install help).",
       "downloads": [
         {
@@ -1145,6 +1275,11 @@
       "status": "ready",
       "version": "1.9.0",
       "description": "A step-by-step coach for professional writing: emails, chat messages, memos, business letters, cover letters and short reports, built on the 7 C's. You type every word; it points out spots to look at and explains why, but never rewrites. The 7 C's check walks you through one spot at a time and outlines it in your writing. Practice mode with 16 scenarios, a progress page, export to Word, text or PDF, and Read it aloud with six natural voices. Fully offline, or try it in the browser.",
+      "details": [
+        "BEZ Pro Write is for students, job seekers and working people who want to write better emails, memos, letters and reports and understand why a fix works. It covers ten kinds of writing, including cover letters, apologies and proposals. It uses no AI and never rewrites your words.",
+        "You pick a type and topic, plan who you are writing to, then write one part per screen. Each part has a tip, a good and a bad example, and phrase ideas. Frameworks like STAR, BLUF and PREP break harder parts into small boxes. The 7 C's check then flags spots by letter and color, one at a time. You can also check writing you already have.",
+        "Readability, style score and word count update as you type. Earlier versions can be compared word by word and restored. A progress page shows which C to work on next."
+      ],
       "note": "Mac: one download for Intel and Apple Silicon, macOS 11 or newer. The first time on macOS 15 or newer, go to System Settings > Privacy & Security and click Open Anyway; on macOS 11 to 14, right-click the app and choose Open.",
       "images": [
         {
@@ -1193,6 +1328,11 @@
       "status": "ready",
       "version": "1.0.1",
       "description": "Reads your documents aloud. Open a PDF, EPUB, Word, text or Markdown file, press Play, and follow along as the words light up. It remembers your place in every book and works offline with a built-in voice.",
+      "details": [
+        "B's E-Z Read Me a Story is for anyone who would rather listen than read: long reports, ebooks, study material or drafts. You add documents to your library, open one and press Play. It reads PDF, EPUB, Word, text and Markdown files, and each word is highlighted as it is spoken so your eyes can follow along.",
+        "It keeps your place in every document, so you pick up where you left off. The built-in voice runs offline on your computer. If you want a more natural sound, you can add an ElevenLabs account in Settings with your own key. That sends the text over the internet and is billed per character.",
+        "You can also turn a document into an audiobook and export it as MP3 or M4B. Scanned PDFs have no text to read, so they need text recognition first."
+      ],
       "note": "Windows, 64-bit. The built-in voice is a one-time 320 MB download. If Windows says it protected your PC, click More info, then Run anyway. Mac: Apple Silicon only (M1 or newer), no Intel version. The first time, drag it to Applications and try to open it, then go to System Settings > Privacy & Security, click Open Anyway, and confirm.",
       "downloads": [
         {
@@ -1244,6 +1384,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Fly through your 3D game assets, fully rendered, and sort each one by art style (Realistic, Low-poly, Voxel, Retro/PS1 and more). Verdicts save to CSV and JSON as you go.",
+      "details": [
+        "The Judge is for when your game asset library has outgrown your memory and you need to know which of your trees, rocks or props are in which art style. You fly a floating camera through your models, fully textured, standing in a lineup on a wooden platform, and label each one with a number key.",
+        "Eight verdict buckets come built in, including Realistic, Stylized, Low-poly, Voxel, Hand-painted, Flat/Untextured, Retro/PS1 and Reject/Broken. You can rename and recolor them. Every verdict is written to a CSV and a JSON file as you go, so there is no export step, and Ctrl+Z undoes the last one.",
+        "Judging is per asset, not per file, so the same tree saved as two formats counts once. Uniform-fit sizing makes side-by-side comparison easier. Tab puts one asset on the stand at true scale next to a person-sized reference figure."
+      ],
       "images": [
         {
           "full": "img/the-judge/1.webp",
@@ -1303,6 +1448,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Scripts and docs for a fully local AI tool suite (coding, images, 3D, music, speech), with a Quick Launch app that runs one GPU tool at a time.",
+      "details": [
+        "AI Workbench is a set of Windows scripts and docs for running your own AI tools on one PC, with nothing sent to the cloud. It covers a coding assistant, image generation, image-to-3D models, 3D worlds from images or video, music, sound effects, image description, multimodal search, and speech: transcription and text to speech.",
+        "Its Quick Launch app lists your tools with their status, port and address. You start, stop or switch with a button, and it shows current video memory use. It runs one GPU-heavy tool at a time, checks free space and ports first, and asks before switching.",
+        "Also included are smoke tests for each tool, saved image workflows, and a script that bundles a generated world, 3D model, music and sound effect into a handoff folder for a Godot project. The apps and model weights are not included."
+      ],
       "note": "Scripts and docs only. Install the AI apps and models yourself.",
       "images": [
         {
@@ -1327,6 +1477,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Claude Code skill: reviews the document you just wrote and fixes its defects.",
+      "details": [
+        "Revu is a skill for Claude Code. After Claude writes a document, such as a build brief, spec, plan or README, you say revu and it does a second pass. A document written in one go nearly always has seams: two sections that drift apart, a count that no longer matches its list, a file reference that was renamed.",
+        "When it can, Revu hands the file to a fresh reviewer with no background, so it reads the way the next person will. It hunts for contradictions, stale references, naming drift, inconsistent formatting, gaps, unstated assumptions and overclaiming. Anything with one clear answer is fixed, and every fix is re-checked everywhere it touches.",
+        "The report is short and has three parts: what it fixed, what needs your call, and what it could not verify."
+      ],
       "note": "Unzip into your Claude Code skills folder.",
       "images": [
         {
@@ -1351,6 +1506,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "Claude Code skill: a full studio simulation that takes a one-line idea to a shippable game.",
+      "details": [
+        "game-studio is a Claude Code skill that makes Claude act as a whole game studio. You hand it anything from a one-line idea to a full spec, or a half-finished project, and it staffs the roles: creative director, designers, engineers, art, audio, UX, QA and more. It is built to ask you only two things.",
+        "The work runs in phases. It researches comparable games, holds a roundtable where roles argue opposing options, and records each decision. It writes a design bible, then builds one vertical slice before broadening. Automated bot playtests hunt for crashes, softlocks and balance outliers.",
+        "Near the end a deliberately harsh critic review plays the game and its findings get fixed, with a ship checklist for the unglamorous parts like icons, settings and installers. The first question comes after the design bible and the second after a human playtest."
+      ],
       "note": "Unzip into your Claude Code skills folder.",
       "images": [
         {

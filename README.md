@@ -37,6 +37,7 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
      "status": "ready",
      "version": "1.0.0",
      "description": "One or two sentences.",
+     "details": ["A longer write-up for the expanded view.", "One string per paragraph."],
      "note": "Optional extra line, e.g. Needs Docker Desktop.",
      "images": [{ "full": "img/my-program/1.webp", "thumb": "img/my-program/1-thumb.webp" }],
      "downloads": [{ "label": "Download", "platform": "Windows", "url": "https://github.com/13-1V1/BEZ-Works/releases/download/my-program-v1.0.0/file.exe", "sizeBytes": 12345678 }],
@@ -44,7 +45,7 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
      "source": "https://github.com/..."
    }
    ```
-   `version`, `downloads`, `browser`, `source`, `note`, `rooms` and `images` are all optional, and so is `alt` on each image. `"video": "img/<id>/preview.mp4"` plays a muted loop on the card in place of the first screenshot. `browser` can also be a full URL to a build hosted somewhere else (CHIPLOAD does this). Use `"status": "coming-soon"` for a greyed-out card with no buttons; those always sort last.
+   `details`, `version`, `downloads`, `browser`, `source`, `note`, `rooms` and `images` are all optional, and so is `alt` on each image. `"video": "img/<id>/preview.mp4"` plays a muted loop on the card in place of the first screenshot. `browser` can also be a full URL to a build hosted somewhere else (CHIPLOAD does this). Use `"status": "coming-soon"` for a greyed-out card with no buttons; those always sort last.
    One program on two platforms (like NoBull): give each download its own `"version"`, and make `source` a list of `{ "label": "Source (Windows)", "url": "..." }`.
    Cards show in the same order as `programs.json`, so put an entry where you want it on the page.
 

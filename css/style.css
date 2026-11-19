@@ -580,12 +580,12 @@ code {
 
 .card-desc {
   color: var(--dim);
-  font-size: 15.5px;
+  font-size: 14.5px;
   margin-top: 8px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
-  line-clamp: 6;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   overflow: hidden;
 }
 
@@ -666,8 +666,9 @@ code {
 .info-cat { font: 500 13px var(--f-mono); color: var(--acc); text-transform: uppercase; letter-spacing: .06em; }
 .info-cat span { color: var(--faint); margin-left: 8px; text-transform: none; }
 .info-name { font-size: clamp(44px, 6vw, 84px); line-height: .9; margin: 8px 0 18px; overflow-wrap: anywhere; }
-.info-desc { font-size: 19px; line-height: 1.5; color: var(--text); max-width: 62ch; }
-.info-note { margin-top: 16px; padding-left: 12px; border-left: 2px solid var(--acc); color: var(--dim); font-size: 16.5px; max-width: 62ch; }
+.info-desc { font-size: 17px; color: var(--text); max-width: 62ch; }
+.info-note { margin-top: 16px; padding-left: 12px; border-left: 2px solid var(--acc); color: var(--dim); font-size: 15px; max-width: 62ch; }
+.info-details { display: grid; gap: 12px; margin-top: 14px; color: var(--dim); font-size: 16px; max-width: 62ch; }
 .info-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 12px; }
 .info-actions .act { flex: 1 1 170px; min-height: 54px; }
 .info-actions .act.quiet { flex: 0 1 auto; }

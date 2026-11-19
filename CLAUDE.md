@@ -23,6 +23,7 @@ Publishing: pushing to `main` runs `.github/workflows/pages.yml` (build, then de
   - `#cat-<id>` (or `#cat-all`): that category's cards, in a fixed overlay.
   - `#<program id>`: that program expanded over its category: every screenshot, full text, all downloads. Old `#id` links still work.
 - `js/flow.js` is the tour: each program's first screenshot is a small window. Scrolling drifts them past in three depth layers, one category at a time, while that category's name passes through (clickable). At the end they deal into one stack per category, All first. The fixed site title is moved by `flow.js` too: centered on the first screen, then docked in the header.
+- `description` is the short text on the card. `details` (optional, a list of paragraphs) is the longer write-up shown under it on the expanded view. Brennan wants every program to have one.
 - Cards show one button per platform. A platform with one file downloads it; one with a choice (installer or portable) opens the program.
 - `js/day.js` sets `data-day` (0 = Sunday) on `<html>`; `css/style.css` has one accent and background-glow set per day. `?day=0..6` previews a day.
 - `app.js` `loadJSON(path, inlineId)` reads an inline `<script type="application/json">` first, then falls back to fetching. `build-site.mjs` inlines both JSON files into `index.html`, so the published page doesn't fetch them. The local preview just fetches them.

@@ -92,6 +92,12 @@ function actionsHTML(p, compact) {
   return parts.join('');
 }
 
+// details: the longer write-up, one string or a list of paragraphs. Shown only on the expanded view.
+function detailsHTML(p) {
+  const paras = [].concat(p.details || []).filter(Boolean);
+  return paras.length ? `<div class="info-details">${paras.map((t) => `<p>${esc(t)}</p>`).join('')}</div>` : '';
+}
+
 /* ---------- Cards ---------- */
 
 function fanHTML(p) {
@@ -275,6 +281,7 @@ const detail = {
           <p class="info-cat">${esc(site.catNames[p.category] || p.category)}${p.version ? ` <span>v${esc(p.version)}</span>` : ''}</p>
           <h2 class="info-name metal" id="detail-name">${esc(p.name)}</h2>
           <p class="info-desc">${esc(p.description)}</p>
+          ${detailsHTML(p)}
           ${p.note ? `<p class="info-note">${esc(p.note)}</p>` : ''}
           <div class="info-actions">${actionsHTML(p, false)}</div>
           ${soon ? '' : '<button class="link-btn" type="button" data-copy-link>Copy link to this program</button>'}

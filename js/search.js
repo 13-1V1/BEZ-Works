@@ -22,7 +22,7 @@ function indexProgram(p, catName) {
     program: p,
     catName,
     name: searchable([p.name, p.id]),
-    all: searchable([p.name, p.id, p.description, p.note, catName, ...platforms,
+    all: searchable([p.name, p.id, p.description, ...[].concat(p.details || []), p.note, catName, ...platforms,
       platforms.includes('macOS') && 'mac', p.browser && 'browser web online']),
   };
 }
