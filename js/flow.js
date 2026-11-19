@@ -26,7 +26,9 @@ window.BEZ = window.BEZ || {};
   const SPEED = [0.6, 0.85, 1.15];     // how fast each layer moves with the scroll
   const DIM = [0.4, 0.7, 1];           // layer opacity
   const HERO = [[0.02, 0.06, 0], [0.72, 0.04, 1], [-0.06, 0.68, 1], [0.76, 0.7, 2], [0.36, 0.84, 0]];   // start-screen windows, clear of the title
-  const G0 = 0.66;                     // scroll point where the stacks start to build
+  const TOUR = 0.9;                    // the camera's travel is spread over this much of the scroll
+  const G0 = 0.76;                     // scroll point where the stacks start to build: just as the last category name passes
+  const DEAL = 0.012;                  // delay between one stack starting and the next
   const STACK = 5;                     // windows that show in a stack
 
   let covered = false, track, stage;
@@ -142,16 +144,16 @@ window.BEZ = window.BEZ || {};
       title.classList.toggle('docked', dk > 0.9);
 
       if (covered || !onScreen) return;
-      const time = REDUCED ? 0 : ms / 1000, cam = lerp(cam0, cam1, ps / 0.7);
+      const time = REDUCED ? 0 : ms / 1000, cam = lerp(cam0, cam1, ps / TOUR);
       sub.style.opacity = 1 - ss(ps / 0.03);
       sub.style.visibility = ps > 0.04 ? 'hidden' : 'visible';
-      const atEnd = ps > 0.93;
+      const atEnd = ps > 0.96;
       skip.style.opacity = atEnd ? 0 : 1; skip.style.visibility = atEnd ? 'hidden' : 'visible';
-      const lastTile = ss((ps - (G0 + cats.length * 0.025 + 0.1)) / 0.06);
+      const lastTile = ss((ps - (G0 + cats.length * DEAL + 0.07)) / 0.05);
       pick.style.opacity = lastTile; pick.style.transform = `translateY(${(1 - lastTile) * 30}px)`;
 
       for (const id in tiles) {
-        const t = tiles[id], lab = ss((ps - (G0 + t.k * 0.025 + 0.1)) / 0.06);
+        const t = tiles[id], lab = ss((ps - (G0 + t.k * DEAL + 0.07)) / 0.05);
         t.hv += (t.hover - t.hv) * (1 - Math.exp(-dt * 10));
         t.b.style.opacity = lab; t.b.style.visibility = lab > 0.5 ? 'visible' : 'hidden';
       }
@@ -163,7 +165,7 @@ window.BEZ = window.BEZ || {};
       }
       for (const w of wins) {
         const L = w.layer, i = w.i, t = tiles[w.cat], j = w.j, fan = 1 + t.hv * 1.7, side = j % 2 ? 1 : -1, step = Math.ceil(j / 2);
-        const e = ss((ps - G0 - t.k * 0.025 - Math.min(j, 6) * 0.006) / 0.12);
+        const e = ss((ps - G0 - t.k * DEAL - Math.min(j, 6) * 0.003) / 0.1);
         let fx = w.x + Math.sin(time * 0.5 + i) * 12 * SCALE[L];
         let fy = H * 0.5 + (w.wy - cam) * SPEED[L] - wh / 2 + Math.cos(time * 0.4 + i * 2.3) * 8 * SCALE[L];
         if (e === 0) w.below = fy < -wh * 1.3;      // already scrolled off the top: it comes back in from the bottom
