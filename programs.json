@@ -487,6 +487,11 @@
       "status": "ready",
       "version": "1.0.0",
       "description": "A physics siege shooter: blast drones out of brick, glass and concrete towers with as few rounds as you can. 24 levels across 4 sectors, 6 ammo types, craters and collapsing towers, plus Siege, Demolition and a tower Workshop.",
+      "details": [
+        "Shoot The Shit is a turret siege game where every shot counts. Each level puts drone targets inside a tower of brick, glass, concrete and alloy, and you clear it by knocking them out with as few rounds as you can. Beat par and you earn more stars, 240 in all across 24 levels in four sectors: Outskirts, Depot, Core and Skyline.",
+        "Your ammo is a puzzle of its own. The MG, Bolt, Slug, Lance, Shell and Cluster rounds each work differently on each material, and some drones carry a shield that only the MG or Shell can pop. Towers crater and collapse as you hit them, so a well-placed shot at the base can do the work of five.",
+        "Clearing levels earns scrap to spend in the Armory on upgrades like faster reloads, wider blasts and extra bounces. Hardcore replays cleared levels with tight ammo and a strict par. Endless Siege runs tower after tower on one ammo pool, Demolition scores how much of a tower you bring down, and the Workshop lets you build, test and share your own towers by code."
+      ],
       "note": "Windows: installs just for you, no admin needed; if Windows says it protected your PC, click More info, then Run anyway. Mac: one download for Intel and Apple Silicon; the first launch needs Open Anyway (see Install help). Android: allow installs from unknown sources when asked. The browser version plays best in landscape.",
       "downloads": [
         {
@@ -1218,7 +1223,7 @@
       "category": "tools",
       "status": "ready",
       "version": "0.9.59",
-      "description": "A simple drawing app for construction sketches: floor plans, site plans, framing layouts, and door and window details. Every size is in feet and inches, every sheet prints true to scale, and 388 ready-made templates cover doors, kitchens, electrical, framing and more. Made for people who have never used CAD.",
+      "description": "A simple drawing app for construction sketches: floor plans, site plans, framing layouts, and door and window details. Every size is in feet and inches, every sheet prints true to scale, and 409 ready-made templates cover doors, kitchens, electrical, framing and more. Made for people who have never used CAD.",
       "details": [
         "B's E-Z Layout is a drawing app for construction sketches, made for people who have never used CAD. You can draw floor plans, site plans, framing layouts and door and window details. Every size is in feet and inches, and every sheet prints true to scale.",
         "Pick a tool such as Room, Wall, Line, Rectangle, Arc, Dimension, Text or Fill (33 hatch patterns), then type a size like 3' 6\" and press Enter. Rules like Parallel, Perpendicular, Equal and Fix stay on while you drag. A template drop-down holds hundreds of ready-made pieces, from doors and kitchens to electrical, framing and elevations, with search, Recent and Favorites.",
@@ -1439,6 +1444,11 @@
       "category": "tools",
       "status": "coming-soon",
       "description": "Windows 11-style dark launcher for Android, built for the Galaxy Note 8 and S Pen.",
+      "details": [
+        "BEZ Launch is a planned Android home screen that looks and works like a dark Windows 11 desktop, laid out for the Galaxy Note 8 held sideways and driven with the S Pen.",
+        "The design has a desktop with shortcut icons, a taskbar with a Start menu of pinned apps and recent files, a tray clock, and apps that open in their own windows you can drag, resize and snap side by side. Right-clicking the desktop brings up a menu with display and sort options, and there is a File Explorer for the phone's storage and a Task Manager that shows memory use and lets you end apps.",
+        "It isn't ready to download yet."
+      ],
       "images": []
     },
     {
