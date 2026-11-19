@@ -17,14 +17,21 @@ Publishing: pushing to `main` runs `.github/workflows/pages.yml` (build, then de
 
 ## Data vs. layout
 
-- `programs.json` (categories plus programs) and `tools.json` drive everything. `js/app.js` renders the cards, filters, lightbox, and `#id` deep links from them. Adding a program shouldn't need HTML or JS changes.
+- `programs.json` (categories plus programs) and `tools.json` drive everything. Adding a program shouldn't need HTML or JS changes.
+- The page has three screens, each with its own address so links and the Back button work. `js/app.js` runs them:
+  - no hash: the scroll tour and category stacks (`js/flow.js`).
+  - `#cat-<id>` (or `#cat-all`): that category's cards, in a fixed overlay.
+  - `#<program id>`: that program expanded over its category: every screenshot, full text, all downloads. Old `#id` links still work.
+- `js/flow.js` is the tour: each program's first screenshot is a small window. Scrolling drifts them past in three depth layers, one category at a time, while that category's name passes through (clickable). At the end they deal into one stack per category, All first. The fixed site title is moved by `flow.js` too: centered on the first screen, then docked in the header.
+- Cards show one button per platform. A platform with one file downloads it; one with a choice (installer or portable) opens the program.
+- `js/day.js` sets `data-day` (0 = Sunday) on `<html>`; `css/style.css` has one accent and background-glow set per day. `?day=0..6` previews a day.
 - `app.js` `loadJSON(path, inlineId)` reads an inline `<script type="application/json">` first, then falls back to fetching. `build-site.mjs` inlines both JSON files into `index.html`, so the published page doesn't fetch them. The local preview just fetches them.
-- `js/search.js` is the search panel in the hero control band, between Visitors and the tool table, styled as a readout. It works from the same data (name, id, description, note, category, platforms, matched from the start of each word) and opens a results list with download buttons, so nothing filters the cards. `/` focuses it, Enter opens the top result, arrows move through results, Esc clears it. It loads before `app.js`.
-- `status: "coming-soon"` cards sort last and show no buttons. `featured: true` cards span wider. Download URLs point to GitHub Releases, tagged `<id>-v<version>`. Binaries are never committed.
+- `js/search.js` is the search panel in the fixed header (a button on phones). It works from the same data (name, id, description, note, category, platforms, matched from the start of each word) and opens a results list with download buttons, so nothing filters the cards. `/` focuses it, Enter opens the top result, arrows move through results, Esc clears it. It loads before `app.js`.
+- `status: "coming-soon"` cards sort last and show no buttons. `featured` no longer changes a card's size. Download URLs point to GitHub Releases, tagged `<id>-v<version>`. Binaries are never committed.
 
-## Hero animation (`js/hero/`)
+## CNC nameplate (`js/hero/`, styles in `css/shop.css`)
 
-The hero is a machined nameplate: a CNC job plays back on an 8 × 4 in aluminum plate. Scripts load in order as plain globals on `window.BEZ`. The order is set in `index.html` and matters.
+This was the old front page. Brennan asked to keep it, so it now sits below the tour in "The nameplate" section, with its own colors on every day of the week. It is a machined nameplate: a CNC job plays back on an 8 × 4 in aluminum plate. Scripts load in order as plain globals on `window.BEZ`. The order is set in `index.html` and matters.
 
 | Module | Job |
 |---|---|
@@ -34,10 +41,10 @@ The hero is a machined nameplate: a CNC job plays back on an 8 × 4 in aluminum 
 | `stock.js` | Blank textures and the plate's layers (surface, scribe, carve), plus push-off transforms. |
 | `machine.js` | Draws the vise, tools, and tool carousel. |
 | `effects.js` | Chips only. They spawn from cutting edges on the leading side of the feed. |
-| `hero.js` | The conductor. It builds the program after the fonts load, lays out the plate between the control band and the copy, steps the clock at 1/240 s, reveals the cuts, and drives the DRO, G-code listing, and tool table. |
+| `hero.js` | The conductor. It builds the program after the fonts load, lays out the plate between the control band and the buttons, steps the clock at 1/240 s, reveals the cuts, and drives the DRO, G-code listing, and tool table. |
 
 Behavior the user asked for, so keep it:
-- The page opens on the finished plate, then the cycle auto-starts once after 2 s (held until the hero is on-screen and the tab is visible).
+- It shows the finished plate, then the cycle auto-starts once, 2 s after it first scrolls on-screen (and the tab is visible).
 - Cycle start loads a new blank that pushes the old one out.
 - No coolant and no heat trail.
 - Chips only where they'd really come off the cutter.
@@ -60,7 +67,8 @@ Fonts: Big Shoulders Display (the carve text), IBM Plex Mono, and Instrument San
 ## Conventions
 
 - Every code file starts with the two-line header from Brennan's global CLAUDE.md (`Created by: Brennan Meyer with use of Claude Code MM/DD/YYYY Santa Clarita, CA` / `brennanmmeyer@gmail.com`), in that file's comment syntax.
-- Keep the dark theme. Design tokens are CSS custom properties at the top of `css/style.css`. Everything must work at phone width with no horizontal scroll.
+- Keep the dark theme with depth and layers: floating windows, brushed-metal lettering (`.metal`), glass panels, and an animated transition between every screen. Design tokens are CSS custom properties at the top of `css/style.css`. Everything must work at phone width with no horizontal scroll.
+- The header keeps a link to the BMeyer portfolio, and the visitor counter (`js/visits.js`) stays on the tour screen.
 - No per-program tech stack on cards. The footer is only "Brennan Meyer · brennanmmeyer@gmail.com"; the name links to the BMeyer portfolio.
 - `rooms` on a program (e.g. `["manufacturing"]`) lists it in that room of the BMeyer portfolio, which fetches the published `programs.json`. Room ids are the portfolio's page names: `manufacturing`, `welding`, `network`, `creative-electives`, etc.
 - Program ids are lowercase with hyphens. Browser builds hosted here go in `play/<id>/`; `browser` can also be an outside URL (CHIPLOAD's is).

@@ -1,9 +1,9 @@
 // Created by: Brennan Meyer with use of Claude Code 11/05/2026 Santa Clarita, CA
 // brennanmmeyer@gmail.com
 //
-// The search panel in the hero's control band. Typing opens a results list right
+// The search panel in the page header. Typing opens a results list right
 // under it, each row with its download buttons, so a program can be found and
-// downloaded without scrolling. Reads the same programs.json data as the cards.
+// downloaded from any screen. Reads the same programs.json data as the cards.
 // Loads before app.js, which calls initSearch() once the data is in.
 
 'use strict';
@@ -44,11 +44,11 @@ function resultActionsHTML(p) {
 
   const parts = (p.downloads || []).map((d) => {
     const label = [d.platform, d.label !== 'Download' && d.label].filter(Boolean).join(' ');
-    return `<a class="btn btn-heat btn-result" href="${esc(d.url)}" rel="noopener">${esc(label || 'Download')}
+    return `<a class="act small" href="${esc(d.url)}" rel="noopener">${esc(label || 'Download')}
       <small>${esc(formatSize(d.sizeBytes))}</small></a>`;
   });
   if (p.browser) {
-    parts.push(`<a class="btn btn-coolant btn-result" href="${esc(p.browser)}" target="_blank" rel="noopener">Open in browser</a>`);
+    parts.push(`<a class="act alt small" href="${esc(p.browser)}" target="_blank" rel="noopener">Open in browser</a>`);
   }
   return parts.join('');
 }
@@ -153,7 +153,6 @@ function initSearch(programs, catNames, openProgram) {
     if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.target.closest('input, textarea, select') || !$('.lightbox').hidden) return;
     e.preventDefault();
-    input.focus({ preventScroll: true });
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    input.focus({ preventScroll: true });   // the header is always on screen
   });
 }

@@ -4,7 +4,7 @@ Programs built by Brennan Meyer. Free to download and use.
 
 **Live site:** https://13-1v1.github.io/BEZ-Works/
 
-Link straight to one program by adding its id: `https://13-1v1.github.io/BEZ-Works/#musickid`
+Link straight to one program by adding its id: `https://13-1v1.github.io/BEZ-Works/#musickid`. A category is `#cat-games` (`#cat-all` for everything).
 
 ## How it's built
 
@@ -14,7 +14,7 @@ A static site (plain HTML/CSS/JS, no framework, no bundler) hosted on GitHub Pag
 |---|---|
 | `programs.json` | Every program and the category list. The page builds its cards from this. |
 | `tools.json` | The "Tools I've used" list. |
-| `index.html`, `css/`, `js/app.js` | Layout and code. You shouldn't need to touch these to add a program. |
+| `index.html`, `css/`, `js/` | Layout and code. You shouldn't need to touch these to add a program. `js/flow.js` is the scroll tour, `js/app.js` the category and program screens, `js/hero/` the CNC nameplate. |
 | `img/<id>/` | Picked screenshots (WebP, full size + thumbnail), plus an optional `preview.mp4` card video. |
 | `play/<id>/` | Web builds for programs that run in the browser. |
 | `_screenshots/` | Screenshot candidates. Git-ignored, never published. |
@@ -46,7 +46,7 @@ Downloads are **not** in the repo. They live on [GitHub Releases](https://github
    ```
    `version`, `downloads`, `browser`, `source`, `note`, `rooms` and `images` are all optional, and so is `alt` on each image. `"video": "img/<id>/preview.mp4"` plays a muted loop on the card in place of the first screenshot. `browser` can also be a full URL to a build hosted somewhere else (CHIPLOAD does this). Use `"status": "coming-soon"` for a greyed-out card with no buttons; those always sort last.
    One program on two platforms (like NoBull): give each download its own `"version"`, and make `source` a list of `{ "label": "Source (Windows)", "url": "..." }`.
-   Cards show in the same order as `programs.json`, so put an entry where you want it on the page. `"featured": true` makes a card bigger; put featured entries first so they sit at the top.
+   Cards show in the same order as `programs.json`, so put an entry where you want it on the page.
 
    You can also skip step 1's hand upload: add the build to `scripts/releases.json`, then run `python scripts/stage-releases.py <id>` and `python scripts/upload-releases.py <id>` The stage script writes each asset's exact size to `_releases/staged.json` for `sizeBytes`.
 

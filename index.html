@@ -3,9 +3,9 @@
   Created by: Brennan Meyer with use of Claude Code 10/25/2026 Santa Clarita, CA
   brennanmmeyer@gmail.com
 
-  Card grid, filter and lightbox originally adapted from vCard by codewithsadee (MIT) — see TEMPLATE-LICENSE.txt.
   Page content is built from programs.json and tools.json by js/app.js.
-  The hero (js/hero/) machines a BEZ WORKS nameplate from a real G-code program.
+  The scroll tour at the top is js/flow.js. The CNC nameplate near the bottom (js/hero/)
+  machines a BEZ WORKS plate from a real G-code program.
 -->
 <html lang="en">
 <head>
@@ -13,71 +13,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BEZ Works</title>
   <meta name="description" content="Programs built by Brennan Meyer. Free to download and use.">
-  <meta name="theme-color" content="#0b151e">
+  <meta name="theme-color" content="#07080c">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <script src="js/day.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/shop.css">
 </head>
 <body>
 
-  <header class="hero" data-hero>
-    <canvas class="hero-surface" data-surface aria-hidden="true"></canvas>
-    <canvas class="hero-cut" data-cut aria-hidden="true"></canvas>
-
-    <div class="control">
-      <ol class="gcode" data-gcode aria-hidden="true"></ol>
-      <dl class="dro" aria-hidden="true">
-        <div><dt>X</dt><dd data-x> 0.0000</dd></div>
-        <div><dt>Y</dt><dd data-y> 0.0000</dd></div>
-        <div><dt>Z</dt><dd data-z> 2.0000</dd></div>
-        <div><dt>F</dt><dd data-f>0.</dd></div>
-        <div><dt>S</dt><dd data-s>0</dd></div>
-        <div><dt>T</dt><dd data-t>3</dd></div>
-      </dl>
-      <p class="visits" data-visits hidden><span>Visitors</span> <b data-visits-count>0</b></p>
-      <div class="search-panel" role="search" data-search-panel>
-        <div class="search-head">
-          <label for="program-search">Search</label>
-          <span class="search-count" aria-live="polite" data-search-count></span>
-        </div>
-        <input class="search-input" id="program-search" type="search" placeholder="Name, CNC, Mac…" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-controls="search-results" data-search>
-        <div class="search-results" id="search-results" data-search-results hidden></div>
+  <!-- fixed header: search, the docked title, the link back to the portfolio -->
+  <header class="top" data-top>
+    <div class="search-panel" role="search" data-search-panel>
+      <div class="search-head">
+        <label for="program-search">Search</label>
+        <span class="search-count" aria-live="polite" data-search-count></span>
       </div>
-      <ul class="tool-table" aria-hidden="true">
-        <li data-tool="1"><b>T1</b> 2.0 face mill</li>
-        <li data-tool="2"><b>T2</b> 1/2 90° V-bit</li>
-        <li data-tool="3"><b>T3</b> 1/4 60° V-bit</li>
-        <li data-tool="4"><b>T4</b> 1/8 90° engraver</li>
-      </ul>
-      <p class="now-line" data-now aria-hidden="true"></p>
+      <input class="search-input" id="program-search" type="search" placeholder="Name, CNC, Mac…" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-controls="search-results" data-search>
+      <div class="search-results" id="search-results" data-search-results hidden></div>
     </div>
-
-    <div class="hero-copy">
-      <h1 class="sr-only">BEZ Works</h1>
-      <p class="hero-tagline">Programs I've built. Free to download and use.</p>
-      <div class="hero-actions">
-        <a class="btn btn-heat" href="#programs">See the programs</a>
-        <button class="btn btn-cycle" type="button" data-cycle>Cycle start</button>
-        <button class="btn btn-ghost btn-small" type="button" data-feed>Feed 200%</button>
-      </div>
-    </div>
+    <button class="top-btn search-toggle" type="button" data-search-toggle aria-label="Search programs" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+    </button>
+    <a class="top-btn me" href="https://13-1v1.github.io/BMeyer/" title="Brennan Meyer's portfolio"><span class="me-long">Brennan Meyer</span><span class="me-short">Portfolio</span> <span aria-hidden="true">↗</span></a>
   </header>
+  <h1 class="title" data-title><a class="metal" href="#" data-home>BEZ WORKS</a></h1>
 
-  <main class="page">
+  <!-- the scroll tour: windows drift past, then deal into one stack per category -->
+  <div class="track" data-track>
+    <div class="stage glow" data-stage>
+      <p class="sub" data-sub>Programs and games by <a href="https://13-1v1.github.io/BMeyer/">Brennan Meyer</a>. All free.<small aria-hidden="true">scroll ↓</small></p>
+      <h2 class="pick" data-pick>Pick a category</h2>
+      <p class="visits" data-visits hidden><span>Visitors</span> <b data-visits-count>0</b> <i data-dayname></i></p>
+      <button class="skip" type="button" data-skip>Skip to categories ↓</button>
+      <noscript><p class="noscript">This page needs JavaScript to list the programs.</p></noscript>
+    </div>
+  </div>
 
-    <section class="programs" id="programs" aria-labelledby="programs-title">
-      <div class="section-head">
-        <h2 class="section-title" id="programs-title">Programs</h2>
-        <nav class="filter-list" aria-label="Filter by category" data-filters></nav>
+  <main class="page" data-page>
+
+    <section class="shop" aria-labelledby="shop-title">
+      <h2 class="section-title metal" id="shop-title">The nameplate</h2>
+      <p class="section-sub">The original BEZ Works front page: a CNC job cutting the nameplate from real G-code.</p>
+
+      <div class="hero" data-hero>
+        <canvas class="hero-surface" data-surface aria-hidden="true"></canvas>
+        <canvas class="hero-cut" data-cut aria-hidden="true"></canvas>
+
+        <div class="control">
+          <ol class="gcode" data-gcode aria-hidden="true"></ol>
+          <dl class="dro" aria-hidden="true">
+            <div><dt>X</dt><dd data-x> 0.0000</dd></div>
+            <div><dt>Y</dt><dd data-y> 0.0000</dd></div>
+            <div><dt>Z</dt><dd data-z> 2.0000</dd></div>
+            <div><dt>F</dt><dd data-f>0.</dd></div>
+            <div><dt>S</dt><dd data-s>0</dd></div>
+            <div><dt>T</dt><dd data-t>3</dd></div>
+          </dl>
+          <ul class="tool-table" aria-hidden="true">
+            <li data-tool="1"><b>T1</b> 2.0 face mill</li>
+            <li data-tool="2"><b>T2</b> 1/2 90° V-bit</li>
+            <li data-tool="3"><b>T3</b> 1/4 60° V-bit</li>
+            <li data-tool="4"><b>T4</b> 1/8 90° engraver</li>
+          </ul>
+          <p class="now-line" data-now aria-hidden="true"></p>
+        </div>
+
+        <div class="hero-copy">
+          <div class="hero-actions">
+            <button class="btn btn-cycle" type="button" data-cycle>Cycle start</button>
+            <button class="btn btn-ghost btn-small" type="button" data-feed>Feed 200%</button>
+          </div>
+        </div>
       </div>
-
-      <ul class="program-list" data-programs>
-        <li class="loading">Loading programs…</li>
-      </ul>
     </section>
 
     <section class="install" aria-labelledby="install-title">
@@ -122,7 +134,7 @@
     </section>
 
     <section class="tools" aria-labelledby="tools-title">
-      <h2 class="section-title" id="tools-title">Tools I've used</h2>
+      <h2 class="section-title metal" id="tools-title">Tools I've used</h2>
       <div class="tool-groups" data-tools></div>
     </section>
 
@@ -131,6 +143,21 @@
     </footer>
 
   </main>
+
+  <!-- one category's cards, opened from a stack or a category name -->
+  <section class="grid glow" data-grid aria-label="Programs" inert>
+    <div class="grid-in">
+      <nav class="chips" data-chips aria-label="Categories"></nav>
+      <h2 class="grid-title metal" data-grid-title></h2>
+      <p class="grid-count" data-grid-count></p>
+      <ul class="cards" data-cards></ul>
+    </div>
+  </section>
+
+  <!-- one program, expanded: every screenshot, the full write-up, the downloads -->
+  <section class="detail" data-detail role="dialog" aria-modal="true" aria-labelledby="detail-name" inert>
+    <div class="detail-in" data-detail-in></div>
+  </section>
 
   <!-- Screenshot lightbox -->
   <div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Screenshots">
@@ -143,15 +170,16 @@
     <button class="lightbox-nav next" data-lb-next aria-label="Next screenshot">›</button>
   </div>
 
-  <script src="js/hero/program.js"></script>
-  <script src="js/hero/vcarve.js"></script>
-  <script src="js/hero/surface.js"></script>
-  <script src="js/hero/stock.js"></script>
-  <script src="js/hero/machine.js"></script>
-  <script src="js/hero/effects.js"></script>
-  <script src="js/hero/hero.js"></script>
+  <script src="js/flow.js"></script>
   <script src="js/visits.js" defer></script>
   <script src="js/search.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/hero/program.js" defer></script>
+  <script src="js/hero/vcarve.js" defer></script>
+  <script src="js/hero/surface.js" defer></script>
+  <script src="js/hero/stock.js" defer></script>
+  <script src="js/hero/machine.js" defer></script>
+  <script src="js/hero/effects.js" defer></script>
+  <script src="js/hero/hero.js" defer></script>
 </body>
 </html>
