@@ -481,6 +481,61 @@
       ]
     },
     {
+      "id": "relay-down",
+      "name": "Relay Down",
+      "category": "games",
+      "status": "ready",
+      "version": "0.9.0",
+      "description": "Light the relays. Wreck the horde. Outlast the Motherboard. A top-down horde shooter where you build one gun from scrap, fight 7 bosses, and decide at every dropship whether to leave with your haul or push deeper. Works with a controller, and with touch on Android.",
+      "details": [
+        "You start with one gun, built from scrap. Every run drops you onto a relay to light it up while the horde closes in, and every kill and crate adds to your haul.",
+        "At each dropship you choose: leave now and keep what you've got, or push deeper for more scrap and tougher fights. Seven bosses stand between you and the Motherboard.",
+        "Back at base, spend your scrap at the Armory and the Workbench to build a better gun, and pick new abilities as you level up. This is an early access test build for Windows and Android, with controller support on both and touch controls on Android."
+      ],
+      "note": "Early access test build. Windows: one file, no install; if Windows says it protected your PC, click More info, then Run anyway. Android: allow installs from unknown sources, and if Play Protect warns, tap Install anyway.",
+      "downloads": [
+        {
+          "label": "Early access",
+          "platform": "Windows",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/relay-down-v0.9.0/RelayDown-0.9.0-Windows.exe",
+          "sizeBytes": 191601456
+        },
+        {
+          "label": "Early access",
+          "platform": "Android",
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/relay-down-v0.9.0/RelayDown-0.9.0.apk",
+          "sizeBytes": 124976306
+        }
+      ],
+      "images": [
+        {
+          "full": "img/relay-down/1.webp",
+          "thumb": "img/relay-down/1-thumb.webp",
+          "alt": "A fight on a relay: the scrap gun firing into the horde, with the level and scrap readouts"
+        },
+        {
+          "full": "img/relay-down/2.webp",
+          "thumb": "img/relay-down/2-thumb.webp",
+          "alt": "Home base with the Workbench, Armory, Storage and Launch Pad"
+        },
+        {
+          "full": "img/relay-down/3.webp",
+          "thumb": "img/relay-down/3-thumb.webp",
+          "alt": "The Armory, where you buy gun parts"
+        },
+        {
+          "full": "img/relay-down/4.webp",
+          "thumb": "img/relay-down/4-thumb.webp",
+          "alt": "The ability tree on a level-up"
+        },
+        {
+          "full": "img/relay-down/5.webp",
+          "thumb": "img/relay-down/5-thumb.webp",
+          "alt": "The end-of-run screen"
+        }
+      ]
+    },
+    {
       "id": "shoot-the-shit",
       "name": "Shoot The Shit",
       "category": "games",
