@@ -1,8 +1,8 @@
-version: 1.1.6
+version: 1.1.7
 files:
-  - url: https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.6/G-Code-Trainer-Setup-1.1.6.exe
-    sha512: pVyIjmM+a3wEK/VKoGF/7LCAQ7MLTYy0gD0L0hplBwF/+CikIwQQg6T2TA+C3ns9izUyeAYICO97GDd1VES+nQ==
-    size: 105803924
-path: https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.6/G-Code-Trainer-Setup-1.1.6.exe
-sha512: pVyIjmM+a3wEK/VKoGF/7LCAQ7MLTYy0gD0L0hplBwF/+CikIwQQg6T2TA+C3ns9izUyeAYICO97GDd1VES+nQ==
-releaseDate: '2026-11-24T06:12:49.925Z'
+  - url: https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.7/G-Code-Trainer-Setup-1.1.7.exe
+    sha512: HqYkUuhTn+oXmg1S5wKWRIBwFpAEVjeDsp9cR7rJynP581RglveAx1SKd3AQlg5ZSWsUl39CSjVYnxEHmRetxQ==
+    size: 105808124
+path: https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.7/G-Code-Trainer-Setup-1.1.7.exe
+sha512: HqYkUuhTn+oXmg1S5wKWRIBwFpAEVjeDsp9cR7rJynP581RglveAx1SKd3AQlg5ZSWsUl39CSjVYnxEHmRetxQ==
+releaseDate: '2026-11-24T23:04:58.077Z'
