@@ -68,7 +68,7 @@
       "category": "machining",
       "rooms": ["manufacturing"],
       "status": "ready",
-      "version": "1.1.5",
+      "version": "1.1.6",
       "description": "Learn CNC programming from zero on FANUC-style mills and lathes. 67 guided lessons (35 mill, 32 lathe), each with a quiz and a hands-on coding exercise you run in a live 2D/3D simulator. 158 quiz questions, 40 blueprint part challenges, working FANUC 0i-MF and 0i-TF control-panel simulators, a reference for 46 G-codes, 13 M-codes and 52 alarms, and a live checker that catches 62 kinds of mistakes.",
       "details": [
         "G-Code Trainer is a course in the language CNC machines run, written for people who have never typed a line of it. It aims at Fanuc-controlled mills and a Fanuc 0i-TF System A lathe, and everything is inch-native (G20), with G21 taught as the explicit switch. Each student gets a profile, so shared PCs keep progress separate.",
@@ -106,20 +106,20 @@
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.5/G-Code-Trainer-Setup-1.1.5.exe",
-          "sizeBytes": 114203249
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.6/G-Code-Trainer-Setup-1.1.6.exe",
+          "sizeBytes": 105803924
         },
         {
           "label": "Apple Silicon",
           "platform": "macOS",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.5/GCodeTrainer-1.1.5-macOS-arm64.zip",
-          "sizeBytes": 136768692
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.6/GCodeTrainer-1.1.6-macOS-arm64.zip",
+          "sizeBytes": 123921524
         },
         {
           "label": "Intel",
           "platform": "macOS",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.5/GCodeTrainer-1.1.5-macOS-x64.zip",
-          "sizeBytes": 142918857
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/gcode-trainer-v1.1.6/GCodeTrainer-1.1.6-macOS-x64.zip",
+          "sizeBytes": 130071689
         }
       ],
       "featured": true,

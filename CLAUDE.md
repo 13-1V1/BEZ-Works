@@ -28,6 +28,7 @@ Publishing: pushing to `main` runs `.github/workflows/pages.yml` (build, then de
 - `js/day.js` sets `data-day` (0 = Sunday) on `<html>`; `css/style.css` has one accent and background-glow set per day. `?day=0..6` previews a day.
 - `app.js` `loadJSON(path, inlineId)` reads an inline `<script type="application/json">` first, then falls back to fetching. `build-site.mjs` inlines both JSON files into `index.html`, so the published page doesn't fetch them. The local preview just fetches them.
 - `js/search.js` is the search panel in the fixed header (a button on phones). It works from the same data (name, id, description, note, category, platforms, matched from the start of each word) and opens a results list with download buttons, so nothing filters the cards. `/` focuses it, Enter opens the top result, arrows move through results, Esc clears it. It loads before `app.js`.
+- `updates/<id>/latest.yml` is a self-updating app's update feed (electron-updater), served at `/updates/<id>/latest.yml`. G-Code Trainer has one. On each release, upload the exe and its `.blockmap` with the exact names the feed lists, and only then replace `latest.yml`.
 - `status: "coming-soon"` cards sort last and show no buttons. `featured` no longer changes a card's size. Download URLs point to GitHub Releases, tagged `<id>-v<version>`. Binaries are never committed.
 
 ## CNC nameplate (`js/hero/`, styles in `css/shop.css`)

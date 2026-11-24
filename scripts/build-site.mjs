@@ -2,7 +2,7 @@
 // brennanmmeyer@gmail.com
 //
 // Builds the published site into _site/:
-//   1. copies the page, styles, script, images and browser builds
+//   1. copies the page, styles, script, images, browser builds and app update feeds (updates/)
 //   2. tucks programs.json + tools.json inside index.html (saves two fetches on load)
 //   3. stamps each css/js link with a content hash so browsers never mix old and new files
 //   4. also publishes programs.json as a file; the BMeyer portfolio reads its "rooms" lists
@@ -14,7 +14,7 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 
 const OUT = '_site';
-const COPY = ['css', 'js', 'img', 'play', '.nojekyll', 'TEMPLATE-LICENSE.txt', 'programs.json'];
+const COPY = ['css', 'js', 'img', 'play', 'updates', '.nojekyll', 'TEMPLATE-LICENSE.txt', 'programs.json'];
 
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT);
