@@ -137,8 +137,8 @@
       { "name": "ShootTheShit-Mac-1.0.0.zip", "label": "Download", "platform": "macOS", "file": "C:/Users/brenn/Shoot The Shit/ShootTheShit-Mac-1.0.0.zip" },
       { "name": "ShootTheShit-1.0.0.apk", "label": "Download", "platform": "Android", "file": "C:/Users/brenn/Shoot The Shit/ShootTheShit-1.0.0.apk" }
     ]},
-    { "id": "bez-cam", "version": "1.0.1", "title": "BEZ CAM 1.0.1", "assets": [
-      { "name": "BEZ-CAM-Setup-1.0.1.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ CAM/dist/BEZ CAM Setup 1.0.1.exe" }
+    { "id": "bez-cam", "version": "1.1.24", "title": "BEZ CAM 1.1.24", "assets": [
+      { "name": "BEZ-CAM-Setup-1.1.24.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ CAM/dist/BEZ-CAM-Setup-1.1.24.exe" }
     ]},
     { "id": "bez-layout", "version": "0.9.59", "title": "B's E-Z Layout 0.9.59", "assets": [
       { "name": "BEZ-Layout-Setup-0.9.59.exe", "label": "Download", "platform": "Windows", "file": "C:/Users/brenn/BEZ Layout/dist/B's E-Z Layout Setup 0.9.59.exe" },

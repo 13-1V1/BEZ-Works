@@ -32,7 +32,7 @@
       "category": "machining",
       "rooms": ["manufacturing"],
       "status": "ready",
-      "version": "1.0.1",
+      "version": "1.1.24",
       "description": "Beginner-friendly CAM: a SolidWorks-style program that turns a part into Fanuc G-code. Mill only for now.",
       "details": [
         "BEZ CAM is for someone who has never programmed a mill. It follows SolidWorks naming, menus and mouse controls, so you can model a part with sketches, Smart Dimension, extruded bosses and cuts, fillets, patterns, and build assemblies and drawings, using plain shop words and tooltips on every command.",
@@ -44,8 +44,8 @@
         {
           "label": "Download",
           "platform": "Windows",
-          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-cam-v1.0.1/BEZ-CAM-Setup-1.0.1.exe",
-          "sizeBytes": 528681313
+          "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-cam-v1.1.24/BEZ-CAM-Setup-1.1.24.exe",
+          "sizeBytes": 613877261
         }
       ],
       "images": [

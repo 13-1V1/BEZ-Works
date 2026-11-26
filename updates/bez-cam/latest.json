@@ -1,0 +1,9 @@
+{
+  "version": "1.1.24",
+  "file": "BEZ-CAM-Setup-1.1.24.exe",
+  "url": "https://github.com/13-1V1/BEZ-Works/releases/download/bez-cam-v1.1.24/BEZ-CAM-Setup-1.1.24.exe",
+  "sha256": "c9acdf75faa5db020a5de2acdaef6a491ea33c0ca578d5bd6355befbe7836a31",
+  "size": 613877261,
+  "notes": "Updates itself from now on: it tells you when a new version is ready and installs it when you close (Help > Check for Updates).\nRound-overs on top edges are cut now (a corner rounder, or a ball mill if your crib has none).\nHole table with no room on the sheet asks: new sheet, bigger sheet, or cancel.\nAbout 100 fixes from a full review: tool paths, the Make G-code wizard, sketches, drawings, assemblies, the installer.\nLofts and sweeps that took 30+ minutes to make G-code now take 1 to 6.\nBEZ CAM's own code is open source now (GPL-3.0).",
+  "date": "2026-11-25"
+}
